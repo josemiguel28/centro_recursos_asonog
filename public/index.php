@@ -8,13 +8,19 @@ use Controller\auth\PasswordResetController;
 use Controller\auth\PasswordResetRequestController;
 use Controller\auth\LoginController;
 use Controller\home\HomeController;
+use Controller\biblioteca\BibliotecaController;
 
 use MVC\Router;
 
 $router = new Router();
 
-//pagina de incio
+//pagina de inicio
 $router->get("/", [HomeController::class, 'index']);
+$router->post("/", [HomeController::class, 'index']);
+
+//pagina de biblioteca
+$router->get("/biblioteca", [BibliotecaController::class, 'index']);
+
 
 //iniciar sesion
 //$router->get("/", [LoginController::class, 'login']);

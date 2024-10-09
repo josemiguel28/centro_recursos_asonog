@@ -15,6 +15,7 @@ export default {
                 },
 
                 'primary-light': 'rgba(239, 174, 0, 0.45)', // Color con opacidad
+                'gray': '#F0F0F0', // Color con opacidad
 
                 'secondary': {
                     300: '#58C236',  // Variación más clara de #2D8E00

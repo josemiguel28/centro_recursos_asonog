@@ -3,11 +3,19 @@
 namespace Controller\home;
 
 use MVC\Router;
-
+use Model\Libros as ModeloLibros;
 class HomeController
 {
-    public static function index(Router $router)
+    public static function index(Router $router): void
     {
-        $router->render('home/index');
+        $categorias = ModeloLibros::getBookCategoriesWithLimit();
+        $libros = ModeloLibros::getActiveBooksWithLimit();
+
+        $router->render('home/index',
+            [
+                'categorias' => $categorias,
+                'libros' => $libros
+            ]
+        );
     }
 }

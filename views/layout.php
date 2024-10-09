@@ -19,6 +19,7 @@
 </head>
 <body class="font-poppins">
 
+<!-- barra de navegacion -->
 <nav class="bg-white py-5 start-0 border-b">
     <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
         <a href="https://flowbite.com/" class="flex items-center space-x-3 rtl:space-x-reverse">
@@ -47,7 +48,7 @@
         <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-sticky">
             <ul class="flex flex-col p-4 md:p-0 mt-4 font-medium border border-gray-100 rounded-lg bg-gray-50 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
                 <li>
-                    <a href="#"
+                    <a href="/"
                        class="block py-2 px-3 text-gray-900 rounded md:bg-transparent md:p-0"
                        aria-current="page">Inicio</a>
                 </li>
@@ -56,7 +57,7 @@
                        class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-secondary-400 md:p-0">Nosotros</a>
                 </li>
                 <li>
-                    <a href="#"
+                    <a href="/biblioteca"
                        class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-secondary-400 md:p-0 ">Biblioteca</a>
                 </li>
                 <li>
@@ -68,7 +69,7 @@
     </div>
 </nav>
 
-<div class="mt-20">
+<div class="mt-20 mx-auto max-w-screen-xl">
     <?php echo $contenido; ?>
 </div>
 
@@ -81,7 +82,7 @@
 
             </a>
             <ul class="text-lg flex items-center justify-center flex-col gap-7 md:flex-row md:gap-12 transition-all duration-500 py-16 mb-10 border-b border-gray-200">
-                <li><a href="#" class="text-gray-800 hover:text-gray-900">Biblioteca</a></li>
+                <li><a href="/biblioteca" class="text-gray-800 hover:text-gray-900">Biblioteca</a></li>
                 <li><a href="#" class=" text-gray-800 hover:text-gray-900">Acceso</a></li>
                 <li><a href="#" class=" text-gray-800 hover:text-gray-900">Página principal</a></li>
                 <li><a href="#" class=" text-gray-800 hover:text-gray-900">Contacto</a></li>
