@@ -185,7 +185,7 @@
 
         <div class="flex justify-center mt-7">
             <a href="#"
-               class="border-2 border-gray-700 text-black px-6 py-3 rounded-md text-lg hover:bg-blue-700 transition">
+               class="border-2 border-gray-700 text-black px-6 py-3 rounded-md text-lg hover:bg-gray-200 transition">
                 Ver más
             </a>
         </div>
@@ -258,8 +258,8 @@
         </div>
 
         <div class="flex justify-center mt-5">
-            <a href="#"
-               class="border-2 border-gray-700 text-black px-6 py-3 rounded-md text-lg hover:bg-blue-700 transition">
+            <a href="/biblioteca"
+               class="border-2 border-gray-700 text-black px-6 py-3 rounded-md text-lg hover:bg-gray-200 transition">
                 Ver más
             </a>
         </div>

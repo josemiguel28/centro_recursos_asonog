@@ -167,7 +167,7 @@
                 <div class="flex justify-center mt-6"
                 ">
                 <button id="mostrar-mas-btn" type="button"
-                        class="border-2 border-gray-700 text-black px-6 py-3 rounded-md text-lg hover:bg-blue-700 transition">
+                        class="border-2 border-gray-700 text-black px-6 py-3 rounded-md text-lg hover:bg-gray-200 transition">
                     Ver más
                 </button>
             </div>
