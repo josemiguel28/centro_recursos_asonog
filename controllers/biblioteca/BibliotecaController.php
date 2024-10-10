@@ -9,12 +9,14 @@ class BibliotecaController
 {
     public static function index(Router $router): void
     {
-        $libros = ModeloLibros::getAllActiveBooks();
+        $libros = ModeloLibros::getActiveBooksWithLimit(10);
 
         $router->render('biblioteca/index',
             [
-                'libros' => $libros
+                'libros' => $libros,
+                //'offset' => $offset + $limit Para la siguiente página
             ]
         );
     }
+
 }

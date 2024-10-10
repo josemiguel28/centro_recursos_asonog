@@ -9,7 +9,7 @@ use Controller\auth\PasswordResetRequestController;
 use Controller\auth\LoginController;
 use Controller\home\HomeController;
 use Controller\biblioteca\BibliotecaController;
-
+use Controller\api\BibliotecaAPI;
 use MVC\Router;
 
 $router = new Router();
@@ -21,6 +21,8 @@ $router->post("/", [HomeController::class, 'index']);
 //pagina de biblioteca
 $router->get("/biblioteca", [BibliotecaController::class, 'index']);
 
+//api de biblioteca
+$router->get("/api/get-paginated-books", [BibliotecaAPI::class, 'getPaginatedBooks']);
 
 //iniciar sesion
 //$router->get("/", [LoginController::class, 'login']);

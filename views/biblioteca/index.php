@@ -107,9 +107,9 @@
         </div>
 
         <div class="md:col-span-2">
-            <div class="p-6">
+            <div class="p-6 contenedor">
 
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 contenedor-libros">
 
                     <?php foreach ($libros as $libro) : ?>
                         <div class="w-full mb-7 max-w-sm bg-white border border-gray-200 rounded-lg shadow flex flex-col justify-between">
@@ -164,12 +164,12 @@
                     <?php endforeach; ?>
                 </div>
                 <!-- Botón de ver más -->
-                <div class="flex justify-center mt-6">
-                    <a href="#"
-                       class="border-2 border-gray-700 text-black px-6 py-3 rounded-md text-lg hover:bg-blue-700 transition">
-                        Ver más
-                    </a>
-                </div>
+                <div class="flex justify-center mt-6"
+                ">
+                <button id="mostrar-mas-btn" type="button"
+                        class="border-2 border-gray-700 text-black px-6 py-3 rounded-md text-lg hover:bg-blue-700 transition">
+                    Ver más
+                </button>
             </div>
         </div>
     </div>
@@ -193,3 +193,7 @@
     toggleFilter('toggleFilters1', 'filtersContent1', 'arrowIcon1');
     toggleFilter('toggleFilters2', 'filtersContent2', 'arrowIcon2');
 </script>
+
+<?php
+$script = "<script type='module' src='build/js/app.js'></script>";
+?>

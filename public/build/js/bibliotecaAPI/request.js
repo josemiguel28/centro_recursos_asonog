@@ -1,0 +1,1 @@
+import mostrarLibros from"./UI.js";async function consultarAPI(t){try{const o=`/api/get-paginated-books?offset=${t}`,s=await fetch(o,{headers:{"X-Requested-With":"XMLHttpRequest"}});if(!s.ok)throw new Error(`HTTP error! status: ${s.status}`);const r=await s.json();mostrarLibros(r)}catch(t){console.log(t)}}export{consultarAPI};

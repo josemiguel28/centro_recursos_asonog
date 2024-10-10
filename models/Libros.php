@@ -37,9 +37,9 @@ class Libros extends ActiveRecord
         return self::consultarSQL($sql);
     }
 
-    public static function getActiveBooksWithLimit()
+    public static function getActiveBooksWithLimit($limit = 4): array
     {
-        $sql = "SELECT * FROM " . self::$tabla . " WHERE estado = 'ACT' LIMIT 4";
+        $sql = "SELECT * FROM " . self::$tabla . " WHERE estado = 'ACT' LIMIT {$limit}";
         return self::consultarSQL($sql);
     }
 
@@ -54,5 +54,11 @@ class Libros extends ActiveRecord
         $sql = "SELECT categoria FROM " . self::$tabla . " ORDER BY id ASC LIMIT 4";
         return self::consultarSQL($sql);
     }
+
+    public static function getPaginatedBooks($limit, $offset){
+        $sql = "SELECT * FROM " . self::$tabla . " WHERE estado = 'ACT' LIMIT ${limit} OFFSET ${offset}";
+        return self::consultarSQL($sql);
+    }
+
 }
 
