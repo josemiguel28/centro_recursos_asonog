@@ -1,5 +1,5 @@
 import mostrarLibros from './UI.js';
-async function consultarAPI(offset) {
+async function CargarMasLibrosAPI(offset) {
     try {
         const url = `/api/get-paginated-books?offset=${offset}`;
 
@@ -20,4 +20,4 @@ async function consultarAPI(offset) {
         console.log(e);
     }
 }
-export {consultarAPI};
+export {CargarMasLibrosAPI};

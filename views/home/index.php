@@ -93,7 +93,8 @@
                     Puedes acceder a todos nuestros libros de forma gratuita 📕.
                 </p>
                 <div>
-                    <a href="/biblioteca" class="text-slate-800 font-semibold text-sm hover:underline flex items-center">
+                    <a href="/biblioteca"
+                       class="text-slate-800 font-semibold text-sm hover:underline flex items-center">
                         Biblioteca
                         <svg xmlns="http://www.w3.org/2000/svg" class="ml-2 h-4 w-4" fill="none" viewBox="0 0 24 24"
                              stroke="currentColor">

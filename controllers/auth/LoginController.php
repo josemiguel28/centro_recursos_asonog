@@ -18,12 +18,13 @@ class LoginController extends ActiveRecord
         $alertas = [];
 
         if (isPostBack()) {
+
             $auth->sincronizar($_POST);
             $alertas = $auth->validarLoginInputs();
 
             if (empty($alertas)) {
                 if (self::attemptLogin($auth)) {
-                    return; // Redirige al usuario y termina el método
+                    return; // Redirige al usuario y termina el metodo
                 }
             }
         }
@@ -37,9 +38,9 @@ class LoginController extends ActiveRecord
 
     private static function attemptLogin(Usuario $auth): bool
     {
-        $usuario = Usuario::where("email", $auth->email);
+        $usuario = Usuario::where("correo", $auth->correo);
 
-        if ($usuario && $usuario->comprobarPasswordAndVerificado($auth->password)) {
+        if ($usuario && $usuario->comprobarPasswordAndVerificado($auth->contrasena)) {
             self::authenticateUser($usuario);
             return true;
         }
@@ -52,16 +53,17 @@ class LoginController extends ActiveRecord
     {
         session_start();
 
+
         $request = new Request();
         $request->session('id', $user->id);
         $request->session('nombre', $user->nombre . " " . $user->apellido);
-        $request->session('email', $user->email);
+        $request->session('email', $user->correo);
         $request->session('loggedAt', date('Y-m-d H:i:s'));
         $request->session('login', true);
 
         // Redirección según el rol del usuario
-        $redirectUrl = ($user->admin === '1') ? '/admin' : '/cita';
-        $request->session('admin', $user->admin ?? null);
+        $redirectUrl = ($user->rol === '1') ? '/admin' : '/colaborador';
+        $request->session('admin', $user->rol ?? null);
         header("Location: $redirectUrl");
         exit; // Termina el script después de la redirección
     }

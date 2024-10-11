@@ -52,24 +52,26 @@
                 </button>
 
                 <div id="filtersContent1" class="hidden mt-2 space-y-2 transition-opacity duration-500 ease-in-out">
+
                     <div>
                         <label class="flex items-center">
-                            <input type="radio" name="filtro1" value="opcion1" class="mr-2">
-                            Opción 1
+                            <input type="radio" name="categoria" value="todos" checked
+                                   class="mr-2">
+                            Todos
                         </label>
                     </div>
-                    <div>
-                        <label class="flex items-center">
-                            <input type="radio" name="filtro1" value="opcion2" class="mr-2">
-                            Opción 2
-                        </label>
-                    </div>
-                    <div>
-                        <label class="flex items-center">
-                            <input type="radio" name="filtro1" value="opcion3" class="mr-2">
-                            Opción 3
-                        </label>
-                    </div>
+
+                    <?php foreach ($categorias as $categoria) : ?>
+
+                        <div>
+                            <label class="flex items-center">
+                                <input type="radio" name="categoria" value="<?php echo $categoria->categoria; ?>"
+                                       class="mr-2">
+                                <?php echo $categoria->categoria; ?>
+                            </label>
+                        </div>
+
+                    <?php endforeach; ?>
                 </div>
 
                 <!-- Segundo filtro -->

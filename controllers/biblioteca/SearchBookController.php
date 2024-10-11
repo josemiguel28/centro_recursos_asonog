@@ -9,8 +9,8 @@ class SearchBookController
 {
     public static function searchBook(Router $router): void
     {
-        $search = $_GET['busqueda-libro'] ?? '';
-        $search = filter_var($search, FILTER_SANITIZE_STRING);
+        $search = sanitizar($_GET['busqueda-libro']) ?? '';
+        //$search = filter_var($search, FILTER_SANITIZE_STRING);
 
         $libros = ModeloLibros::searchBook($search);
 

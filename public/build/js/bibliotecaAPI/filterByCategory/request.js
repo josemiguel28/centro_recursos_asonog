@@ -1,0 +1,1 @@
+import mostrarLibros from"./UI.js";async function filterByCategoryAPI(t){try{const o=`/api/get-paginated-books?offset=${t}`,r=await fetch(o,{headers:{"X-Requested-With":"XMLHttpRequest"}});if(!r.ok)throw new Error(`HTTP error! status: ${r.status}`);const e=await r.json();mostrarLibros(e)}catch(t){console.log(t)}}export{filterByCategoryAPI};

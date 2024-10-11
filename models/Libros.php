@@ -55,13 +55,26 @@ class Libros extends ActiveRecord
         return self::consultarSQL($sql);
     }
 
+    public static function getBooksCategories()
+    {
+        $sql = "SELECT DISTINCT categoria FROM " . self::$tabla . "; ";
+        return self::consultarSQL($sql);
+    }
+
+    public static function filterBooksByCategory($categoria, $limit, $offset)
+    {
+        $sql = "SELECT * FROM " . self::$tabla . " WHERE categoria = '{$categoria}' AND estado = 'ACT' LIMIT {$limit} OFFSET {$offset}";
+
+        return self::consultarSQL($sql);
+    }
+
     public static function getPaginatedBooks($limit, $offset){
-        $sql = "SELECT * FROM " . self::$tabla . " WHERE estado = 'ACT' LIMIT ${limit} OFFSET ${offset}";
+        $sql = "SELECT * FROM " . self::$tabla . " WHERE estado = 'ACT' LIMIT {$limit} OFFSET {$offset}";
         return self::consultarSQL($sql);
     }
 
     public static function searchBook($search){
-        $sql = "SELECT * FROM " . self::$tabla . " WHERE titulo LIKE '%${search}%' OR autor LIKE '%${search}%' OR categoria LIKE '%${search}%' OR anio LIKE '%${search}%'";
+        $sql = "SELECT * FROM " . self::$tabla . " WHERE titulo LIKE '%{$search}%' OR autor LIKE '%{$search}%' OR categoria LIKE '%{$search}%' OR anio LIKE '%{$search}%'";
         return self::consultarSQL($sql);
     }
 

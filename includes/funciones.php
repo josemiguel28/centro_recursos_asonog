@@ -8,9 +8,8 @@ function debuguear($variable) : string {
 }
 
 // Escapa / Sanitizar el HTML
-function s($html) : string {
-    $s = htmlspecialchars($html);
-    return $s;
+function sanitizar($html) : string {
+    return htmlspecialchars($html, ENT_QUOTES);
 }
 
 //funcion para verificar si un SERVER es igual a un POST

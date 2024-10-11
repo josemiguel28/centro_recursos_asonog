@@ -1,1 +1,51 @@
-<h1 class="nombre-pagina">Login</h1><p class="descripcion-pagina">Inicia sesion con tus datos</p><?phpinclude_once __DIR__ . "/../templates/alertas.php";?><form class="formulario" action="/" method="post">		<div class="campo">				<label for="email">Email</label>				<input								type="text"								id="email"								placeholder="Tu Email"								name="email"								value="<?php echo s($auth->email); ?>"				/>		</div>		<div class="campo">				<label for="password">Password</label>				<input								type="password"								id="password"								placeholder="Tu Password"								name="password"				/>		</div>		<input type="submit" class="boton" value="Iniciar Sesion"></form><div class="acciones">		<a href="/crear-cuenta">Crear Cuenta</a>		<a href="/olvide">¿Olvidaste tu contraseña?</a></div>
+<section class="bg-gray-50 md:w-1/2 mx-auto">
+    <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
+        <a href="#" class="flex items-center mb-6 text-2xl font-semibold text-gray-900 dark:text-white">
+            <img class="w-8 h-8 mr-2" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/logo.svg" alt="logo">
+            Flowbite
+        </a>
+        <div class="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
+            <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
+                <h1 class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
+                    Inicia sesión en tu cuenta
+                </h1>
+
+                <p class="text-gray-400">Si eres parte de nuestra organizacion puedes acceder a nuestros recursos de
+                    forma online.</p>
+                <?php
+                include_once __DIR__ . "/../templates/alertas.php";
+                ?>
+
+                <form class="space-y-4 md:space-y-6" action="/login" method="post">
+                    <div>
+                        <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Tu
+                            email</label>
+                        <input type="email" name="correo" id="email"
+                               class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                               placeholder="correo@asonog.com" required="">
+                    </div>
+                    <div>
+                        <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Contraseña</label>
+                        <input type="password" name="contrasena" id="password" placeholder="••••••••"
+                               class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                               required="">
+                    </div>
+                    <div class="flex items-center justify-end">
+
+                        <a href="#" class="text-sm font-medium text-primary-600 hover:underline dark:text-primary-500">¿Olvidaste
+                            tu contraseña?</a>
+                    </div>
+                    <button type="submit"
+                            class="w-full text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">
+                        Ingresar
+                    </button>
+                    <p class="text-sm font-light text-gray-500 dark:text-gray-400">
+                        ¿Eres miembro? <a href="#"
+                                          class="font-medium text-primary-600 hover:underline dark:text-primary-500">
+                            Solicita una cuenta</a>
+                    </p>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>

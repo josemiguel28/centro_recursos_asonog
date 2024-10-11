@@ -61,7 +61,7 @@
                        class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-secondary-400 md:p-0 ">Biblioteca</a>
                 </li>
                 <li>
-                    <a href="#"
+                    <a href="/login"
                        class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-secondary-400 md:p-0">Repositorio</a>
                 </li>
             </ul>

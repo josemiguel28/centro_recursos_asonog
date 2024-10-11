@@ -14,9 +14,16 @@ class BibliotecaController
         $router->render('biblioteca/index',
             [
                 'libros' => $libros,
+                'categorias' => self::getBookCategories()
                 //'offset' => $offset + $limit Para la siguiente página
             ]
         );
     }
+
+    private static function getBookCategories(): array
+    {
+        return ModeloLibros::getBooksCategories();
+    }
+
 
 }
