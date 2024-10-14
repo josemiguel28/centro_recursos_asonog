@@ -11,6 +11,9 @@ use Controller\biblioteca\api\BibliotecaAPI;
 use Controller\biblioteca\BibliotecaController;
 use Controller\biblioteca\SearchBookController;
 use Controller\home\HomeController;
+use Controller\admin\AdminController;
+use Controller\colaborador\ColaboradorController;
+
 use MVC\Router;
 
 $router = new Router();
@@ -30,10 +33,11 @@ $router->get("/api/filter-books-by-category", [BibliotecaAPI::class, 'filterBook
 //iniciar sesion
 $router->get("/login", [LoginController::class, 'login']);
 $router->post("/login", [LoginController::class, 'login']);
-//$router->get("/logout", [LoginController::class, 'logout']);
+$router->get("/logout", [LoginController::class, 'logout']);
 
 //area privada
-$router->get("/admin", [\Controller\admin\AdminController::class, 'index']);
+$router->get("/admin", [AdminController::class, 'index']);
+$router->get("/colaborador", [ColaboradorController::class, 'index']);
 
 
 //recuperar password

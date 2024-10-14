@@ -46,14 +46,15 @@ class ConfirmarCuenta
         $usuario = self::validarToken();
 
         if (!$usuario) {
-            Usuario::setAlerta('error', "Error, token no válido");
+            Usuario::setAlerta('text-red-500 bg-red-100', "Error, token no válido");
         } else {
             // Confirmar la cuenta y limpiar el token
             $usuario->confirmado = "1";
+            $usuario->estado = "ACT";
             $usuario->token = '';
             $usuario->guardar();
 
-            Usuario::setAlerta('exito', "Cuenta confirmada correctamente");
+            Usuario::setAlerta('text-green-500 bg-green-100', "Cuenta confirmada correctamente");
         }
 
         $alertas = Usuario::getAlertas();

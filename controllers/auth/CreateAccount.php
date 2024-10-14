@@ -55,7 +55,7 @@ class CreateAccount extends ActiveRecord
 
     private static function enviarEmail(Usuario $usuario): void
     {
-        $email = new Email($usuario->correo, $usuario->nombre, $usuario->token);
+        $email = new Email($usuario->correo, $usuario->nombre, $usuario->token, $usuario->rol);
         $email->enviarEmail();
     }
 }

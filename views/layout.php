@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -17,6 +18,7 @@
 
 
 </head>
+
 <body class="font-poppins">
 
 <!-- barra de navegacion -->
@@ -60,10 +62,49 @@
                     <a href="/biblioteca"
                        class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-secondary-400 md:p-0 ">Biblioteca</a>
                 </li>
-                <li>
-                    <a href="/login"
-                       class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-secondary-400 md:p-0">Repositorio</a>
-                </li>
+
+                <?php if ($_SESSION['login']): ?>
+                    <?php if ($_SESSION['rol'] === "1"): ?>
+                        <li>
+                            <a href="/colaborador"
+                               class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-secondary-400 md:p-0">
+                                Centro de Recursos
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/admin"
+                               class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-secondary-400 md:p-0">
+                                Panel de administración
+                            </a>
+                        </li>
+
+                    <?php elseif ($_SESSION['rol'] === "2"): ?>
+                        <li>
+                            <a href="/colaborador"
+                               class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-secondary-400 md:p-0">
+                                Centro de Recursos
+                            </a>
+                        </li>
+                    <?php endif; ?>
+
+                    <!-- Mueve el elemento de cerrar sesión al final -->
+                    <li>
+                        <a href="/logout"
+                           class="block py-2 px-3 text-red-600 rounded hover:bg-red-300 md:hover:bg-transparent md:hover:text-secondary-400 md:p-0 end-0">
+                            Cerrar sesión
+                        </a>
+                    </li>
+
+                <?php else: ?>
+                    <li>
+                        <a href="/login"
+                           class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-secondary-400 md:p-0">
+                            Repositorio
+                        </a>
+                    </li>
+                <?php endif; ?>
+
+
             </ul>
         </div>
     </div>

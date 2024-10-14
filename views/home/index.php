@@ -127,7 +127,7 @@
                     Si eres parte de nuestra organizacion puedes acceder a nuestros recursos de forma online.
                 </p>
                 <div>
-                    <a href="#" class="text-slate-800 font-semibold text-sm hover:underline flex items-center">
+                    <a href="/login" class="text-slate-800 font-semibold text-sm hover:underline flex items-center">
                         Acceder
                         <svg xmlns="http://www.w3.org/2000/svg" class="ml-2 h-4 w-4" fill="none" viewBox="0 0 24 24"
                              stroke="currentColor">
