@@ -47,15 +47,17 @@ class CreateAccount extends ActiveRecord
             return false;
         }
 
+        $tmpPassword = $usuario->generarContrasenaTemporal();
         $usuario->hashPassword();
         $usuario->createToken();
-        self::enviarEmail($usuario);
+
+        self::enviarEmail($usuario, $tmpPassword);
         return $usuario->guardar();
     }
 
-    private static function enviarEmail(Usuario $usuario): void
+    private static function enviarEmail(Usuario $usuario, $tmpPassword): void
     {
-        $email = new Email($usuario->correo, $usuario->nombre, $usuario->token, $usuario->rol);
+        $email = new Email($usuario->correo, $usuario->nombre, $usuario->token, $usuario->rol, $tmpPassword);
         $email->enviarEmail();
     }
 }

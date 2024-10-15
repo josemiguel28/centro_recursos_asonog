@@ -53,6 +53,7 @@ $router->post("/logout", [LoginController::class, 'logout']);
 
 //confirmar cuenta
 $router->get("/confirmar-cuenta", [ConfirmarCuenta::class, 'confirmarCuenta']);
+$router->post("/confirmar-cuenta", [ConfirmarCuenta::class, 'confirmarCuenta']);
 $router->get("/mensaje", [ConfirmarCuenta::class, 'mensaje']);
 
 // Comprueba y valida las rutas, que existan y les asigna las funciones del Controlador

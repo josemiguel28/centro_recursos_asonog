@@ -2,6 +2,8 @@
 
 namespace Clases;
 
+use Controller\auth\LoginController;
+use Model\Usuario;
 use PHPMailer\PHPMailer\Exception;
 use PHPMailer\PHPMailer\PHPMailer;
 
@@ -12,13 +14,15 @@ class Email
     public $nombre;
     public $token;
     public $rol;
+    public $tmpPassword;
 
-    public function __construct($email, $nombre, $token, $rol)
+    public function __construct($email, $nombre, $token, $rol, $tmpPassword)
     {
         $this->email = $email;
         $this->nombre = $nombre;
         $this->token = $token;
         $this->rol = $rol;
+        $this->tmpPassword = $tmpPassword;
 
         $this->rol = match ($rol) {
             '1' => 'Administrador',
@@ -71,7 +75,7 @@ class Email
         $contenido .= "<div class='container'>";
         $contenido .= "<div class='logo'><img src='URL_DE_TU_LOGO' alt='centro de recursos' style='max-width: 100%; height: auto;'></div>";
         $contenido .= "<p class='message'> <strong>Hola {$this->nombre},</strong><br> Se ha solicitado la creacion de tu cuenta de {$this->rol} para acceder al repositorio, para 
-        activar tu cuenta, solo debes confirmarla presionando el siguiente enlace:</p>";
+        activar tu cuenta, tu contraseña temporal es {$this->tmpPassword}, solo debes confirmarla presionando el siguiente enlace:</p>";
         $contenido .= "<a href='" . $_ENV['APP_URL'] . "/confirmar-cuenta?token={$this->token}' class='button'>Confirmar cuenta</a>";
         $contenido .= "<p>Si no has solicitado esta cuenta, ignora este mensaje.</p>";
         $contenido .= "</div>";

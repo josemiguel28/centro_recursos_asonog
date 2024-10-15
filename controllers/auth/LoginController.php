@@ -52,7 +52,7 @@ class LoginController extends ActiveRecord
 
     private static function authenticateUser(Usuario $user): void
     {
-// Iniciar sesión solo si no ha sido iniciada
+
         if (session_status() === PHP_SESSION_NONE) {
             session_start();
         }
@@ -63,7 +63,6 @@ class LoginController extends ActiveRecord
                 throw new Exception('Usuario no válido');
             }
 
-            // Obtener IP y User-Agent
             $ip_address = self::getUserIp();
             $user_agent = self::getUserAgent();
             $operating_system = self::getOperatingSystem($user_agent);
@@ -82,13 +81,12 @@ class LoginController extends ActiveRecord
             // Guardar el rol del usuario en la sesión
             $request->session('rol', $user->rol ?? null);
 
-            // Insertar la bitácora de acceso en la base de datos
             Bitacora::logAccess($user->id, $ip_address, $user_agent, $operating_system, date('Y-m-d H:i:s'));
 
             // Redirección según el rol del usuario
             $redirectUrl = ($user->rol === '1') ? '/admin' : '/colaborador';
             header("Location: $redirectUrl");
-            exit; // Terminar el script después de la redirección
+            exit;
         } catch (Exception $e) {
             Usuario::setAlerta('text-red-500', 'Error al iniciar sesión: ' . $e->getMessage());
         }
