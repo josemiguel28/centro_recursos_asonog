@@ -104,7 +104,7 @@ class ConfirmarCuenta
             $_SESSION['token'] = '';
             $usuario->guardar();
 
-            Usuario::setAlerta('text-green-500 bg-green-100', "Cuenta activada correctamente. Dirigase al inicio de <a class='underline' href='/login'>Iniciar Sesion</a> .");
+            Usuario::setAlerta('text-green-500 bg-green-100', "Cuenta activada correctamente. Dirigase a <a class='underline' href='/login'>Iniciar Sesion</a> .");
         }
     }
 }

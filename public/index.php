@@ -8,6 +8,7 @@ use Controller\auth\LoginController;
 use Controller\auth\PasswordResetController;
 use Controller\auth\PasswordResetRequestController;
 use Controller\biblioteca\api\BibliotecaAPI;
+use Controller\biblioteca\api\ColaboradorAPI;
 use Controller\biblioteca\BibliotecaController;
 use Controller\biblioteca\SearchBookController;
 use Controller\home\HomeController;
@@ -29,6 +30,10 @@ $router->get("/search", [SearchBookController::class, 'searchBook']);
 //api de biblioteca
 $router->get("/api/get-paginated-books", [BibliotecaAPI::class, 'getPaginatedBooks']);
 $router->get("/api/filter-books-by-category", [BibliotecaAPI::class, 'filterBooksByCategory']);
+
+//api de colaborador (repositorio)
+$router->get("/api/get-paginated-documents", [ColaboradorAPI::class, 'getPaginatedDocuments']);
+$router->get("/api/filter-documents-by-tematica", [ColaboradorAPI::class, 'filterDocumentsByTematica']);
 
 //iniciar sesion
 $router->get("/login", [LoginController::class, 'login']);

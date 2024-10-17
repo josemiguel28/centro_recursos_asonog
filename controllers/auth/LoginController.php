@@ -58,10 +58,6 @@ class LoginController extends ActiveRecord
         }
 
         try {
-            // Comprobar que el usuario es válido
-            if ($user === null) {
-                throw new Exception('Usuario no válido');
-            }
 
             $ip_address = self::getUserIp();
             $user_agent = self::getUserAgent();

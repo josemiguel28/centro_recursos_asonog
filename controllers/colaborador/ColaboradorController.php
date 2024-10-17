@@ -3,7 +3,11 @@
 namespace Controller\colaborador;
 
 use Clases\Request;
+use MVC\models\Documentos;
+use MVC\models\DocumentosTecnicos;
 use MVC\Router;
+use MVC\Models\TipoHerramienta;
+use MVC\Models\Tematicas;
 
 class ColaboradorController
 {
@@ -12,6 +16,16 @@ class ColaboradorController
         $session = new Request();
         $session->startSession();
 
-        $router->render('colaborador/index');
+        $tipos_herramienta = TipoHerramienta::getAllHerramientas();
+        $tematicas = Tematicas::getAllTematicas();
+        $documentos = DocumentosTecnicos::getAllDocumentos();
+
+        $router->render('colaborador/index',
+            [
+                'documentos' => $documentos,
+                'tipos_herramienta' => $tipos_herramienta,
+                'tematicas' => $tematicas
+            ]
+        );
     }
 }

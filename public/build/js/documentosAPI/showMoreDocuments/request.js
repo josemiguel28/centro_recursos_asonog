@@ -1,0 +1,1 @@
+import mostrarDocumentos from"./UI.js";async function CargarMasDocumentosAPI(t){try{const o=`/api/get-paginated-documents?offset=${t}`,s=await fetch(o,{headers:{"X-Requested-With":"XMLHttpRequest"}});if(!s.ok)throw new Error(`HTTP error! status: ${s.status}`);const e=await s.json();console.log(e),mostrarDocumentos(e)}catch(t){console.log(t)}}export{CargarMasDocumentosAPI};

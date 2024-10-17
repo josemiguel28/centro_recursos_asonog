@@ -1,4 +1,4 @@
-<div class="px-4">
+<div class="px-4" data-section="biblioteca">
 
     <h1 class="text-center font-semibold text-3xl mb-14">Biblioteca</h1>
 
@@ -105,6 +105,7 @@
                         </div>
                     </div>
                 </div>
+
             </div>
         </div>
 
@@ -122,7 +123,7 @@
                                     <img class="p-8 rounded-t-lg" loading="lazy" src="build/img/img.png" alt="hero img">
                                 </picture>
                             </a>
-                            <div class="px-5 pb-5 flex-grow">
+                            <div class="flex flex-col justify-between h-full px-5 pb-5">
                                 <a href="#">
                                     <h5 class="text-xl font-semibold tracking-tight text-gray-900 dark:text-white"><?php echo $libro->titulo ?></h5>
                                 </a>
