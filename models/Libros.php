@@ -74,7 +74,12 @@ class Libros extends ActiveRecord
     }
 
     public static function searchBook($search){
-        $sql = "SELECT * FROM " . self::$tabla . " WHERE titulo LIKE '%{$search}%' OR autor LIKE '%{$search}%' OR categoria LIKE '%{$search}%' OR anio LIKE '%{$search}%'";
+        $sql = "SELECT * FROM " . self::$tabla . " 
+        WHERE (titulo LIKE '%{$search}%' 
+        OR autor LIKE '%{$search}%' 
+        OR categoria LIKE '%{$search}%' 
+        OR anio LIKE '%{$search}%') 
+        AND estado = 'ACT'";
         return self::consultarSQL($sql);
     }
 

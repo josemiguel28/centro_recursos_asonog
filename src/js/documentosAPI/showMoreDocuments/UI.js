@@ -12,13 +12,18 @@ function mostrarDocumentos(data, limpiar = false) {
 
     const documentos = data.documentos;
     const hasMoreBooks = data.hasMoreBooks; // Obtener si hay más documentos
+    let id = 0;
 
     hideShowMoreButton(hasMoreBooks);
 
+
     documentos.forEach(documento => {
-        const libroDiv = document.createElement('div');
-        libroDiv.className = 'w-full mb-7 max-w-sm bg-white border border-gray-200 rounded-lg shadow flex flex-col justify-between';
-        libroDiv.innerHTML = `
+
+        if (id != documento.id) {
+
+            const libroDiv = document.createElement('div');
+            libroDiv.className = 'w-full mb-7 max-w-sm bg-white border border-gray-200 rounded-lg shadow flex flex-col justify-between';
+            libroDiv.innerHTML = `
             <a href="/documentos/ver?id=${documento.id}" class="flex justify-center">
                 <picture>
                    <source srcset="build/img/img.webp" type="image/webp">
@@ -45,7 +50,10 @@ function mostrarDocumentos(data, limpiar = false) {
                 <a href="/documentos/ver?id=${documento.id}" class="text-white bg-primary-500 hover:bg-primary-300 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Ver recurso</a>
             </div>
         `;
-        contenedordocumentos.appendChild(libroDiv);
+            contenedordocumentos.appendChild(libroDiv);
+        }
+
+        id = documento.id;
     });
 }
 

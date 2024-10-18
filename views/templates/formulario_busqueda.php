@@ -1,5 +1,5 @@
 <div class="flex flex-col mb-6 md:flex-row md:gap-12 items-center">
-    <form class="flex items-center max-w-100 mb-6 md:mb-0" method="get" action="/search">
+    <form class="flex items-center max-w-100 mb-6 md:mb-0" method="get" action="/search-book">
         <label for="simple-search" class="sr-only">Search</label>
         <div class="relative w-full">
             <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">

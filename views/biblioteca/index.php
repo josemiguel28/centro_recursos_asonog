@@ -4,7 +4,7 @@
 
     <!-- Barra de búsqueda -->
     <div class="w-full mx-auto mb-20">
-        <form class="flex items-center max-w-100 mb-6 md:mb-0 md:w-1/2 mx-auto" method="get" action="/search">
+        <form class="flex items-center max-w-100 mb-6 md:mb-0 md:w-1/2 mx-auto" method="get" action="/search-book">
             <label for="simple-search" class="sr-only">Search</label>
             <div class="relative w-full">
                 <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">

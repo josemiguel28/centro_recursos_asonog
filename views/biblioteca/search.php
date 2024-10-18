@@ -3,7 +3,7 @@
     <h1 class="text-center font-semibold text-3xl mb-14">Biblioteca</h1>
 
     <div class="w-full mx-auto mb-20">
-        <form class="flex items-center max-w-100 mb-6 md:mb-0 md:w-1/2 mx-auto" method="get" action="/search">
+        <form class="flex items-center max-w-100 mb-6 md:mb-0 md:w-1/2 mx-auto" method="get" action="/search-book">
             <label for="simple-search" class="sr-only">Search</label>
             <div class="relative w-full">
                 <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
@@ -35,7 +35,7 @@
     </div>
 
     <div class="flex justify-start mb-6">
-        <h1 class="text-2xl">Resultados de la busqueda <span class="font-semibold"> <?php echo $search; ?> </span></h1>
+        <h1 class="text-2xl">Resultados de la busqueda <span class="font-semibold"> <?= $search; ?> </span></h1>
     </div>
 
     <div class="md:col-span-2">
@@ -52,7 +52,7 @@
 
             <?php endif; ?>
 
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 contenedor-libros">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 contenedor-libros">
 
                 <?php foreach ($libros as $libro) : ?>
                     <div class="w-full mb-7 max-w-sm bg-white border border-gray-200 rounded-lg shadow flex flex-col justify-between">
@@ -106,7 +106,7 @@
                     </div>
                 <?php endforeach; ?>
             </div>
-            <!-- Botón de ver más -->
+          
             <div class="flex justify-start mt-6">
                 <a href="/biblioteca">
                     <button id="mostrar-mas-btn" type="button"

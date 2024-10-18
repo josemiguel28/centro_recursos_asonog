@@ -1,10 +1,10 @@
 <?php
 
-namespace Controller\biblioteca\api;
+namespace Controller\colaborador\api;
 
 use MVC\models\DocumentosTecnicos;
 
-class ColaboradorAPI
+class getPaginatedDocuments
 {
 
     public static function getPaginatedDocuments()
@@ -19,22 +19,6 @@ class ColaboradorAPI
 
             $hasMoreDocuments = self::hasMoreDocuments($documentos, $limit);
             echo json_encode(["documentos" => $documentos, "hasMoreDocuments" => $hasMoreDocuments]);
-            exit;
-        }
-    }
-
-    public static function filterDocumentsByTematica()
-    {
-        $categoria = sanitizar($_GET['tematica']) ?? '';
-        $limit = 10; // Número de libros por página
-        $offset = $_GET['offset'] ?? 0; // Usamos 0 si no hay offset enviado desde js
-
-        $documentos = DocumentosTecnicos::filterDocumentsByTematica($categoria, $limit, $offset);
-
-        if (isset($_SERVER['HTTP_X_REQUESTED_WITH']) && $_SERVER['HTTP_X_REQUESTED_WITH'] === 'XMLHttpRequest') {
-
-            header('Content-Type: application/json');
-            echo json_encode(["documentos" => $documentos, "hasMoreDocuments" => false]);
             exit;
         }
     }

@@ -1,6 +1,8 @@
 import {CargarMasLibrosAPI} from './bibliotecaAPI/showMoreBooks/request.js';
 import {filterBooksByCategoryAPI} from './bibliotecaAPI/filterBooksByCategory/request.js';
 import {CargarMasDocumentosAPI} from "./documentosAPI/showMoreDocuments/request.js";
+import { filterDocumentsByTematicaAPI } from "./documentosAPI/filter/tematica.js";
+import { filterDocumentsByHerramientaAPI } from "./documentosAPI/filter/herramienta.js";
 
 let offset = 0; // Inicializa el offset
 
@@ -22,6 +24,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
         if (sectionType === 'documentos') {
             documentos();
+            filtrarLibroPorTematica();
+            filtrarLibroPorHerramienta();
         }
     });
 });
@@ -57,4 +61,32 @@ async function documentos() {
         await CargarMasDocumentosAPI(offset);
     });
 
+}
+
+async function filtrarLibroPorTematica() {
+    //manda a llamar la api para filtrar los libros en la pagina de biblioteca
+    document.querySelector('#filtersContent2').addEventListener('input', async (e) => {
+
+        let tematica = e.target.value;
+
+        if (tematica == 'todos') {
+            window.location.reload();
+        }
+
+        await filterDocumentsByTematicaAPI(tematica, offset); // Llama a la API con el nuevo offset
+    });
+}
+
+async function filtrarLibroPorHerramienta() {
+    //manda a llamar la api para filtrar los libros en la pagina de biblioteca
+    document.querySelector('#filtersContent1').addEventListener('input', async (e) => {
+
+        let herramienta = e.target.value;
+
+        if (herramienta == 'todos') {
+            window.location.reload();
+        }
+
+        await filterDocumentsByHerramientaAPI(herramienta, offset); // Llama a la API con el nuevo offset
+    });
 }

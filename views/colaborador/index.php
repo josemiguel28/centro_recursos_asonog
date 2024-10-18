@@ -4,7 +4,7 @@
 
     <!-- Barra de búsqueda -->
     <div class="w-full mx-auto mb-20">
-        <form class="flex items-center max-w-100 mb-6 md:mb-0 md:w-1/2 mx-auto" method="get" action="/search">
+        <form class="flex items-center max-w-100 mb-6 md:mb-0 md:w-1/2 mx-auto" method="get" action="/search-document">
             <label for="simple-search" class="sr-only">Search</label>
             <div class="relative w-full">
                 <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
@@ -127,14 +127,18 @@
                                             <?= $documento->nombre_herramienta ?>
                                         </h5>
                                     </a>
+                                    
                                     <div class="flex items-center mt-2.5 gap-5">
-                                        <div class="flex items-center space-x-1 rtl:space-x-reverse">
+                                        
+                                    <div class="flex items-center space-x-1 rtl:space-x-reverse">
                                             <span class="text-gray-400"><?= $documento->fecha_emision ?></span>
                                         </div>
+
                                         <div class="flex items-start space-x-1 rtl:space-x-reverse px-2.5 py-1 rounded-[1rem] bg-secondary-500">
                                             <p class="text-sm text-white"><?= $documento->tipo_herramienta ?></p>
                                         </div>
                                     </div>
+                                
                                 </div>
 
                                 <div class="flex items-center justify-end px-5 pb-5">
@@ -169,7 +173,7 @@
 
 
 <script>
-    /*
+
     // Función para manejar los filtros desplegables
     function toggleFilter(toggleButtonId, contentId, arrowIconId) {
         const toggleButton = document.getElementById(toggleButtonId);
@@ -185,7 +189,6 @@
     // Inicializa los filtros
     toggleFilter('toggleFilters1', 'filtersContent1', 'arrowIcon1');
     toggleFilter('toggleFilters2', 'filtersContent2', 'arrowIcon2');
-*/
 </script>
 
 <?php
