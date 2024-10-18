@@ -13,6 +13,12 @@ class AdminController
         $session = new Request();
         $session->startSession();
 
-        $router->render('admin/index');
+        $crrntUser = $_SESSION['nombre'] ?? "";
+
+        $router->render('admin/index',
+            [
+                'crrntUser' => $crrntUser
+            ]
+        );
     }
 }
