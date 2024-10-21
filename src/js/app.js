@@ -4,10 +4,10 @@ import {CargarMasDocumentosAPI} from "./documentosAPI/showMoreDocuments/request.
 import { filterDocumentsByTematicaAPI } from "./documentosAPI/filter/tematica.js";
 import { filterDocumentsByHerramientaAPI } from "./documentosAPI/filter/herramienta.js";
 
-let offset = 0; // Inicializa el offset
+
+let offset = 0;
 
 document.addEventListener('DOMContentLoaded', function () {
-    //iniciarApp();
     console.log('DOM cargado');
 
     // Obtener todas las secciones con el atributo data-section
@@ -28,6 +28,7 @@ document.addEventListener('DOMContentLoaded', function () {
             filtrarLibroPorHerramienta();
         }
     });
+
 });
 
 async function biblioteca() {
@@ -49,7 +50,7 @@ async function filtrarLibroPorCategoria() {
             window.location.reload();
         }
 
-        await filterBooksByCategoryAPI(categoria, offset); // Llama a la API con el nuevo offset
+        await filterBooksByCategoryAPI(categoria, offset);
     });
 }
 
@@ -73,7 +74,7 @@ async function filtrarLibroPorTematica() {
             window.location.reload();
         }
 
-        await filterDocumentsByTematicaAPI(tematica, offset); // Llama a la API con el nuevo offset
+        await filterDocumentsByTematicaAPI(tematica, offset);
     });
 }
 
@@ -87,6 +88,6 @@ async function filtrarLibroPorHerramienta() {
             window.location.reload();
         }
 
-        await filterDocumentsByHerramientaAPI(herramienta, offset); // Llama a la API con el nuevo offset
+        await filterDocumentsByHerramientaAPI(herramienta, offset);
     });
 }

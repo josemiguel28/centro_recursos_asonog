@@ -1,7 +1,7 @@
 <div class="">
 
-	<div class="text-3xl">
-		<h4>Hola 👋, <span class="font-semibold"> <?php echo $crrntUser ?? '' ?> </span></h4>
+	<div class="text-2xl">
+		<h4>Hola 👋 <span class="font-semibold"> <?php echo $crrntUser ?? '' ?> </span></h4>
 	</div>
 </div>
 

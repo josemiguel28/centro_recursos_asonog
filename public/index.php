@@ -16,6 +16,7 @@ use Controller\colaborador\ColaboradorController;
 use Controller\home\HomeController;
 use Controller\colaborador\api\filterDocuments;
 use Controller\colaborador\SearchDocumentController;
+use \Controller\libros\CreateBookController;
 
 use MVC\Router;
 
@@ -49,7 +50,6 @@ $router->get("/admin", [AdminController::class, 'index']);
 $router->get("/colaborador", [ColaboradorController::class, 'index']);
 $router->get("/search-document", [SearchDocumentController::class, 'searchDocument']);
 
-
 //recuperar password
 $router->get("/olvide", [PasswordResetRequestController::class, 'requestReset']);
 $router->post("/olvide", [PasswordResetRequestController::class, 'requestReset']);
@@ -59,6 +59,11 @@ $router->post("/recuperar", [PasswordResetController::class, 'changePassword']);
 //crear cuenta
 $router->get("/crear-cuenta", [CreateAccount::class, 'crearCuenta']);
 $router->post("/crear-cuenta", [CreateAccount::class, 'crearCuenta']);
+$router->post("/logout", [LoginController::class, 'logout']);
+
+//crear libro
+$router->get("/crear-libro", [CreateBookController::class, 'crearLibro']);
+$router->post("/crear-libro", [CreateBookController::class, 'crearLibro']);
 $router->post("/logout", [LoginController::class, 'logout']);
 
 //confirmar cuenta

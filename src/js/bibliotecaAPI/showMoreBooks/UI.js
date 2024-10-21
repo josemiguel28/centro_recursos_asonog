@@ -19,12 +19,8 @@ function mostrarLibros(data, limpiar = false) {
         const libroDiv = document.createElement('div');
         libroDiv.className = 'w-full mb-7 max-w-sm bg-white border border-gray-200 rounded-lg shadow flex flex-col justify-between';
         libroDiv.innerHTML = `
-            <a href="/libros/ver?id=${libro.id}" class="flex justify-center">
-                <picture>
-                   <source srcset="build/img/img.webp" type="image/webp">
-                   <source srcset="build/img/img.jpg" type="image/jpeg">
-                   <img class="p-8 rounded-t-lg" loading="lazy" src="build/img/img.png" alt="hero img">
-                </picture>
+            <a href="libros/${libro.archivo_url}" class="flex justify-center">
+                   <img class="p-8 rounded-t-lg" loading="lazy" src="imagenes/${libro.imagen}" alt="hero img">
             </a>
             <div class="px-5 pb-5 flex-grow">
                 <a href="#">
@@ -63,7 +59,7 @@ function mostrarLibros(data, limpiar = false) {
                                 </div>
             </div>
             <div class="flex items-center justify-end px-5 pb-5">
-                <a href="/libros/ver?id=${libro.id}" class="text-white bg-primary-500 hover:bg-primary-300 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Ver Libro</a>
+                <a href="libros/${libro.archivo_url}" target="_blank" class="text-white bg-primary-500 hover:bg-primary-300 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Ver Libro</a>
             </div>
         `;
         contenedorLibros.appendChild(libroDiv);

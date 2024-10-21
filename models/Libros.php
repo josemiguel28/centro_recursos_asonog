@@ -25,9 +25,9 @@ class Libros extends ActiveRecord
         $this->titulo = $args['titulo'] ?? '';
         $this->autor = $args['autor'] ?? '';
         $this->categoria = $args['categoria'] ?? '';
-        $this->anio = $args['anio'] ?? '';
+        $this->anio = $args['anio'] ?? '1';
         $this->imagen = $args['imagen'] ?? '';
-        $this->estado = $args['estado'] ?? '';
+        $this->estado = $args['estado'] ?? 'ACT';
         $this->archivo_url = $args['archivo_url'] ?? '';
     }
 
@@ -83,5 +83,21 @@ class Libros extends ActiveRecord
         return self::consultarSQL($sql);
     }
 
+    public function setFileName($nombre, $tipo): void
+    {
+        if (isset($this->id)) {
+           // $this->deleteImage();
+        }
+        //asignar al atributo de la imagen el nombre de la imagen
+
+        switch ($tipo) {
+            case 'imagen':
+                $this->imagen = $nombre;
+                break;
+            case 'archivo':
+                $this->archivo_url = $nombre;
+                break;
+        }
+    }
 }
 

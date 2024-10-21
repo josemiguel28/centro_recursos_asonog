@@ -29,6 +29,4 @@ class BibliotecaController
     {
         return ModeloLibros::getBooksCategories();
     }
-
-
 }
