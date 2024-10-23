@@ -56,16 +56,14 @@
 
                     ?>
                             <div class="w-full mb-7 max-w-sm bg-white border border-gray-200 rounded-lg shadow flex flex-col justify-between">
-                                <a href="/documento/ver?id=<?= $documento->id ?>" class="flex justify-center">
-                                    <picture>
-                                        <source srcset="build/img/img.webp" type="image/webp">
-                                        <source srcset="build/img/img.jpg" type="image/jpeg">
-                                        <img class="p-8 rounded-t-lg" loading="lazy" src="build/img/img.png"
+                                <a href="/documentos/<?= $documento->archivo_url ?>" class="flex justify-center">
+
+                                        <img class="p-8 rounded-t-lg" loading="lazy" src="/imagenesDocumentos/<?= $documento->imagen ?>"
                                             alt="hero img">
-                                    </picture>
+
                                 </a>
                                 <div class="flex flex-col justify-between h-full px-5 pb-5">
-                                    <a href="/documento/ver?id=<?= $documento->id ?>">
+                                    <a href="/documentos/<?= $documento->archivo_url ?>">
                                         <h5 class="text-xl font-semibold tracking-tight text-gray-900 dark:text-white">
                                             <?= $documento->nombre_herramienta ?>
                                         </h5>
@@ -85,7 +83,7 @@
                                 </div>
 
                                 <div class="flex items-center justify-end px-5 pb-5">
-                                    <a href="/libros/ver?id=<?= $documento->id ?>"
+                                    <a href="/documentos/<?= $documento->archivo_url ?>"
                                         class="text-white bg-primary-500 hover:bg-primary-300 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Ver
                                         recurso</a>
                                 </div>

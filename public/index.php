@@ -3,6 +3,7 @@
 require_once __DIR__ . '/../includes/app.php';
 
 use Controller\admin\AdminController;
+use Controller\admin\documentos\CreateDocumentController;
 use Controller\auth\ConfirmarCuenta;
 use Controller\auth\CreateAccount;
 use Controller\auth\LoginController;
@@ -65,6 +66,10 @@ $router->post("/logout", [LoginController::class, 'logout']);
 $router->get("/crear-libro", [CreateBookController::class, 'crearLibro']);
 $router->post("/crear-libro", [CreateBookController::class, 'crearLibro']);
 $router->post("/logout", [LoginController::class, 'logout']);
+
+//crear documento
+$router->get("/crear-documento", [CreateDocumentController::class, 'createDocument']);
+$router->post("/crear-documento", [CreateDocumentController::class, 'createDocument']);
 
 //confirmar cuenta
 $router->get("/confirmar-cuenta", [ConfirmarCuenta::class, 'confirmarCuenta']);

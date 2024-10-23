@@ -11,11 +11,11 @@ class Documentos extends ActiveRecord
     protected static $columnasDB = ['id', 'nombre_herramienta', 'descripcion', 'id_tipo_herramienta', 'id_tematica', 'imagen', 'estado', 'fecha_emision', 'archivo_url'];
 
     public $id;
-    public $nombre;
+    public $nombre_herramienta;
     public $descripcion;
-    public $archivo;
-    public $fecha;
-    public $id_usuario;
+    public $archivo_url;
+    public $imagen;
+    public $fecha_emision;
     public $id_tematica;
     public $id_tipo_herramienta;
     public $estado;
@@ -23,14 +23,14 @@ class Documentos extends ActiveRecord
     public function __construct($args = [])
     {
         $this->id = $args['id'] ?? null;
-        $this->nombre = $args['nombre'] ?? '';
+        $this->nombre_herramienta = $args['nombre_herramienta'] ?? '';
         $this->descripcion = $args['descripcion'] ?? '';
-        $this->archivo = $args['archivo'] ?? '';
-        $this->fecha = $args['fecha'] ?? '';
-        $this->id_usuario = $args['id_usuario'] ?? '';
+        $this->archivo_url = $args['archivo_url'] ?? '';
+        $this->fecha_emision = $args['fecha_emision'] ?? '';
         $this->id_tematica = $args['id_tematica'] ?? '';
         $this->id_tipo_herramienta = $args['id_tipo_herramienta'] ?? '';
-        $this->estado = $args['estado'] ?? '';
+        $this->estado = $args['estado'] ?? 'ACT';
+        $this->imagen = $args['imagen'] ?? '';
     }
 
     public static function getAllDocumentos()
@@ -73,5 +73,22 @@ class Documentos extends ActiveRecord
     {
         $query = "SELECT * FROM " . self::$tabla . " WHERE id_tipo_herramienta = " . $id_tipo_herramienta;
         return self::consultarSQL($query);
+    }
+
+    public function setFileName($nombre, $tipo): void
+    {
+        if (isset($this->id)) {
+            // $this->deleteImage();
+        }
+        //asignar al atributo de la imagen el nombre de la imagen
+
+        switch ($tipo) {
+            case 'imagen':
+                $this->imagen = $nombre;
+                break;
+            case 'archivo':
+                $this->archivo_url = $nombre;
+                break;
+        }
     }
 }
