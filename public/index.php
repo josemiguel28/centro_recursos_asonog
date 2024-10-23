@@ -17,7 +17,7 @@ use Controller\colaborador\ColaboradorController;
 use Controller\home\HomeController;
 use Controller\colaborador\api\filterDocuments;
 use Controller\colaborador\SearchDocumentController;
-use Controller\libros\CreateBookController;
+use Controller\admin\libros\CreateBookController;
 use Controller\admin\usuarios\UsuariosController;
 
 use MVC\Router;

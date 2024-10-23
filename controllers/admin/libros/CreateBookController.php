@@ -1,6 +1,6 @@
 <?php
 
-namespace Controller\libros;
+namespace Controller\admin\libros;
 
 use Model\ActiveRecord;
 use Model\Libros;
