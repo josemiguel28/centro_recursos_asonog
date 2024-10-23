@@ -17,7 +17,8 @@ use Controller\colaborador\ColaboradorController;
 use Controller\home\HomeController;
 use Controller\colaborador\api\filterDocuments;
 use Controller\colaborador\SearchDocumentController;
-use \Controller\libros\CreateBookController;
+use Controller\libros\CreateBookController;
+use Controller\admin\usuarios\UsuariosController;
 
 use MVC\Router;
 
@@ -47,7 +48,6 @@ $router->get("/logout", [LoginController::class, 'logout']);
 
 //area privada
 $router->get("/admin", [AdminController::class, 'index']);
-
 $router->get("/colaborador", [ColaboradorController::class, 'index']);
 $router->get("/search-document", [SearchDocumentController::class, 'searchDocument']);
 
@@ -75,6 +75,10 @@ $router->post("/crear-documento", [CreateDocumentController::class, 'createDocum
 $router->get("/confirmar-cuenta", [ConfirmarCuenta::class, 'confirmarCuenta']);
 $router->post("/confirmar-cuenta", [ConfirmarCuenta::class, 'confirmarCuenta']);
 $router->get("/mensaje", [ConfirmarCuenta::class, 'mensaje']);
+
+//CRUD de usuarios
+$router->get("/usuarios", [UsuariosController::class, 'index']);
+
 
 // Comprueba y valida las rutas, que existan y les asigna las funciones del Controlador
 $router->comprobarRutas();
