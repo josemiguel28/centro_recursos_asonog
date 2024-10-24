@@ -78,7 +78,7 @@ class CreateBookController extends ActiveRecord
 
         // Procesar la imagen
         try {
-            $image = Image::make($_FILES['imagen']['tmp_name'])->fit(800, 600);
+            $image = Image::make($_FILES['imagen']['tmp_name'])->fit(800, 1200);
             $libro->setFileName($nombreImagen, "imagen");
             $image->save(CARPETA_IMAGENES . $nombreImagen);
         } catch (Exception $e) {
