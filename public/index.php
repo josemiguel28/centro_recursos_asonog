@@ -58,13 +58,13 @@ $router->get("/recuperar", [PasswordResetController::class, 'changePassword']);
 $router->post("/recuperar", [PasswordResetController::class, 'changePassword']);
 
 //crear cuenta
-$router->get("/crear-cuenta", [CreateAccount::class, 'crearCuenta']);
-$router->post("/crear-cuenta", [CreateAccount::class, 'crearCuenta']);
+$router->get("/usuario", [UsuariosController::class, 'gestionar']);
+$router->post("/usuario", [UsuariosController::class, 'gestionar']);
 $router->post("/logout", [LoginController::class, 'logout']);
 
 //crear libro
-$router->get("/crear-libro", [CreateBookController::class, 'crearLibro']);
-$router->post("/crear-libro", [CreateBookController::class, 'crearLibro']);
+$router->get("/libro", [CreateBookController::class, 'crearLibro']);
+$router->post("/libro", [CreateBookController::class, 'crearLibro']);
 $router->post("/logout", [LoginController::class, 'logout']);
 
 //crear documento
@@ -77,7 +77,7 @@ $router->post("/confirmar-cuenta", [ConfirmarCuenta::class, 'confirmarCuenta']);
 $router->get("/mensaje", [ConfirmarCuenta::class, 'mensaje']);
 
 //CRUD de usuarios
-$router->get("/usuarios", [UsuariosController::class, 'index']);
+$router->get("/usuarios/gestionar", [UsuariosController::class, 'index']);
 
 
 // Comprueba y valida las rutas, que existan y les asigna las funciones del Controlador

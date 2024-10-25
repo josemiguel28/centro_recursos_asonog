@@ -3,6 +3,7 @@
 namespace Controller\auth;
 
 use Clases\Email;
+use Clases\Request;
 use Controller\rol\RolesController;
 use Model\ActiveRecord;
 use Model\Usuario;
@@ -12,33 +13,18 @@ use MVC\Router;
 class CreateAccount extends ActiveRecord
 {
 
-    public static function crearCuenta(Router $router): void
+    public static function crearCuenta($args): void
     {
         $usuario = new Usuario();
 
-        $alertas = [];
+        $usuario->sincronizar($args);
+        //$alertas = $usuario->validarDatosNuevaCuenta();
 
-        $roles = RolesController::getAvailableRoles();
-
-        if (isPostBack()) {
-
-            $usuario->sincronizar($_POST);
-            //$alertas = $usuario->validarDatosNuevaCuenta();
-
-            if (self::procesarUsuario($usuario)) {
-                Usuario::setAlerta('text-green-500 bg-green-100', 'Usuario creado correctamente. Se ha enviado un correo al usuario con las instrucciones para activar su cuenta.');
-            } else {
-                $alertas = Usuario::getAlertas();
-            }
+        if (self::procesarUsuario($usuario)) {
+            Usuario::setAlerta('text-green-500 bg-green-100', 'Usuario creado correctamente. Se ha enviado un correo al usuario con las instrucciones para activar su cuenta.');
+        } else {
+            $alertas = Usuario::getAlertas();
         }
-
-        $alertas = Usuario::getAlertas();
-
-        $router->render('auth/crearCuenta', [
-            "usuario" => $usuario,
-            "alertas" => $alertas,
-            "roles" => $roles
-        ]);
     }
 
     private static function procesarUsuario(Usuario $usuario)

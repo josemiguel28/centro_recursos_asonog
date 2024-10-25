@@ -1,6 +1,6 @@
 <section class="w-full mx-auto">
 
-    <a href="/admin" class="underline text-lg">&larr; Volver</a>
+    <a href="/admin" class="text-lg">&larr; Volver</a>
 
     <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
         <h1 class="text-2xl font-bold leading-tight tracking-tight text-gray-900 mb-8 md:text-2xl">
@@ -17,41 +17,54 @@
                 <form class="space-y-4 md:space-y-6" action="/crear-libro" method="post" enctype="multipart/form-data">
                     <div>
                         <label for="nombreLibro" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Ingresa el titulo del libro <span class="text-red-500">*</span> </label>
-                        <input 
-                        type="text" 
-                        name="titulo"
-                        id="titulo"
-                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600
+                        <input
+                            type="text"
+                            name="titulo"
+                            id="titulo"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600
                         focus:border-primary-600 block w-full p-2.5 "
-                        placeholder="Recursos de la vida"
-                        required=""
-                        value = "<?= $libro->titulo; ?>">
+                            placeholder="Recursos de la vida"
+                            required=""
+                            value="<?= $libro->titulo; ?>">
                     </div>
 
                     <div>
                         <label for="autorLibro" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Ingresa el autor del libro</label>
-                        <input 
-                        type="text"
-                        name="autor" 
-                        id="autor"
-                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 "
-                        placeholder="Carlos" 
-                        value = "<?= $libro->autor; ?>"
-                        required>
+                        <input
+                            type="text"
+                            name="autor"
+                            id="autor"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 "
+                            placeholder="Carlos"
+                            value="<?= $libro->autor; ?>"
+                            required>
                     </div>
 
                     <div>
                         <label for="categoria" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Ingresa la categoria del libro</label>
-                        <input 
-                        type="text" 
-                        name="categoria" 
-                        id="categoria" 
-                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600
+                        <input
+                            type="text"
+                            name="categoria"
+                            id="categoria"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600
                         focus:border-primary-600 block w-full p-2.5 "
-                        placeholder="Derechos humanos"
-                        value = "<?= $libro->categoria; ?>"
-                        >
+                            placeholder="Derechos humanos"
+                            value="<?= $libro->categoria; ?>">
                     </div>
+
+                    <div>
+                        <label for="role" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Selecciona
+                            el estado</label>
+
+                        <select name="estado" id="estado" 
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5">
+                           
+                                <option value="ACT">Activo</option>
+                                <option value="INA">Inactivo</option> 
+                           
+                        </select>
+                    </div>
+
 
                     <div>
                         <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="imagen">Imagen del libro</label>

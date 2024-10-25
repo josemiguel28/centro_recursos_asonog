@@ -76,7 +76,7 @@
                                 <td class="px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                     <div class="flex items-center justify-evenly">
                                         <a class="bg-yellow-200 py-1 px-2 rounded-lg text-yellow-800"
-                                            href="index.php?page=Admin_Formulario&mode=UPD&id={{servicioId}}">Editar</a>
+                                            href="/usuario?mode=UPD&id=<?= $usuario->id ?>">Editar</a>
 
 
                                         <a class="bg-green-200 py-1 px-2 rounded-lg text-green-800"
@@ -84,7 +84,7 @@
 
 
                                         <a class="bg-red-200 py-1 px-2 rounded-lg text-red-800"
-                                            href="index.php?page=Admin_Formulario&mode=DEL&id={{servicioId}}">Eliminar</a>
+                                            href="/usuario?mode=DEL&id=<?= $usuario->id ?>">Eliminar</a>
 
 
                                     </div>
