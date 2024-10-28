@@ -101,9 +101,6 @@
 
                         </div>
 
-                
-
-
                     <?php if ($mode === "INS") : ?>
                         <div class="mt-10 text-sm text-gray-400 ">
                             <h2>Al crear la cuenta, el usuario recibira un mensaje a su correo para activar su cuenta.</h2>

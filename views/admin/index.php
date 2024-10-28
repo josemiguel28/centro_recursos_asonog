@@ -123,7 +123,7 @@
         </div>
         <div class="bg-white p-4 rounded-lg shadow">
             <h3 class="text-xl ">Documentos Totales</h3>
-            <p class="text-3xl ">$12,500</p>
+            <p class="text-3xl "><?= $totalDocumentos ?></p>
         </div>
         <div class="bg-white p-4 rounded-lg shadow">
             <h3 class="text-xl">Usuarios Activos</h3>

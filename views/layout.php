@@ -34,12 +34,11 @@
                 <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">Flowbite</span>
             </a>
             <div class="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
-                <div class="bg-primary-500 hover:bg-primary-300 focus:ring-4 focus:outline-none focus:ring-primary rounded-lg">
-                    <button type="button"
-                        class="text-white text-sm px-4 py-3 text-center">
-                        Contactanos
-                    </button>
-                </div>
+                <a
+                    class="text-sm font-medium bg-primary-500 hover:bg-primary-400 transition text-white rounded-lg px-5 py-2.5"
+                    href="#">
+                    Contactanos
+                </a>
 
                 <button data-collapse-toggle="navbar-sticky" type="button"
                     class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 transition duration-300 ease-in-out"

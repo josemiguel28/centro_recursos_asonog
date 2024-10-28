@@ -38,8 +38,8 @@ function mostrarDocumentos(data, limpiar = false) {
                   <div class="flex items-center space-x-1 rtl:space-x-reverse">
                         <span class="text-gray-400">${documento.fecha_emision}</span>
                   </div>
-                  <div class="flex items-start space-x-1 rtl:space-x-reverse px-2.5 py-1 rounded-[1rem] bg-secondary-500">
-                        <p class="text-sm text-white">${documento.tipo_herramienta}</p>
+                  <div class="flex items-start space-x-1 rtl:space-x-reverse px-2 py-1 rounded-[1rem] bg-secondary-500">
+                        <p class="text-xs sm:text-sm text-white max-w-[150px] truncate">${documento.tipo_herramienta}</p>
                   </div>
             </div>
             

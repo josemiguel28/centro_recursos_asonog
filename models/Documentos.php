@@ -75,6 +75,12 @@ class Documentos extends ActiveRecord
         return self::consultarSQL($query);
     }
 
+    public static function getTotalDocuments()
+    {
+        $query = "SELECT * FROM " . self::$tabla;
+        return self::consultarSQL($query);
+    }
+
     public function setFileName($nombre, $tipo): void
     {
         if (isset($this->id)) {
