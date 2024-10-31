@@ -1,13 +1,13 @@
 <section class="w-full mx-auto">
 
-    <a href="/admin" class="text-lg">&larr; Volver</a>
+    <a href="/usuarios/gestionar" class="text-lg">&larr; Volver</a>
 
     <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
         <h1 class="text-2xl font-bold leading-tight tracking-tight text-gray-900 mb-8 md:text-2xl">
             <?= $title ?> un usuario
         </h1>
 
-        <?php include_once __DIR__ . "/../templates/alertas.php"; ?>
+        <?php include_once __DIR__ . "/../../templates/alertas.php"; ?>
 
         <div class="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
             <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
@@ -32,7 +32,7 @@
                                 placeholder="correo@correo.com"
                                 required=""
                                 value="<?= $usuario->correo; ?>"
-                            <?= ($usuario->confirmado == 0 || $mode === "DEL") ? "disabled" : ""; ?>
+                            <?= (($usuario->confirmado == 0 && $mode === "UPD") || $mode === "DEL") ? "disabled" : ""; ?>
                         >
                     </div>
 
@@ -46,7 +46,7 @@
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 "
                                 placeholder="Carlos"
                                 value="<?= $usuario->nombre; ?>"
-                            <?= ($usuario->confirmado == 0 || $mode === "DEL") ? "disabled" : ""; ?>
+                            <?= (($usuario->confirmado == 0 && $mode === "UPD") || $mode === "DEL") ? "disabled" : ""; ?>
                         >
                     </div>
 
@@ -61,7 +61,7 @@
                         focus:border-primary-600 block w-full p-2.5 "
                                 placeholder="Martinez"
                                 value="<?= $usuario->apellido; ?>"
-                            <?= ($usuario->confirmado == 0 || $mode === "DEL") ? "disabled" : ""; ?>
+                            <?= (($usuario->confirmado == 0 && $mode === "UPD") || $mode === "DEL") ? "disabled" : ""; ?>
 
                         >
                     </div>
@@ -77,7 +77,7 @@
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
                                 placeholder="123456789"
                                 value="<?= $usuario->telefono; ?>"
-                            <?= ($usuario->confirmado == 0 || $mode === "DEL") ? "disabled" : ""; ?>
+                            <?= (($usuario->confirmado == 0 && $mode === "UPD") || $mode === "DEL") ? "disabled" : ""; ?>
 
                         >
                     </div>
@@ -87,7 +87,7 @@
                             el rol del usuario</label>
 
                         <select
-                            <?= ($usuario->confirmado == 0 || $mode === "DEL") ? "disabled" : ""; ?>
+                            <?= (($usuario->confirmado == 0 && $mode === "UPD") || $mode === "DEL") ? "disabled" : ""; ?>
                                 name="rol"
                                 id="rol"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5">
@@ -110,7 +110,7 @@
                                 el estado del usuario</label>
 
                             <select
-                                <?= ($usuario->confirmado == 0 || $mode === "DEL") ? "disabled" : ""; ?>
+                                <?= (($usuario->confirmado == 0 && $mode === "UPD") || $mode === "DEL") ? "disabled" : ""; ?>
 
                                     name="estado"
                                     id="estado"
