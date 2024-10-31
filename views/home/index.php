@@ -1,7 +1,7 @@
 <section class="bg-white">
 
     <!-- Hero -->
-    <div class="grid max-w-screen-xl px-4 py-6 mx-auto lg:gap-8 xl:gap-0 lg:grid-cols-12">
+    <div class="grid max-w-screen-xl px-4 py-6 mx-auto lg:gap-8 xl:gap-0 lg:grid-cols-12" data-aos="zoom-in" data-aos-duration="1500">
         <div class="mr-auto mx-auto place-self-center lg:col-span-6 text-center">
             <h1 class="max-w-2xl mb-4 text-5xl font-medium tracking-wide leading-none lg:text-left lg:text-6xl">
                 Descubre un mundo de conocimiento
@@ -228,7 +228,7 @@
                     conocimiento.</h2>
             </div>
             <!-- Columna 2: Imagen -->
-            <div class="flex justify-center items-end relative z-30"> <!-- items-end para alinear la imagen al final -->
+            <div class="flex justify-center items-end relative z-30" data-aos="zoom-in-left" data-aos-duration="1500">
                 <picture>
                     <source srcset="build/img/img_banner.webp" type="image/webp">
                     <source srcset="build/img/img_banner.jpg" type="image/jpeg">

@@ -6,9 +6,9 @@
         <div class="relative overflow-hidden bg-white shadow-md dark:bg-gray-800 sm:rounded-lg">
 
             <div class="flex flex-col flex-shrink-0 space-y-3 md:flex-row md:items-center justify-end md:space-y-3 md:space-x-3 ">
-                <a href="/crear-cuenta">
+                <a href="/usuario?mode=INS">
                     <button type="button"
-                            class="flex items-center justify-center px-4 py-2 mb-8 text-sm font-medium text-black rounded-lg">
+                            class="flex items-center justify-center px-4 py-2 mb-8 text-sm font-medium text-black rounded-lg bg-yellow-200">
                         <svg class="h-3.5 w-3.5 mr-2" fill="currentColor" viewbox="0 0 20 20"
                              xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                             <path clip-rule="evenodd" fill-rule="evenodd"
@@ -66,39 +66,31 @@
                         </td>
 
 
-                        <td class="bg-primary-100 text-primary-800 font-medium px-2 py-0.5 rounded
-                                <?php
+                        <?php
+                        // Define el color del texto basado en el estado del usuario
+                        $estadoColor = '';
                         if ($usuario->estado === "ACT") {
-                            echo 'text-green-500';
-                        } else if ($usuario->estado === "INA") {
-                            echo 'text-red-500';
-                        } else if($usuario->confirmado == 0) {
-                            echo 'text-black-500';
+                            $estadoColor = 'text-green-500';
+                        } elseif ($usuario->confirmado == 0) {
+                            $estadoColor = 'text-yellow-500';
+                        } elseif ($usuario->estado === "INA") {
+                            $estadoColor = 'text-red-500';
                         }
 
-                        ?>">
+                        // Define el texto a mostrar basado en el estado del usuario
+                        $estadoTexto = ($usuario->confirmado == 0) ? 'No confirmado' : ($usuario->estado === "INA" ? 'INA' : 'ACT');
+                        ?>
 
+                        <td class="bg-primary-100 text-primary-800 font-medium px-2 py-0.5 rounded <?= $estadoColor ?>">
                             <div class="flex items-center">
-
-                                <?php
-                                if ($usuario->confirmado == 0) {
-                                    echo 'Usuario no confirmado';
-                                } else {
-                                    echo $usuario->estado === "INA" ? 'INA' : "ACT";
-                                }
-                                ?>
+                                <?= $estadoTexto ?>
                             </div>
                         </td>
 
                         <td class="px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                             <div class="flex items-center justify-evenly">
-                                <a class="bg-yellow-200 py-1 px-2 rounded-lg text-yellow-800"
+                                <a class="bg-yellow-200 py-1 px-2 mx-4 rounded-lg text-yellow-800"
                                    href="/usuario?mode=UPD&id=<?= $usuario->id ?>">Editar</a>
-
-
-                                <a class="bg-green-200 py-1 px-2 rounded-lg text-green-800"
-                                   href="index.php?page=Admin_Formulario&mode=DSP&id={{servicioId}}">Ver</a>
-
 
                                 <a class="bg-red-200 py-1 px-2 rounded-lg text-red-800"
                                    href="/usuario?mode=DEL&id=<?= $usuario->id ?>">Eliminar</a>

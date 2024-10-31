@@ -15,7 +15,7 @@ class UsuariosController extends ActiveRecord
     {
         $usuarios = Usuario::getAllUsers();
 
-        $router->render('admin/usuarios/index',
+        $router->render('admin/usuarios/gestion_usuarios',
             [
                 'usuarios' => $usuarios
             ]
@@ -51,6 +51,7 @@ class UsuariosController extends ActiveRecord
 
         // Establece el título de la página según la acción solicitada
         $formTitle = self::setFormTitle($action);
+
         $usuario = self::getUsuarioById($getUserIdFromUrl);
         $roles = RolesController::getAvailableRoles();
 
@@ -74,14 +75,14 @@ class UsuariosController extends ActiveRecord
                     }
                     break;
                 default:
-                    // Acción no reconocida
+                    header('Location: /usuarios/gestionar');
                     break;
             }
         }
 
         $alertas = Usuario::getAlertas();
 
-        $router->render('auth/crearCuenta', [
+        $router->render('admin/usuarios/formulario_usuarios', [
             'usuario' => $usuario,
             'title' => $formTitle,
             'mode' => $action,
@@ -89,7 +90,6 @@ class UsuariosController extends ActiveRecord
             'alertas' => $alertas
         ]);
     }
-
 
     private static function setFormTitle($action): string
     {
@@ -104,4 +104,5 @@ class UsuariosController extends ActiveRecord
     private static function getUsuarioById($id) {
         return Usuario::where('id', $id);
     }
+
 }
