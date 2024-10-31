@@ -25,7 +25,6 @@ class AdminController
             ]
         );
     }
-
     private static function showTotalDocuments()
     {
         $totalDocuments = Documentos::getTotalDocuments();

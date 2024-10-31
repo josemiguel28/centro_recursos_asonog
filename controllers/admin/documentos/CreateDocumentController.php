@@ -19,7 +19,7 @@ class CreateDocumentController
     const ALLOWED_IMAGE_TYPES = ['image/jpeg', 'image/png'];
     const ALLOWED_PDF_TYPE = 'application/pdf';
 
-    public static function createDocument(Router $router)
+    public static function createDocument(Router $router): void
     {
         $documento = new Documentos();
         $tipoHerramientas = TipoHerramienta::getAllHerramientas();
@@ -60,19 +60,19 @@ class CreateDocumentController
         ]);
     }
 
-    private static function crearCarpetaSiNoExiste($carpeta)
+    private static function crearCarpetaSiNoExiste($carpeta): void
     {
         if (!is_dir($carpeta)) {
             mkdir($carpeta, 0755, true);
         }
     }
 
-    private static function generarNombreArchivo($extension)
+    private static function generarNombreArchivo($extension): string
     {
         return md5(uniqid(strval(rand()), true)) . '.' . $extension;
     }
 
-    private static function procesarImagen($documento)
+    private static function procesarImagen($documento): bool
     {
         if (!isset($_FILES['imagen']) || $_FILES['imagen']['error'] !== UPLOAD_ERR_OK) {
             Documentos::setAlerta('text-red-500 bg-red-100', 'Error al subir la imagen.');
@@ -108,7 +108,7 @@ class CreateDocumentController
         return true;
     }
 
-    private static function procesarPDF($documento)
+    private static function procesarPDF($documento): bool
     {
         if (!isset($_FILES['archivo']) || $_FILES['archivo']['error'] !== UPLOAD_ERR_OK) {
             Documentos::setAlerta('text-red-500 bg-red-100', 'Error al subir el archivo PDF.');
@@ -141,7 +141,7 @@ class CreateDocumentController
         return true;
     }
 
-    private static function saveDocumentoTecnicoResponsable($documentoId)
+    private static function saveDocumentoTecnicoResponsable($documentoId): void
     {
         $request = new Request();
 
@@ -158,6 +158,4 @@ class CreateDocumentController
             $documentoTecnico->guardar();
         }
     }
-
-
 }

@@ -2,13 +2,11 @@
 
 namespace Controller\colaborador;
 
-use Model\Libros as ModeloLibros;
 use MVC\models\DocumentosTecnicos;
 use MVC\Router;
 
 class SearchDocumentController
 {
-
     public static function searchDocument(Router $router): void
     {
         $search = sanitizar($_GET['busqueda-recurso']) ?? '';

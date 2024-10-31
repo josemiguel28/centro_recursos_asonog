@@ -5,7 +5,7 @@ namespace Controller\admin\usuarios;
 use Model\ActiveRecord;
 use Model\Usuario;
 
-class EliminarUsuarioController extends ActiveRecord
+class DeleteUserController extends ActiveRecord
 {
     public static function eliminarUsuario($usuario): void
     {

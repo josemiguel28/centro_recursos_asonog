@@ -10,17 +10,6 @@ class ConfirmarCuenta
 {
 
     /**
-     * Muestra el mensaje de confirmación de cuenta.
-     *
-     * @param Router $router
-     * @return void
-     */
-    public static function mensaje(Router $router): void
-    {
-        $router->render('auth/mensaje');
-    }
-
-    /**
      * Valida el token proporcionado en la URL y lo guarda en la sesión.
      *
      * @return Usuario|null Retorna el usuario correspondiente si el token es válido, o null si no lo es.
@@ -97,9 +86,9 @@ class ConfirmarCuenta
 
             // Hashear la nueva contraseña y actualizar los datos del usuario
             $usuario->contrasena = $nuevaPassword;
+            $usuario->hashPassword();
             $usuario->estado = "ACT";
             $usuario->confirmado = "1";
-            $usuario->hashPassword();
             $usuario->token = '';
             $_SESSION['token'] = '';
             $usuario->guardar();

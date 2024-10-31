@@ -86,8 +86,8 @@ class Documentos extends ActiveRecord
         if (isset($this->id)) {
             // $this->deleteImage();
         }
-        //asignar al atributo de la imagen el nombre de la imagen
 
+        //asignar al atributo de la imagen el nombre de la imagen
         switch ($tipo) {
             case 'imagen':
                 $this->imagen = $nombre;

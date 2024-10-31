@@ -1,16 +1,12 @@
 <?php
 
-namespace Controller\auth;
+namespace Controller\admin\usuarios;
 
 use Clases\Email;
-use Clases\Request;
-use Controller\rol\RolesController;
 use Model\ActiveRecord;
 use Model\Usuario;
-use MVC\models\Roles;
-use MVC\Router;
 
-class CreateAccount extends ActiveRecord
+class CreateUserController extends ActiveRecord
 {
 
     public static function crearCuenta($args): void

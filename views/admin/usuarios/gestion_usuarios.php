@@ -1,5 +1,9 @@
 <section class="bg-gray-50 dark:bg-gray-900 py-3 sm:py-5 md:py-16">
-    <div class="px-4 mx-auto max-w-screen-2xl lg:px-12">
+
+    <a href="/admin" class="text-lg">&larr; Volver</a>
+
+    <div class="px-4 mx-auto max-w-screen-2xl mt-10 lg:px-12">
+
 
         <h1 class="font-semibold text-2xl mb-6">Gestión de Usuarios</h1>
 

@@ -3,13 +3,12 @@
 namespace Controller\admin\usuarios;
 
 use Clases\Request;
-use Controller\auth\CreateAccount;
 use Controller\rol\RolesController;
 use Model\ActiveRecord;
 use Model\Usuario;
 use MVC\Router;
 
-class UsuariosController extends ActiveRecord
+class ManageUserController extends ActiveRecord
 {
     public static function index(Router $router)
     {
@@ -23,7 +22,7 @@ class UsuariosController extends ActiveRecord
     }
 
     /**
-     * Metodo estatico para gestionar las operaciones de usuario en la aplicación.
+     * Metodo estatico para gestionarUsuario las operaciones de usuario en la aplicación.
      *
      * Este metodo controla las acciones de crear, actualizar y eliminar usuarios
      * según la acción especificada en la URL. Realiza la validación y obtiene
@@ -41,9 +40,9 @@ class UsuariosController extends ActiveRecord
      *
      * @example
      * // Ejemplo de URL con acción de actualización de usuario:
-     * // https://example.com/gestionar?mode=UPD&id=1
+     * // https://example.com/usuario?mode=UPD&id=1
      */
-    public static function gestionar(Router $router): void
+    public static function gestionarUsuario(Router $router): void
     {
         $getActionFromUrl = new Request();
         $action = $getActionFromUrl->get('mode');
@@ -58,24 +57,24 @@ class UsuariosController extends ActiveRecord
         if (isPostBack()) {
             switch ($action) {
                 case 'INS':
-                    CreateAccount::crearCuenta($_POST);
+                    CreateUserController::crearCuenta($_POST);
                     break;
                 case 'UPD':
                     if ($usuario) {
-                        ActualizarUsuarioController::actualizarUsuario($_POST, $usuario);
+                        UpdateUserController::actualizarUsuario($_POST, $usuario);
                     } else {
                         Usuario::setAlerta('text-red-500 bg-red-100', 'Usuario no encontrado.');
                     }
                     break;
                 case 'DEL':
                     if ($usuario) {
-                        EliminarUsuarioController::eliminarUsuario($usuario);
+                        DeleteUserController::eliminarUsuario($usuario);
                     } else {
                         Usuario::setAlerta('text-red-500 bg-red-100', 'Usuario no encontrado.');
                     }
                     break;
                 default:
-                    header('Location: /usuarios/gestionar');
+                    header('Location: /usuarios/gestionarUsuario');
                     break;
             }
         }

@@ -3,7 +3,6 @@
 namespace Controller\colaborador;
 
 use Clases\Request;
-use MVC\models\Documentos;
 use MVC\models\DocumentosTecnicos;
 use MVC\Router;
 use MVC\Models\TipoHerramienta;

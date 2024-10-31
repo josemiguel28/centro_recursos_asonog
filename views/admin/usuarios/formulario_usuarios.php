@@ -7,10 +7,11 @@
             <?= $title ?> un usuario
         </h1>
 
-        <?php include_once __DIR__ . "/../../templates/alertas.php"; ?>
 
         <div class="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
             <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
+
+                <?php include_once __DIR__ . "/../../templates/alertas.php"; ?>
 
                 <?php
                 include_once __DIR__ . "/../../templates/usuarios/mensajes_advertencia.php";
@@ -133,7 +134,9 @@
                     <?php endif; ?>
 
                     <div class="bg-primary-500 hover:bg-primary-300 font-medium rounded-lg <?= $mode === "DEL" ? 'bg-red-600 hover:bg-red-300' : '' ?>">
-                        <button type="submit"
+                        <button
+                            <?= $usuario->confirmado == 0 && $mode === "UPD" ? "disabled" : ""; ?>
+                                type="submit"
                                 class="w-full text-white text-sm px-5 py-2.5 text-center ">
                             <?= $mode === "DEL" ? 'Eliminar' : 'Guardar' ?>
                         </button>

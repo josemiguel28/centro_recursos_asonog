@@ -4,22 +4,20 @@ require_once __DIR__ . '/../includes/app.php';
 
 use Controller\admin\AdminController;
 use Controller\admin\documentos\CreateDocumentController;
+use Controller\admin\libros\CreateBookController;
+use Controller\admin\usuarios\ManageUserController;
 use Controller\auth\ConfirmarCuenta;
-use Controller\auth\CreateAccount;
 use Controller\auth\LoginController;
 use Controller\auth\PasswordResetController;
 use Controller\auth\PasswordResetRequestController;
 use Controller\biblioteca\api\BibliotecaAPI;
 use Controller\biblioteca\BibliotecaController;
 use Controller\biblioteca\SearchBookController;
+use Controller\colaborador\api\filterDocuments;
 use Controller\colaborador\api\getPaginatedDocuments;
 use Controller\colaborador\ColaboradorController;
-use Controller\home\HomeController;
-use Controller\colaborador\api\filterDocuments;
 use Controller\colaborador\SearchDocumentController;
-use Controller\admin\libros\CreateBookController;
-use Controller\admin\usuarios\UsuariosController;
-
+use Controller\home\HomeController;
 use MVC\Router;
 
 $router = new Router();
@@ -58,8 +56,8 @@ $router->get("/recuperar", [PasswordResetController::class, 'changePassword']);
 $router->post("/recuperar", [PasswordResetController::class, 'changePassword']);
 
 //crear cuenta
-$router->get("/usuario", [UsuariosController::class, 'gestionar']);
-$router->post("/usuario", [UsuariosController::class, 'gestionar']);
+$router->get("/usuario", [ManageUserController::class, 'gestionarUsuario']);
+$router->post("/usuario", [ManageUserController::class, 'gestionarUsuario']);
 $router->post("/logout", [LoginController::class, 'logout']);
 
 //crear libro
@@ -77,7 +75,7 @@ $router->post("/confirmar-cuenta", [ConfirmarCuenta::class, 'confirmarCuenta']);
 $router->get("/mensaje", [ConfirmarCuenta::class, 'mensaje']);
 
 //CRUD de usuarios
-$router->get("/usuarios/gestionar", [UsuariosController::class, 'index']);
+$router->get("/usuarios/gestionar", [ManageUserController::class, 'index']);
 
 
 // Comprueba y valida las rutas, que existan y les asigna las funciones del Controlador
