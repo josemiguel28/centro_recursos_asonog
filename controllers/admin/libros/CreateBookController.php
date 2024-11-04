@@ -14,31 +14,30 @@ class CreateBookController extends ActiveRecord
     const ALLOWED_IMAGE_TYPES = ['image/jpeg', 'image/png'];
     const ALLOWED_PDF_TYPE = 'application/pdf';
 
-    public static function crearLibro(Router $router)
+    public static function crearLibro($args)
     {
         $libro = new Libros();
 
-        if (isPostBack()) {
-            $libro->sincronizar($_POST);
+        $libro->sincronizar($args);
 
-            // Procesar archivos
-            $imagenValida = self::procesarImagen($libro);
-            $pdfValido = self::procesarPDF($libro);
+        // Procesar archivos
+        $imagenValida = self::procesarImagen($libro);
+        $pdfValido = self::procesarPDF($libro);
 
-            if ($imagenValida && $pdfValido) {
-                $libro->crear();
-                Libros::setAlerta('text-green-500 bg-green-100', 'Libro creado correctamente.');
-                $libro = new Libros(); // Reiniciar el objeto
-            } else {
-                Libros::getAlertas();
-            }
+        if ($imagenValida && $pdfValido) {
+            $libro->crear();
+            Libros::setAlerta('success', 'Libro creado correctamente.');
+            $libro = new Libros(); // Reiniciar el objeto
+        } else {
+            Libros::getAlertas();
         }
 
-        $alertas = Libros::getAlertas();
-        $router->render('admin/crearLibro', [
-            'libro' => $libro,
-            'alertas' => $alertas
-        ]);
+        return Libros::getAlertas();
+
+        /*
+        $router->render('admin/crearLibro', ['libro' => $libro,
+            'alertas' => $alertas]);
+    */
     }
 
     private static function crearCarpetaSiNoExiste($carpeta)
@@ -53,10 +52,10 @@ class CreateBookController extends ActiveRecord
         return md5(uniqid(strval(rand()), true)) . '.' . $extension;
     }
 
-    private static function procesarImagen($libro)
+    public static function procesarImagen($libro)
     {
         if (!isset($_FILES['imagen']) || $_FILES['imagen']['error'] !== UPLOAD_ERR_OK) {
-            Libros::setAlerta('text-red-500 bg-red-100', 'Error al subir la imagen.');
+            Libros::setAlerta('fail', 'Error al subir la imagen.');
             return false;
         }
 
@@ -64,12 +63,12 @@ class CreateBookController extends ActiveRecord
         $imageSize = $_FILES['imagen']['size'];
 
         if (!in_array($tipoImagen, self::ALLOWED_IMAGE_TYPES)) {
-            Libros::setAlerta('text-red-500 bg-red-100', 'La imagen debe ser un archivo JPG o PNG.');
+            Libros::setAlerta('fail', 'La imagen debe ser un archivo JPG o PNG.');
             return false;
         }
 
         if ($imageSize > self::MAX_IMAGE_SIZE) {
-            Libros::setAlerta('text-red-500 bg-red-100', 'El tamaño de la imagen debe ser menor a 2 MB.');
+            Libros::setAlerta('fail', 'El tamaño de la imagen debe ser menor a 2 MB.');
             return false;
         }
 
@@ -82,17 +81,17 @@ class CreateBookController extends ActiveRecord
             $libro->setFileName($nombreImagen, "imagen");
             $image->save(CARPETA_IMAGENES . $nombreImagen);
         } catch (Exception $e) {
-            Libros::setAlerta('text-red-500 bg-red-100', 'Error al procesar la imagen.');
+            Libros::setAlerta('fail', 'Error al procesar la imagen.');
             return false;
         }
 
         return true;
     }
 
-    private static function procesarPDF($libro)
+    public static function procesarPDF($libro)
     {
         if (!isset($_FILES['archivo']) || $_FILES['archivo']['error'] !== UPLOAD_ERR_OK) {
-            Libros::setAlerta('text-red-500 bg-red-100', 'Error al subir el archivo PDF.');
+            Libros::setAlerta('fail', 'Error al subir el archivo PDF.');
             return false;
         }
 
@@ -100,12 +99,12 @@ class CreateBookController extends ActiveRecord
         $pdfSize = $_FILES['archivo']['size'];
 
         if ($tipoPDF !== self::ALLOWED_PDF_TYPE) {
-            Libros::setAlerta('text-red-500 bg-red-100', 'El archivo debe ser un PDF.');
+            Libros::setAlerta('fail', 'El archivo debe ser un PDF.');
             return false;
         }
 
         if ($pdfSize > self::MAX_PDF_SIZE) {
-            Libros::setAlerta('text-red-500 bg-red-100', 'El tamaño del archivo debe ser menor a 10 MB.');
+            Libros::setAlerta('fail', 'El tamaño del archivo debe ser menor a 10 MB.');
             return false;
         }
 
@@ -114,7 +113,7 @@ class CreateBookController extends ActiveRecord
 
         // Mover el archivo PDF al servidor
         if (!move_uploaded_file($_FILES['archivo']['tmp_name'], CARPETA_LIBROS . $nombrepdf)) {
-            Libros::setAlerta('text-red-500 bg-red-100', 'Ocurrió un error al subir el archivo PDF.');
+            Libros::setAlerta('fail', 'Ocurrió un error al subir el archivo PDF.');
             return false;
         }
 

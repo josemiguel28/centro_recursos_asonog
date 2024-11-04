@@ -72,7 +72,7 @@ class CreateDocumentController
         return md5(uniqid(strval(rand()), true)) . '.' . $extension;
     }
 
-    private static function procesarImagen($documento): bool
+    public static function procesarImagen($documento): bool
     {
         if (!isset($_FILES['imagen']) || $_FILES['imagen']['error'] !== UPLOAD_ERR_OK) {
             Documentos::setAlerta('text-red-500 bg-red-100', 'Error al subir la imagen.');
@@ -108,7 +108,7 @@ class CreateDocumentController
         return true;
     }
 
-    private static function procesarPDF($documento): bool
+    public static function procesarPDF($documento): bool
     {
         if (!isset($_FILES['archivo']) || $_FILES['archivo']['error'] !== UPLOAD_ERR_OK) {
             Documentos::setAlerta('text-red-500 bg-red-100', 'Error al subir el archivo PDF.');

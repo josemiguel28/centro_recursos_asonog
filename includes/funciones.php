@@ -32,13 +32,6 @@ function redirectToWithMsg($url, $msg)
     die();
 }
 
-function esUltimo(string $actual,string $ultimo) : bool{
-
-    if($actual != $ultimo){
-        return true;
-    }
-}
-
 //funcion para verificar si el usuario esta autenticado
 function isUserAuth() : void{
     if(!isset($_SESSION["login"])){
@@ -51,6 +44,18 @@ function isAdmin(){
     {
         header("Location: /");
     }
+}
+
+function setFormTitle($action): string
+{
+    $modes = [
+        'DSP' => 'Detalles',
+        'INS' => 'Registrar',
+        'UPD' => 'Actualizar',
+        'DEL' => 'Eliminar'
+    ];
+
+    return $modes[$action];
 }
 
 

@@ -14,7 +14,7 @@
                 include_once __DIR__ . "/../templates/alertas.php";
                 ?>
 
-                <form class="space-y-4 md:space-y-6" action="/crear-libro" method="post" enctype="multipart/form-data">
+                <form class="space-y-4 md:space-y-6" action="/libros/gestionar" method="post" enctype="multipart/form-data">
                     <div>
                         <label for="nombreLibro" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Ingresa el titulo del libro <span class="text-red-500">*</span> </label>
                         <input

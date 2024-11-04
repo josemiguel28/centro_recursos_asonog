@@ -46,7 +46,7 @@ class LoginController extends ActiveRecord
             return true;
         }
 
-        Usuario::setAlerta('text-red-500 bg-red-100', 'El usuario no existe o la contraseña es incorrecta');
+        Usuario::setAlerta('', 'El usuario no existe o la contraseña es incorrecta');
         return false;
     }
 

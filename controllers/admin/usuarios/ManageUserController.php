@@ -44,18 +44,18 @@ class ManageUserController extends ActiveRecord
      */
     public static function gestionarUsuario(Router $router): void
     {
-        $getActionFromUrl = new Request();
-        $action = $getActionFromUrl->get('mode');
-        $getUserIdFromUrl = $getActionFromUrl->get('id');
+        $request = new Request();
+        $formAction = $request->get('mode');
+        $getUserIdFromUrl = $request->get('id');
 
         // Establece el título de la página según la acción solicitada
-        $formTitle = self::setFormTitle($action);
+        $formTitle = setFormTitle($formAction);
 
-        $usuario = self::getUsuarioById($getUserIdFromUrl);
+        $usuario = self::getUsuarioByIdFromDb($getUserIdFromUrl);
         $roles = RolesController::getAvailableRoles();
 
         if (isPostBack()) {
-            switch ($action) {
+            switch ($formAction) {
                 case 'INS':
                     CreateUserController::crearCuenta($_POST);
                     break;
@@ -84,23 +84,13 @@ class ManageUserController extends ActiveRecord
         $router->render('admin/usuarios/formulario_usuarios', [
             'usuario' => $usuario,
             'title' => $formTitle,
-            'mode' => $action,
+            'mode' => $formAction,
             'roles' => $roles,
             'alertas' => $alertas
         ]);
     }
 
-    private static function setFormTitle($action): string
-    {
-        $modes = [
-            'INS' => 'Registrar',
-            'UPD' => 'Actualizar',
-            'DEL' => 'Eliminar'
-        ];
-        return $modes[$action] ?? 'Acción no definida';
-    }
-
-    private static function getUsuarioById($id) {
+    private static function getUsuarioByIdFromDb($id) {
         return Usuario::where('id', $id);
     }
 

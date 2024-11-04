@@ -17,7 +17,7 @@ class CreateUserController extends ActiveRecord
         //$alertas = $usuario->validarDatosNuevaCuenta();
 
         if (self::procesarUsuario($usuario)) {
-            Usuario::setAlerta('text-green-500 bg-green-100', 'Usuario creado correctamente. Se ha enviado un correo al usuario con las instrucciones para activar su cuenta.');
+            Usuario::setAlerta('success', 'Usuario creado con éxito. Se envió un correo con las instrucciones para activar la cuenta.');
         } else {
             $alertas = Usuario::getAlertas();
         }
@@ -26,7 +26,7 @@ class CreateUserController extends ActiveRecord
     private static function procesarUsuario(Usuario $usuario)
     {
         if ($usuario->isUserRegistered()) {
-            Usuario::setAlerta('text-red-500 bg-red-100', 'El usuario ya se encuentra registrado');
+            Usuario::setAlerta('fail', 'El usuario ya se encuentra registrado');
             return false;
         }
 

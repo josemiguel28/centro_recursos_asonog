@@ -16,9 +16,9 @@ class UpdateUserController extends ActiveRecord
 
             $usuario->guardar();
 
-            Usuario::setAlerta('text-green-500 bg-green-100', 'Usuario actualizado correctamente.');
+            Usuario::setAlerta('success', 'Usuario actualizado correctamente.');
         }catch (\Exception $e){
-            Usuario::setAlerta('text-red-500 bg-red-100', 'Error al actualizar el usuario.');
+            Usuario::setAlerta('fail', 'Error al actualizar el usuario.');
         }
     }
 }

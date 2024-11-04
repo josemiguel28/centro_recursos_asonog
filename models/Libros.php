@@ -31,6 +31,12 @@ class Libros extends ActiveRecord
         $this->archivo_url = $args['archivo_url'] ?? '';
     }
 
+
+    public static function getAllBooks(): array
+    {
+        $sql = "SELECT * FROM " . self::$tabla . " order by id desc;";
+        return self::consultarSQL($sql);
+    }
     public static function getAllActiveBooks(): array
     {
         $sql = "SELECT * FROM " . self::$tabla . " WHERE estado = 'ACT'";

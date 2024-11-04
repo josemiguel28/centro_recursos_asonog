@@ -18,6 +18,9 @@ use Controller\colaborador\api\getPaginatedDocuments;
 use Controller\colaborador\ColaboradorController;
 use Controller\colaborador\SearchDocumentController;
 use Controller\home\HomeController;
+use Controller\admin\libros\ManageBookController;
+
+
 use MVC\Router;
 
 $router = new Router();
@@ -61,8 +64,8 @@ $router->post("/usuario", [ManageUserController::class, 'gestionarUsuario']);
 $router->post("/logout", [LoginController::class, 'logout']);
 
 //crear libro
-$router->get("/libro", [CreateBookController::class, 'crearLibro']);
-$router->post("/libro", [CreateBookController::class, 'crearLibro']);
+//$router->get("/libro", [CreateBookController::class, 'crearLibro']);
+//$router->post("/libro", [CreateBookController::class, 'crearLibro']);
 $router->post("/logout", [LoginController::class, 'logout']);
 
 //crear documento
@@ -77,6 +80,10 @@ $router->get("/mensaje", [ConfirmarCuenta::class, 'mensaje']);
 //CRUD de usuarios
 $router->get("/usuarios/gestionar", [ManageUserController::class, 'index']);
 
+//CRUD de libros
+$router->get("/gestionar/libros", [ManageBookController::class, 'showBooks']);
+$router->post("/libro", [ManageBookController::class, 'gestionarLibro']);
+$router->get("/libro", [ManageBookController::class, 'gestionarLibro']);
 
 // Comprueba y valida las rutas, que existan y les asigna las funciones del Controlador
 $router->comprobarRutas();

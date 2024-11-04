@@ -45,7 +45,7 @@ class ConfirmarCuenta
         $usuario = self::validarToken();
 
         if (!$usuario) {
-            Usuario::setAlerta('text-red-500 bg-red-100', "Error, token no válido");
+            Usuario::setAlerta('', "Token no válido");
         } else {
             self::setNewPassword($usuario);
         }
@@ -80,7 +80,7 @@ class ConfirmarCuenta
             }
 
             if (empty($nuevaPassword) || strlen($nuevaPassword) < 6) {
-                Usuario::setAlerta('text-red-500 bg-red-100', "La nueva contraseña debe tener al menos 6 caracteres.");
+                Usuario::setAlerta('fail', "La nueva contraseña debe tener al menos 6 caracteres.");
                 return;
             }
 
@@ -93,7 +93,7 @@ class ConfirmarCuenta
             $_SESSION['token'] = '';
             $usuario->guardar();
 
-            Usuario::setAlerta('text-green-500 bg-green-100', "Cuenta activada correctamente. Dirigase a <a class='underline' href='/login'>Iniciar Sesion</a> .");
+            Usuario::setAlerta('success', "Cuenta activada correctamente. <a class='underline font-semibold' href='/login'>Iniciar Sesion</a> .");
         }
     }
 }

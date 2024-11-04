@@ -13,7 +13,7 @@ class DeleteUserController extends ActiveRecord
 
             $usuario->eliminar();
 
-            Usuario::setAlerta('text-green-500 bg-green-100', 'Usuario eliminado correctamente.');
+            Usuario::setAlerta('success', 'Usuario eliminado correctamente.');
         } catch (\Exception $e) {
             Usuario::setAlerta('text-red-500 bg-red-100', 'Error al eliminar el usuario.');
         }
