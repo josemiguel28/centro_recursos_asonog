@@ -41,7 +41,7 @@ class ManageBookController extends ActiveRecord
                     UpdateBookController::actualizarLibro($_POST, $book);
                     break;
                 case 'DEL':
-                    DeleteBookController::eliminarLibro($_POST);
+                    DeleteBookController::eliminarLibro($book);
                     break;
             }
         }

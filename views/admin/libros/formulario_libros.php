@@ -14,7 +14,8 @@
                 include_once __DIR__ . "/../../templates/alertas.php";
                 ?>
 
-                <form class="space-y-4 md:space-y-6" action="/libro?mode=<?= $mode ?>&id= <?= $libro->id ?>" method="post"
+                <form class="space-y-4 md:space-y-6" action="/libro?mode=<?= $mode ?>&id= <?= $libro->id ?>"
+                      method="post"
                       enctype="multipart/form-data">
                     <div>
                         <label for="nombreLibro" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Título
@@ -28,7 +29,7 @@
                                 placeholder="Recursos de la vida"
                                 required=""
                                 value="<?= $libro->titulo; ?>"
-                            <?= $mode === "DSP" ? "disabled" : ""; ?>
+                            <?= $mode === "DSP" || $mode === "DEL" ? "disabled" : ""; ?>
                         >
                     </div>
 
@@ -43,7 +44,7 @@
                                 placeholder="Carlos"
                                 value="<?= $libro->autor; ?>"
                                 required
-                            <?= $mode === "DSP" ? "disabled" : ""; ?>
+                            <?= $mode === "DSP" || $mode === "DEL" ? "disabled" : ""; ?>
 
                         >
                     </div>
@@ -59,7 +60,7 @@
                         focus:border-primary-600 block w-full p-2.5 "
                                 placeholder="Derechos humanos"
                                 value="<?= $libro->categoria; ?>"
-                            <?= $mode === "DSP" ? "disabled" : ""; ?>
+                            <?= $mode === "DSP" || $mode === "DEL" ? "disabled" : ""; ?>
 
                         >
                     </div>
@@ -69,7 +70,7 @@
                             el estado</label>
 
                         <select
-                            <?= $mode === "DSP" ? "disabled" : ""; ?>
+                            <?= $mode === "DSP" || $mode === "DEL" ? "disabled" : ""; ?>
                                 name="estado"
                                 id="estado"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5">
@@ -85,13 +86,29 @@
                             <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="imagen">Imagen
                                 del libro</label>
 
+                            <div class="mb-5 flex justify-center">
+
+                                <div>
+                                    <a href="/libros/<?= $libro->archivo_url; ?>" target="_blank" class="text-primary-500">
+
+                                        <div>
+                                            <img class="rounded-[0.5rem]" src="/imagenes/<?= $libro->imagen; ?>" alt=""
+                                                 width="100"
+                                                 height="100"
+                                            >
+                                        </div>
+                                    </a>
+
+                                </div>
+                            </div>
+
                             <input class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
                                    type="file"
                                    name="imagen"
                                    id="imagen"
                                    accept="image/jpeg, image/png"
                                    value="<?= $libro->imagen; ?>"
-                                <?= $mode === "DSP" ? "disabled" : ""; ?>
+                                <?= $mode === "DSP" || $mode === "DEL" ? "disabled" : ""; ?>
                             >
 
                         </div>
@@ -113,18 +130,18 @@
                                                     class="font-semibold">Click para subir el PDF del libro</span></p>
                                         <p class="text-xs text-gray-500 dark:text-gray-400">PDF</p>
                                     </div>
-                                    <input id="dropzone-file" type="file" class="hidden" accept=".pdf" name="archivo"/>
+                                    <input
+                                            id="dropzone-file"
+                                            type="file"
+                                            class="hidden"
+                                            accept=".pdf"
+                                            name="archivo"
+                                        <?= $mode === "DSP" || $mode === "DEL" ? "disabled" : ""; ?>
+
+                                    />
                                 </label>
                             </div>
                         </div>
-
-                        <div class="bg-primary-500 hover:bg-primary-300 font-medium rounded-lg <?= $mode === "DEL" ? 'bg-red-600 hover:bg-red-300' : '' ?>">
-                            <button type="submit"
-                                    class="w-full text-white text-sm px-5 py-2.5 text-center ">
-                                <?= $mode === "DEL" ? 'Eliminar' : 'Guardar' ?>
-                            </button>
-                        </div>
-
 
                     <?php else : ?>
 
@@ -152,6 +169,18 @@
                         </div>
 
                     <?php endif; ?>
+
+                    <?php if ($mode === "UPD" || $mode === "DEL") : ?>
+
+                        <div class="bg-primary-500 hover:bg-primary-300 font-medium rounded-lg <?= $mode === "DEL" ? 'bg-red-600 hover:bg-red-300' : '' ?>">
+                            <button type="submit"
+                                    class="w-full text-white text-sm px-5 py-2.5 text-center ">
+                                <?= $mode === "DEL" ? 'Eliminar' : 'Guardar' ?>
+                            </button>
+                        </div>
+
+                    <?php endif; ?>
+
                 </form>
 
             </div>
