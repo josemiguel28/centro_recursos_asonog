@@ -5,8 +5,8 @@ namespace Controller\colaborador;
 use Clases\Request;
 use MVC\models\DocumentosTecnicos;
 use MVC\Router;
-use MVC\Models\TipoHerramienta;
-use MVC\Models\Tematicas;
+use MVC\models\TipoHerramienta;
+use MVC\models\Tematicas;
 
 class ColaboradorController
 {

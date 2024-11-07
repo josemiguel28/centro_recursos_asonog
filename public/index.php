@@ -20,7 +20,6 @@ use Controller\colaborador\SearchDocumentController;
 use Controller\home\HomeController;
 use Controller\admin\libros\ManageBookController;
 
-
 use MVC\Router;
 
 $router = new Router();
@@ -28,6 +27,8 @@ $router = new Router();
 //pagina de inicio
 $router->get("/", [HomeController::class, 'index']);
 $router->post("/", [HomeController::class, 'index']);
+
+$router->get("/nosotros", [HomeController::class, 'nosotros']);
 
 //pagina de biblioteca
 $router->get("/biblioteca", [BibliotecaController::class, 'index']);

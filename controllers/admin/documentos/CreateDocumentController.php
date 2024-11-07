@@ -41,10 +41,10 @@ class CreateDocumentController
 
                     self::saveDocumentoTecnicoResponsable($documentoId); // Guardar los tecnicos responsables en la tabla documentos_tecnicos
 
-                    Documentos::setAlerta('text-green-500 bg-green-100', 'Documento creado correctamente.');
+                    Documentos::setAlerta('success', 'Documento creado correctamente.');
                     $documento = new Documentos(); // Limpiar el formulario
                 } catch (\Exception $e) {
-                    Documentos::setAlerta('text-red-500 bg-red-100', 'Error al crear el documento.');
+                    Documentos::setAlerta('fail', 'Error al crear el documento.');
                 }
             } else {
                 Documentos::getAlertas();
@@ -75,7 +75,7 @@ class CreateDocumentController
     public static function procesarImagen($documento): bool
     {
         if (!isset($_FILES['imagen']) || $_FILES['imagen']['error'] !== UPLOAD_ERR_OK) {
-            Documentos::setAlerta('text-red-500 bg-red-100', 'Error al subir la imagen.');
+            Documentos::setAlerta('fail', 'Error al subir la imagen.');
             return false;
         }
 
@@ -83,12 +83,12 @@ class CreateDocumentController
         $imageSize = $_FILES['imagen']['size'];
 
         if (!in_array($tipoImagen, self::ALLOWED_IMAGE_TYPES)) {
-            Documentos::setAlerta('text-red-500 bg-red-100', 'La imagen debe ser un archivo JPG o PNG.');
+            Documentos::setAlerta('fail', 'La imagen debe ser un archivo JPG o PNG.');
             return false;
         }
 
         if ($imageSize > self::MAX_IMAGE_SIZE) {
-            Documentos::setAlerta('text-red-500 bg-red-100', 'El tamaño de la imagen debe ser menor a 2 MB.');
+            Documentos::setAlerta('fail', 'El tamaño de la imagen debe ser menor a 2 MB.');
             return false;
         }
 
@@ -101,7 +101,7 @@ class CreateDocumentController
             $documento->setFileName($nombreImagen, "imagen");
             $image->save(CARPETA_IMAGENES_DOCUMENTOS . $nombreImagen);
         } catch (Exception $e) {
-            Documentos::setAlerta('text-red-500 bg-red-100', 'Error al procesar la imagen.');
+            Documentos::setAlerta('fail', 'Error al procesar la imagen.');
             return false;
         }
 
@@ -111,7 +111,7 @@ class CreateDocumentController
     public static function procesarPDF($documento): bool
     {
         if (!isset($_FILES['archivo']) || $_FILES['archivo']['error'] !== UPLOAD_ERR_OK) {
-            Documentos::setAlerta('text-red-500 bg-red-100', 'Error al subir el archivo PDF.');
+            Documentos::setAlerta('fail', 'Error al subir el archivo PDF.');
             return false;
         }
 
@@ -119,12 +119,12 @@ class CreateDocumentController
         $pdfSize = $_FILES['archivo']['size'];
 
         if ($tipoPDF !== self::ALLOWED_PDF_TYPE) {
-            Documentos::setAlerta('text-red-500 bg-red-100', 'El archivo debe ser un PDF.');
+            Documentos::setAlerta('fail', 'El archivo debe ser un PDF.');
             return false;
         }
 
         if ($pdfSize > self::MAX_PDF_SIZE) {
-            Documentos::setAlerta('text-red-500 bg-red-100', 'El tamaño del archivo debe ser menor a 10 MB.');
+            Documentos::setAlerta('fail', 'El tamaño del archivo debe ser menor a 10 MB.');
             return false;
         }
 
@@ -133,7 +133,7 @@ class CreateDocumentController
 
         // Mover el archivo PDF al servidor
         if (!move_uploaded_file($_FILES['archivo']['tmp_name'], CARPETA_DOCUMENTOS . $nombrepdf)) {
-            Documentos::setAlerta('text-red-500 bg-red-100', 'Ocurrió un error al subir el archivo PDF.');
+            Documentos::setAlerta('fail', 'Ocurrió un error al subir el archivo PDF.');
             return false;
         }
 

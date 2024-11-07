@@ -12,6 +12,7 @@ class getPaginatedDocuments
         $limit = 10; // Número de documentos por página
         $offset = $_GET['offset'] ?? 0; // Usamos 0 si no hay offset enviado desde js
 
+
         $documentos = DocumentosTecnicos::getPaginatedDocuments($limit, $offset);
 
         if (isset($_SERVER['HTTP_X_REQUESTED_WITH']) && $_SERVER['HTTP_X_REQUESTED_WITH'] === 'XMLHttpRequest') {

@@ -35,24 +35,27 @@ class DocumentosTecnicos extends ActiveRecord
     }
 
     public static function getAllDocumentos($limit = 10){
-        $sql = "SELECT 
-            documentos.id, 
-            documentos.nombre_herramienta ,
-            documentos.descripcion,
-            tipos_herramienta.nombre tipo_herramienta, 
-            tematicas.nombre tematica,
-            tecnicos_responsables.nombre tecnico,
-            documentos.imagen, 
-            documentos.fecha_emision, 
-            documentos.archivo_url FROM documentos
-            JOIN documentos_tecnicos  
-            ON documentos_tecnicos.id_documento = documentos.id
-            JOIN tecnicos_responsables
-            ON tecnicos_responsables.id = documentos_tecnicos.id_tecnico_responsable
-            JOIN tipos_herramienta 
-            ON tipos_herramienta.id = documentos.id_tipo_herramienta
-            JOIN tematicas 
-            ON tematicas.id = documentos.id_tematica WHERE documentos.estado = 'ACT' LIMIT {$limit};";
+        $sql = "SELECT documentos.id, 
+       documentos.nombre_herramienta,
+       documentos.descripcion,
+       tipos_herramienta.nombre AS tipo_herramienta, 
+       tematicas.nombre AS tematica,
+       GROUP_CONCAT(tecnicos_responsables.nombre) AS tecnicos, -- Agrupa los técnicos en una sola columna
+       documentos.imagen, 
+       documentos.fecha_emision, 
+       documentos.archivo_url 
+FROM documentos
+JOIN documentos_tecnicos  
+ON documentos_tecnicos.id_documento = documentos.id
+JOIN tecnicos_responsables
+ON tecnicos_responsables.id = documentos_tecnicos.id_tecnico_responsable
+JOIN tipos_herramienta 
+ON tipos_herramienta.id = documentos.id_tipo_herramienta
+JOIN tematicas 
+ON tematicas.id = documentos.id_tematica 
+WHERE documentos.estado = 'ACT'
+GROUP BY documentos.id
+LIMIT {$limit};";
 
         return DocumentosTecnicos::SQL($sql);
     }
@@ -64,7 +67,7 @@ class DocumentosTecnicos extends ActiveRecord
             documentos.descripcion,
             tipos_herramienta.nombre tipo_herramienta, 
             tematicas.nombre tematica,
-            tecnicos_responsables.nombre tecnico,
+            GROUP_CONCAT(tecnicos_responsables.nombre) AS tecnicos, -- Agrupa los técnicos en una sola columna
             documentos.imagen, 
             documentos.fecha_emision, 
             documentos.archivo_url FROM documentos
@@ -75,7 +78,11 @@ class DocumentosTecnicos extends ActiveRecord
             JOIN tipos_herramienta 
             ON tipos_herramienta.id = documentos.id_tipo_herramienta
             JOIN tematicas 
-            ON tematicas.id = documentos.id_tematica WHERE documentos.estado = 'ACT' LIMIT {$limit} OFFSET {$offset};";
+            ON tematicas.id = documentos.id_tematica
+            WHERE documentos.estado = 'ACT'
+GROUP BY documentos.id
+
+            LIMIT {$limit} OFFSET {$offset};";
 
         return DocumentosTecnicos::SQL($sql);
     }

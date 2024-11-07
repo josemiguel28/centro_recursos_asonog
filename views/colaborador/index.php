@@ -106,8 +106,6 @@
 
             <?php require_once __DIR__ . "/../templates/documentosContenedor.php"; ?>
 
-
-
                 <!-- Botón de ver más -->
                 <div class="flex justify-center mt-6" ">
                 <button id="mostrar-mas-documentos-btn" type="button"

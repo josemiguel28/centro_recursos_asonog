@@ -18,4 +18,9 @@ class HomeController
             ]
         );
     }
+
+    public static function nosotros(Router $router): void
+    {
+        $router->render('home/nosotros');
+    }
 }
