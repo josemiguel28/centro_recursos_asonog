@@ -7,12 +7,12 @@ use Model\ActiveRecord;
 class Libros extends ActiveRecord
 {
     protected static $tabla = 'libros';
-    protected static $columnasDB = ['id', 'titulo', 'autor', 'categoria', 'anio', 'imagen', 'estado' , 'archivo_url'];
+    protected static $columnasDB = ['id', 'titulo', 'autor', 'id_categoria', 'anio', 'imagen', 'estado', 'archivo_url'];
 
     public $id;
     public $titulo;
     public $autor;
-    public $categoria;
+    public $id_categoria;
     public $anio;
     public $imagen;
     public $estado;
@@ -24,7 +24,7 @@ class Libros extends ActiveRecord
         $this->id = $args['id'] ?? null;
         $this->titulo = $args['titulo'] ?? '';
         $this->autor = $args['autor'] ?? '';
-        $this->categoria = $args['categoria'] ?? '';
+        $this->id_categoria = $args['id_categoria'] ?? '';
         $this->anio = $args['anio'] ?? '1';
         $this->imagen = $args['imagen'] ?? '';
         $this->estado = $args['estado'] ?? 'ACT';
@@ -34,9 +34,21 @@ class Libros extends ActiveRecord
 
     public static function getAllBooks(): array
     {
-        $sql = "SELECT * FROM " . self::$tabla . " order by id desc;";
-        return self::consultarSQL($sql);
+        $sql = "SELECT libros.id, 
+                libros.titulo,
+                libros.autor, 
+                libros.imagen, 
+                libros.estado, 
+                libros.archivo_url, 
+                libros.anio, 
+                libros_categorias.nombre id_categoria -- nombre de la categoria
+                FROM " . self::$tabla
+            . " join libros_categorias on "
+            . " libros_categorias.id_categoria = libros.id_categoria "
+            . " order by libros.id desc;";
+        return self::SQL($sql);
     }
+
     public static function getAllActiveBooks(): array
     {
         $sql = "SELECT * FROM " . self::$tabla . " WHERE estado = 'ACT'";
@@ -45,8 +57,23 @@ class Libros extends ActiveRecord
 
     public static function getActiveBooksWithLimit($limit = 4): array
     {
-        $sql = "SELECT * FROM " . self::$tabla . " WHERE estado = 'ACT' LIMIT {$limit}";
-        return self::consultarSQL($sql);
+        $sql = "select 
+                libros.id, 
+                libros.titulo,
+                libros.autor, 
+                libros.imagen, 
+                libros.estado, 
+                libros.archivo_url, 
+                libros_categorias.nombre id_categoria FROM "
+            . self::$tabla . " 
+                
+                join libros_categorias on
+                
+                libros_categorias.id_categoria = libros.id_categoria
+                                  
+                WHERE estado = 'ACT' LIMIT {$limit}";
+
+        return self::SQL($sql);
     }
 
     public static function getBookById($id)
@@ -57,29 +84,45 @@ class Libros extends ActiveRecord
 
     public static function getBookCategoriesWithLimit()
     {
-        $sql = "SELECT categoria FROM " . self::$tabla . " ORDER BY id ASC LIMIT 4";
-        return self::consultarSQL($sql);
+        $sql = "SELECT * FROM  libros_categorias LIMIT 4";
+        return self::SQL($sql);
     }
 
     public static function getBooksCategories()
     {
-        $sql = "SELECT DISTINCT categoria FROM " . self::$tabla . "; ";
-        return self::consultarSQL($sql);
+        $sql = "SELECT * FROM  libros_categorias; ";
+        return self::SQL($sql);
     }
 
     public static function filterBooksByCategory($categoria, $limit, $offset)
     {
-        $sql = "SELECT * FROM " . self::$tabla . " WHERE categoria = '{$categoria}' AND estado = 'ACT' LIMIT {$limit} OFFSET {$offset}";
+        $sql = "SELECT libros.id, 
+                libros.titulo,
+                libros.autor, 
+                libros.imagen, 
+                libros.estado, 
+                libros.archivo_url, 
+                libros_categorias.nombre categoria FROM "
+            . self::$tabla
+            . " join libros_categorias on
+                
+                libros_categorias.id_categoria = libros.id_categoria 
+                
+                WHERE libros.id_categoria = '{$categoria}' 
+                AND libros.estado = 'ACT' 
+                LIMIT {$limit} OFFSET {$offset}";
 
         return self::consultarSQL($sql);
     }
 
-    public static function getPaginatedBooks($limit, $offset){
+    public static function getPaginatedBooks($limit, $offset)
+    {
         $sql = "SELECT * FROM " . self::$tabla . " WHERE estado = 'ACT' LIMIT {$limit} OFFSET {$offset}";
         return self::consultarSQL($sql);
     }
 
-    public static function searchBook($search){
+    public static function searchBook($search)
+    {
         $sql = "SELECT * FROM " . self::$tabla . " 
         WHERE (titulo LIKE '%{$search}%' 
         OR autor LIKE '%{$search}%' 
@@ -92,7 +135,7 @@ class Libros extends ActiveRecord
     public function setFileName($nombre, $tipo): void
     {
         if (isset($this->id)) {
-           // $this->deleteImage();
+            // $this->deleteImage();
         }
         //asignar al atributo de la imagen el nombre de la imagen
 

@@ -369,7 +369,7 @@
                             <div class="flex items-center space-x-1 rtl:space-x-reverse">
                                 <div class="flex items-center space-x-1 rtl:space-x-reverse">
                                     <div class="flex items-start space-x-1 rtl:space-x-reverse px-2 py-1 rounded-[1rem] bg-secondary-500">
-                                        <p class="text-xs sm:text-sm text-white max-w-[150px] truncate"><?= $libro->categoria ?></p>
+                                        <p class="text-xs sm:text-sm text-white max-w-[150px] truncate"><?= $libro->id_categoria ?></p>
                                     </div>
                                 </div>
                             </div>

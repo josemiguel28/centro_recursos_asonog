@@ -5,30 +5,32 @@ namespace Controller\admin\libros;
 use Clases\Request;
 use Model\ActiveRecord;
 use Model\Libros;
+use MVC\models\LibrosCategorias;
 use MVC\Router;
 
 class ManageBookController extends ActiveRecord
 {
+
 
     public static function showBooks(Router $router)
     {
 
         $books = Libros::getAllBooks();
 
-       $router->render('admin/libros/gestion_libros',
+        $router->render('admin/libros/gestion_libros',
             [
                 'libros' => $books
             ]);
     }
 
-    public static function gestionarLibro(Router $router){
+    public static function gestionarLibro(Router $router)
+    {
 
         $request = new Request();
         $formAction = $request->get('mode');
         $getBookIdFromUrl = $request->get('id');
-
+        $bookCategories = LibrosCategorias::getBooksCategories();
         $formTitle = setFormTitle($formAction);
-
 
         $book = self::getBookbyIdFromDb($getBookIdFromUrl);
 
@@ -52,6 +54,7 @@ class ManageBookController extends ActiveRecord
             [
                 'title' => $formTitle,
                 'libro' => $book,
+                'categorias' => $bookCategories,
                 'mode' => $formAction,
                 'alertas' => $alertas
             ]
@@ -59,11 +62,10 @@ class ManageBookController extends ActiveRecord
         );
     }
 
-    private static function getBookbyIdFromDb($id) {
+    private static function getBookbyIdFromDb($id)
+    {
         return Libros::where('id', $id);
     }
-
-
 
 
 }

@@ -1,6 +1,6 @@
 <section class="w-full mx-auto">
 
-    <a href="/admin" class="text-lg">&larr; Volver</a>
+    <a href="/gestionar/libros" class="text-lg">&larr; Volver</a>
 
     <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto lg:py-0">
         <h1 class="text-2xl font-bold leading-tight tracking-tight text-gray-900 mb-8 md:text-2xl">
@@ -52,17 +52,21 @@
                     <div>
                         <label for="categoria" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Categoría
                             del libro</label>
-                        <input
-                                type="text"
-                                name="categoria"
-                                id="categoria"
-                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600
-                        focus:border-primary-600 block w-full p-2.5 "
-                                placeholder="Derechos humanos"
-                                value="<?= $libro->categoria; ?>"
-                            <?= $mode === "DSP" || $mode === "DEL" ? "disabled" : ""; ?>
 
-                        >
+                        <select
+                            <?= $mode === "DSP" || $mode === "DEL" ? "disabled" : ""; ?>
+                                name="id_categoria"
+                                id="id_categoria"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5">
+
+                            <?php foreach ($categorias as $categoria) : ?>
+
+                                <option value="<?= $categoria->id_categoria ?>" <?= ($libro->id_categoria == $categoria->id_categoria) ? 'selected' : "" ?> ><?= $categoria->nombre ?></option>
+
+                            <?php endforeach; ?>
+
+                        </select>
+
                     </div>
 
                     <div>
@@ -86,21 +90,24 @@
                             <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="imagen">Imagen
                                 del libro</label>
 
-                            <div class="mb-5 flex justify-center">
+                            <?php if ($mode === "UPD") : ?>
+                                <div class="mb-5 flex justify-center">
 
-                                <div>
-                                    <a href="/libros/<?= $libro->archivo_url; ?>" target="_blank" class="text-primary-500">
+                                    <div>
+                                        <a href="/libros/<?= $libro->archivo_url; ?>" target="_blank"
+                                           class="text-primary-500">
 
-                                        <div>
-                                            <img class="rounded-[0.5rem]" src="/imagenes/<?= $libro->imagen; ?>" alt=""
-                                                 width="100"
-                                                 height="100"
-                                            >
-                                        </div>
-                                    </a>
-
+                                            <div>
+                                                <img class="rounded-[0.5rem]" src="/imagenes/<?= $libro->imagen; ?>"
+                                                     alt=""
+                                                     width="100"
+                                                     height="100"
+                                                >
+                                            </div>
+                                        </a>
+                                    </div>
                                 </div>
-                            </div>
+                            <?php endif; ?>
 
                             <input class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
                                    type="file"
@@ -170,7 +177,7 @@
 
                     <?php endif; ?>
 
-                    <?php if ($mode === "UPD" || $mode === "DEL") : ?>
+                    <?php if ($mode === "UPD" || $mode === "DEL" || $mode === "INS") : ?>
 
                         <div class="bg-primary-500 hover:bg-primary-300 font-medium rounded-lg <?= $mode === "DEL" ? 'bg-red-600 hover:bg-red-300' : '' ?>">
                             <button type="submit"

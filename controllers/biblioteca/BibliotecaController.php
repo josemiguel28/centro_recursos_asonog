@@ -3,6 +3,7 @@
 namespace Controller\biblioteca;
 
 use Clases\Request;
+use MVC\models\LibrosCategorias;
 use MVC\Router;
 use Model\Libros as ModeloLibros;
 
@@ -14,12 +15,14 @@ class BibliotecaController
         $session = new Request();
         $session->startSession();
 
+        $categorias = self::getBookCategories();
+
         $libros = ModeloLibros::getActiveBooksWithLimit(10);
 
         $router->render('biblioteca/index',
             [
                 'libros' => $libros,
-                'categorias' => self::getBookCategories()
+                'categorias' => $categorias
                 //'offset' => $offset + $limit Para la siguiente página
             ]
         );
@@ -27,6 +30,6 @@ class BibliotecaController
 
     private static function getBookCategories(): array
     {
-        return ModeloLibros::getBooksCategories();
+        return LibrosCategorias::getBooksCategories();
     }
 }

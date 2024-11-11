@@ -77,9 +77,11 @@ class CreateBookController extends ActiveRecord
 
         // Procesar la imagen
         try {
+            ini_set('memory_limit', '256M'); // Aumentar temporalmente el límite de memoria
             $image = Image::make($_FILES['imagen']['tmp_name'])->fit(800, 1200);
             $libro->setFileName($nombreImagen, "imagen");
             $image->save(CARPETA_IMAGENES . $nombreImagen);
+
         } catch (Exception $e) {
             Libros::setAlerta('fail', 'Error al procesar la imagen.');
             return false;
@@ -104,7 +106,8 @@ class CreateBookController extends ActiveRecord
         }
 
         if ($pdfSize > self::MAX_PDF_SIZE) {
-            Libros::setAlerta('fail', 'El tamaño del archivo debe ser menor a 10 MB.');
+            Libros::setAlerta('fail', 'El tamaño del archivo debe ser menor a 10 MB. Intente comprimir el archivo en esta pagina 
+            https://www.ilovepdf.com/compress_pdf');
             return false;
         }
 

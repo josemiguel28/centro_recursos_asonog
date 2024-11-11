@@ -10,7 +10,7 @@
         <div class="relative overflow-hidden bg-white shadow-md dark:bg-gray-800 sm:rounded-lg">
 
             <div class="flex flex-col flex-shrink-0 space-y-3 md:flex-row md:items-center justify-end md:space-y-3 md:space-x-3 ">
-                <a href="/usuario?mode=INS">
+                <a href="/libro?mode=INS">
                     <button type="button"
                             class="flex items-center justify-center px-4 py-2 mb-8 text-sm font-medium text-black rounded-lg bg-yellow-200">
                         <svg class="h-3.5 w-3.5 mr-2" fill="currentColor" viewbox="0 0 20 20"
@@ -58,7 +58,7 @@
                         </td>
                         <td class="bg-primary-100 text-primary-800 font-medium px-2 py-0.5 rounded">
                             <div class="flex items-center">
-                                <?= $libro->categoria; ?>
+                                <?= $libro->id_categoria; //nombre de la categoria ?>
                             </div>
                         </td>
 

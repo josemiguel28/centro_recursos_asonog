@@ -65,9 +65,9 @@
 
                         <div>
                             <label class="flex items-center">
-                                <input type="radio" name="categoria" value="<?php echo $categoria->categoria; ?>"
+                                <input type="radio" name="categoria" value="<?php echo $categoria->id_categoria; ?>"
                                     class="mr-2">
-                                <?php echo $categoria->categoria; ?>
+                                <?php echo $categoria->nombre; ?>
                             </label>
                         </div>
 
