@@ -98,7 +98,7 @@
                                            class="text-primary-500">
 
                                             <div>
-                                                <img class="rounded-[0.5rem]" src="/imagenes/<?= $libro->imagen; ?>"
+                                                <img class="rounded-[0.5rem]" src="/imagenesLibros/<?= $libro->imagen; ?>"
                                                      alt=""
                                                      width="100"
                                                      height="100"
@@ -158,7 +158,7 @@
                                 <a href="/libros/<?= $libro->archivo_url; ?>" target="_blank" class="text-primary-500">
 
                                     <div>
-                                        <img class="rounded-[0.5rem]" src="/imagenes/<?= $libro->imagen; ?>" alt=""
+                                        <img class="rounded-[0.5rem]" src="/imagenesLibros/<?= $libro->imagen; ?>" alt=""
                                              width="100"
                                              height="100"
                                         >

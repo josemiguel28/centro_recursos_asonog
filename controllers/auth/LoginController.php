@@ -83,7 +83,7 @@ class LoginController extends ActiveRecord
             $redirectUrl = ($user->rol === '1') ? '/admin' : '/colaborador';
             header("Location: $redirectUrl");
             exit;
-        } catch (Exception $e) {
+        } catch (Exception$e) {
             Usuario::setAlerta('text-red-500', 'Error al iniciar sesión: ' . $e->getMessage());
         }
 

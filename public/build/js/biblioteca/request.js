@@ -1,1 +1,0 @@
-async function consultarAPI(t){try{const t="/biblioteca",o=await fetch(t,{headers:{"X-Requested-With":"XMLHttpRequest"}});if(!o.ok)throw new Error(`HTTP error! status: ${o.status}`);const s=await o.json();mostrarLibros(s)}catch(t){console.log(t)}}

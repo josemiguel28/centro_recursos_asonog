@@ -1,1 +1,0 @@
-async function consultarAPI(t=1){try{const r=`/api/get-paginated-books?offset=${t}`,o=await fetch(r);if(!o.ok)throw new Error(`HTTP error! status: ${o.status}`);return await o.json()}catch(t){return console.error("Error fetching books:",t),[]}}export default consultarAPI;

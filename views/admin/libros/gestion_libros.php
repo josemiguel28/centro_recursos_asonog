@@ -39,7 +39,9 @@
                     </thead>
                     <tbody>
 
-                    <?php foreach ($libros as $libro) : ?>
+                    <?php foreach ($libros
+
+                    as $libro) : ?>
 
                     <tr class="border-b hover:bg-gray-100 dark:hover:bg-gray-700 align-center">
                         <td class="w-4 px-4 py-3">
@@ -47,9 +49,11 @@
                         </td>
                         <th scope="row"
                             class="flex items-center px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                            <img src="/imagenes/<?= $libro->imagen; ?>" alt="libro imagen"
+                            <img src="/imagenesLibros/<?= $libro->imagen; ?>" alt="libro imagen"
                                  class="w-auto h-10 mr-3 rounded-[0.2rem]">
-                            <?= $libro->titulo; ?>
+
+                            <span class="truncate max-w-[400px]"> <?= $libro->titulo; ?> </span>
+
                         </th>
                         <td class="px-4 py-2">
                                     <span class="bg-primary-100 text-primary-800 font-medium px-2 py-0.5 rounded text-center">
@@ -58,7 +62,7 @@
                         </td>
                         <td class="bg-primary-100 text-primary-800 font-medium px-2 py-0.5 rounded">
                             <div class="flex items-center">
-                                <?= $libro->id_categoria; //nombre de la categoria ?>
+                                <?= $libro->id_categoria; //nombre de la categoria  ?>
                             </div>
                         </td>
 

@@ -73,14 +73,14 @@ class CreateBookController extends ActiveRecord
         }
 
         $nombreImagen = self::generarNombreArchivo('jpg');
-        self::crearCarpetaSiNoExiste(CARPETA_IMAGENES);
+        self::crearCarpetaSiNoExiste(CARPETA_IMAGENES_LIBROS);
 
         // Procesar la imagen
         try {
             ini_set('memory_limit', '256M'); // Aumentar temporalmente el límite de memoria
             $image = Image::make($_FILES['imagen']['tmp_name'])->fit(800, 1200);
             $libro->setFileName($nombreImagen, "imagen");
-            $image->save(CARPETA_IMAGENES . $nombreImagen);
+            $image->save(CARPETA_IMAGENES_LIBROS . $nombreImagen);
 
         } catch (Exception $e) {
             Libros::setAlerta('fail', 'Error al procesar la imagen.');

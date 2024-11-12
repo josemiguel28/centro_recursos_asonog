@@ -1,6 +1,6 @@
 <?php
 
-define("CARPETA_IMAGENES", $_SERVER["DOCUMENT_ROOT"] . '/imagenes/');
+define("CARPETA_IMAGENES_LIBROS", $_SERVER["DOCUMENT_ROOT"] . '/imagenesLibros/');
 define("CARPETA_LIBROS", $_SERVER["DOCUMENT_ROOT"] . '/libros/');
 define("CARPETA_DOCUMENTOS", $_SERVER["DOCUMENT_ROOT"] . '/documentos/');
 define("CARPETA_IMAGENES_DOCUMENTOS", $_SERVER["DOCUMENT_ROOT"] . '/imagenesDocumentos/');

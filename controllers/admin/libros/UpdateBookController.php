@@ -30,7 +30,7 @@ class UpdateBookController extends ActiveRecord
     {
         if (isset($_FILES['imagen']) && $_FILES['imagen']['error'] === UPLOAD_ERR_OK) {
             if (CreateBookController::procesarImagen($libro)) {
-                self::deleteFile(CARPETA_IMAGENES . $oldImage);
+                self::deleteFile(CARPETA_IMAGENES_LIBROS . $oldImage);
                 return true;
             } else {
                 Libros::setAlerta("fail", "Error al procesar la nueva imagen.");

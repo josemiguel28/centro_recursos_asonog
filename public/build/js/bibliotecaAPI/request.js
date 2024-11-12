@@ -1,1 +1,0 @@
-import mostrarLibros from"./UI.js";async function CargarMasLibrosAPI(t){try{const r=`/api/get-paginated-books?offset=${t}`,o=await fetch(r,{headers:{"X-Requested-With":"XMLHttpRequest"}});if(!o.ok)throw new Error(`HTTP error! status: ${o.status}`);const s=await o.json();mostrarLibros(s)}catch(t){console.log(t)}}export{CargarMasLibrosAPI};

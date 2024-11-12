@@ -34,6 +34,8 @@ export default {
             padding: '3rem',
         },
     },
-    plugins: [],
+    plugins: [
+        require('@tailwindcss/line-clamp'),
+    ],
 }
 

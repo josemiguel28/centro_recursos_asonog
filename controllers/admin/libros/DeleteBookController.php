@@ -12,7 +12,7 @@ class DeleteBookController extends ActiveRecord
     {
         try {
             //$libro = self::getBookbyIdFromDb($libro['id']);
-            self::deleteFile(CARPETA_IMAGENES . $libro->imagen);
+            self::deleteFile(CARPETA_IMAGENES_LIBROS . $libro->imagen);
             self::deleteFile(CARPETA_LIBROS . $libro->archivo_url);
             $libro->eliminar();
             Libros::setAlerta("success", "Libro eliminado correctamente");

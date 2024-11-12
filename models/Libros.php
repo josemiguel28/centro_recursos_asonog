@@ -102,7 +102,7 @@ class Libros extends ActiveRecord
                 libros.imagen, 
                 libros.estado, 
                 libros.archivo_url, 
-                libros_categorias.nombre categoria FROM "
+                libros_categorias.nombre id_categoria FROM "
             . self::$tabla
             . " join libros_categorias on
                 
@@ -117,18 +117,43 @@ class Libros extends ActiveRecord
 
     public static function getPaginatedBooks($limit, $offset)
     {
-        $sql = "SELECT * FROM " . self::$tabla . " WHERE estado = 'ACT' LIMIT {$limit} OFFSET {$offset}";
+        $sql = "SELECT libros.id, 
+                libros.titulo,
+                libros.autor, 
+                libros.imagen, 
+                libros.estado, 
+                libros.archivo_url, 
+                libros_categorias.nombre id_categoria FROM "
+            . self::$tabla
+            . " join libros_categorias on
+                
+                libros_categorias.id_categoria = libros.id_categoria 
+                
+                WHERE libros.estado = 'ACT' 
+                LIMIT {$limit} OFFSET {$offset}";
+
         return self::consultarSQL($sql);
     }
 
     public static function searchBook($search)
     {
-        $sql = "SELECT * FROM " . self::$tabla . " 
-        WHERE (titulo LIKE '%{$search}%' 
-        OR autor LIKE '%{$search}%' 
-        OR categoria LIKE '%{$search}%' 
-        OR anio LIKE '%{$search}%') 
-        AND estado = 'ACT'";
+        $sql = "SELECT libros.id, 
+                libros.titulo,
+                libros.autor, 
+                libros.imagen, 
+                libros.estado, 
+                libros.archivo_url, 
+                libros_categorias.nombre id_categoria FROM "
+            . self::$tabla
+            . " join libros_categorias on
+                
+                libros_categorias.id_categoria = libros.id_categoria 
+                
+                WHERE (libros.titulo LIKE '%{$search}%' 
+                OR libros.autor LIKE '%{$search}%' 
+                OR libros.anio LIKE '%{$search}%') 
+                AND libros.estado = 'ACT'";
+
         return self::consultarSQL($sql);
     }
 

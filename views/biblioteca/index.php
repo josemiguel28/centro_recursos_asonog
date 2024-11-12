@@ -73,39 +73,6 @@
 
                     <?php endforeach; ?>
                 </div>
-
-                <!-- Segundo filtro -->
-                <div class="mt-4">
-                    <button id="toggleFilters2" class="w-full flex justify-between items-center p-2 lg:w-10/12">
-                        Año
-                        <svg id="arrowIcon2" class="w-4 h-4 text-gray-600 transition-transform transform"
-                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-                        </svg>
-                    </button>
-
-                    <div id="filtersContent2" class="hidden mt-2 space-y-2 transition-opacity duration-500 ease-in-out">
-                        <div>
-                            <label class="flex items-center">
-                                <input type="radio" name="filtro2" value="opcion1" class="mr-2">
-                                Opción 1
-                            </label>
-                        </div>
-                        <div>
-                            <label class="flex items-center">
-                                <input type="radio" name="filtro2" value="opcion2" class="mr-2">
-                                Opción 2
-                            </label>
-                        </div>
-                        <div>
-                            <label class="flex items-center">
-                                <input type="radio" name="filtro2" value="opcion3" class="mr-2">
-                                Opción 3
-                            </label>
-                        </div>
-                    </div>
-                </div>
-
             </div>
         </div>
 
@@ -139,9 +106,8 @@
             });
         }
 
-        // Inicializa los filtros
+        // Inicializa el filtro
         toggleFilter('toggleFilters1', 'filtersContent1', 'arrowIcon1');
-        toggleFilter('toggleFilters2', 'filtersContent2', 'arrowIcon2');
     </script>
 
     <?php
