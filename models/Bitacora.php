@@ -7,7 +7,7 @@ use Model\ActiveRecord;
 class Bitacora extends ActiveRecord
 {
     protected static $tabla = 'bitacora_acceso';
-    protected static $columnasDB = ['id', 'user_id', 'ip_adress', 'user_agent', 'operating_system' ,'fecha_acceso','sistema_operativo'];
+    protected static $columnasDB = ['id', 'user_id', 'ip_adress', 'user_agent', 'operating_system', 'fecha_acceso', 'sistema_operativo'];
 
 
     public $id;
@@ -37,6 +37,20 @@ class Bitacora extends ActiveRecord
             VALUES ($userId, '$ip', '$userAgent', '$operating_system', '$login_time'); ";
 
         self::$db->query($sql);
+    }
+
+    public static function getLogAccess()
+    {
+
+        $sql = "select concat(usuarios.nombre, ' ' ,usuarios.apellido) user_id,
+                        bitacora_acceso.user_id as id,
+                bitacora_acceso.fecha_acceso
+                from "
+            . self::$tabla .
+            " join usuarios on usuarios.id = bitacora_acceso.user_id order by bitacora_acceso.fecha_acceso desc LIMIT 10;";
+
+        return self::SQL($sql);
+
     }
 
 

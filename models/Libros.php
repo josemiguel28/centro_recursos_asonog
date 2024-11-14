@@ -173,5 +173,11 @@ class Libros extends ActiveRecord
                 break;
         }
     }
+
+    public static function getRegisteredBooks()
+    {
+        $query = "SELECT * FROM " . self::$tabla;
+        return self::consultarSQL($query);
+    }
 }
 

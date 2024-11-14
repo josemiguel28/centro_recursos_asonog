@@ -1,11 +1,17 @@
-<div class="container mx-auto px-4 py-12">
+<div class="container mx-auto px-4">
     <!-- Título -->
-    <h1 class="text-center text-3xl sm:text-3xl font-bold mb-16">
-        Centro de recursos para la gestión del conocimiento
+    <h1 class="text-center text-3xl sm:text-3xl font-semibold mb-16">
+        Centro de recursos para la gestión del conocimiento (CRGC)
     </h1>
 
+    <!-- Imagen a la derecha -->
+    <div class="w-full mx-auto sm:w-[90%]">
+        <img src="/build/img/img_aboutus.jpg" alt="Imagen de gestión del conocimiento"
+             class="w-full rounded-lg shadow-lg sm:w-[90%]">
+    </div>
+
     <!-- Contenedor principal -->
-    <div class="flex flex-col lg:flex-row items-center gap-8 mb-20">
+    <div class="flex flex-col lg:flex-row items-center gap-8 mb-20 mt-12">
         <!-- Texto a la izquierda -->
         <div class="w-full lg:w-1/2 space-y-4">
             <p class="text-gray-700 text-lg">
@@ -21,12 +27,6 @@
                 enriquecer tus
                 conocimientos.
             </p>
-        </div>
-
-        <!-- Imagen a la derecha -->
-        <div class="w-full lg:w-1/2">
-            <img src="ruta-de-tu-imagen.jpg" alt="Imagen de gestión del conocimiento"
-                 class="w-full rounded-lg shadow-lg">
         </div>
     </div>
 
@@ -82,54 +82,31 @@
         </div>
     </div>
 
-
-    <!-- Sección de Valores -->
-    <h3 class="text-center text-2xl sm:text-3xl font-bold mb-8">
-        Nuestros Valores
-    </h3>
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        <!-- Valor 1: Integridad -->
-        <div class="bg-white shadow-md p-6 rounded-lg flex flex-col items-center text-center transform transition-transform duration-200 hover:scale-105">
-            <div class="text-primary-500 mb-4">
-                <!-- Icono de ejemplo -->
-                <svg class="w-10 h-10" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M12 2a10 10 0 100 20 10 10 0 000-20zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/>
-                </svg>
-            </div>
-            <h4 class="text-lg font-semibold mb-2">Integridad</h4>
-            <p class="text-gray-600">
-                Actuamos con transparencia y honestidad, fomentando un ambiente de confianza en todas nuestras
-                interacciones.
-            </p>
+    <div class="sm:flex sm:justify-center sm:items-center mt-16 ">
+        <div class="text-white block bg-primary-500 hover:bg-primary-300 font-medium text-sm py-3 px-6 rounded-full sm:inline-flex sm:mr-4">
+            <a href="/biblioteca">
+                <button class="w-full flex items-center justify-center"
+                        type="button"> Accede a nuestra biblioteca
+                    <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                         fill="none" viewBox="0 0 14 10">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                              d="M1 5h12m0 0L9 1m4 4L9 9"/>
+                    </svg>
+                </button>
+            </a>
         </div>
 
-        <!-- Valor 2: Innovación -->
-        <div class="bg-white shadow-md p-6 rounded-lg flex flex-col items-center text-center transform transition-transform duration-200 hover:scale-105">
-            <div class="text-primary-500 mb-4">
-                <!-- Icono de ejemplo -->
-                <svg class="w-10 h-10" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M12 2a10 10 0 100 20 10 10 0 000-20zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/>
-                </svg>
-            </div>
-            <h4 class="text-lg font-semibold mb-2">Innovación</h4>
-            <p class="text-gray-600">
-                Buscamos constantemente nuevas ideas y soluciones para mejorar y enfrentar los desafíos del futuro.
-            </p>
-        </div>
-
-        <!-- Valor 3: Colaboración -->
-        <div class="bg-white shadow-md p-6 rounded-lg flex flex-col items-center text-center transform transition-transform duration-200 hover:scale-105">
-            <div class="text-primary-500 mb-4">
-                <!-- Icono de ejemplo -->
-                <svg class="w-10 h-10" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M12 2a10 10 0 100 20 10 10 0 000-20zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/>
-                </svg>
-            </div>
-            <h4 class="text-lg font-semibold mb-2">Colaboración</h4>
-            <p class="text-gray-600">
-                Promovemos el trabajo en equipo y el respeto mutuo, reconociendo que el esfuerzo conjunto nos lleva más
-                lejos.
-            </p>
+        <div class="text-white block bg-secondary-500 hover:bg-secondary-300 font-medium text-sm py-3 px-6 rounded-full sm:inline-flex">
+            <a href="/login">
+                <button class="w-full flex items-center justify-center"
+                        type="button"> Accede al repositorio institucional
+                    <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                         fill="none" viewBox="0 0 14 10">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                              d="M1 5h12m0 0L9 1m4 4L9 9"/>
+                    </svg>
+                </button>
+            </a>
         </div>
     </div>
 </div>

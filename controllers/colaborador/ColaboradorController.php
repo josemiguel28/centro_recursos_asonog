@@ -17,7 +17,7 @@ class ColaboradorController
 
         $tipos_herramienta = TipoHerramienta::getAllHerramientas();
         $tematicas = Tematicas::getAllTematicas();
-        $documentos = DocumentosTecnicos::getAllDocumentos();
+        $documentos = DocumentosTecnicos::getAllDocumentosWithLimit();
 
         $router->render('colaborador/index',
             [

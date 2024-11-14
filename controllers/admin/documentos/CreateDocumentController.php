@@ -19,45 +19,34 @@ class CreateDocumentController
     const ALLOWED_IMAGE_TYPES = ['image/jpeg', 'image/png'];
     const ALLOWED_PDF_TYPE = 'application/pdf';
 
-    public static function createDocument(Router $router): void
+    public static function createDocument($args): void
     {
         $documento = new Documentos();
-        $tipoHerramientas = TipoHerramienta::getAllHerramientas();
-        $tematicas = Tematicas::getAllTematicas();
-        $tecnicoResponsable = Tecnicos::getAllTecnicos();
+        $documento->sincronizar($args);
 
-        if (isPostBack()) {
-            $documento->sincronizar($_POST);
+        // Procesar archivos
+        $imagenValida = self::procesarImagen($documento);
+        $pdfValido = self::procesarPDF($documento);
 
-            // Procesar archivos
-            $imagenValida = self::procesarImagen($documento);
-            $pdfValido = self::procesarPDF($documento);
+        if ($imagenValida && $pdfValido) {
 
-            if ($imagenValida && $pdfValido) {
+            try {
+                $resultado = $documento->crear();
+                $documentoId = $resultado['id']; // Obtener el id del documento creado
 
-                try {
-                    $resultado = $documento->crear();
-                    $documentoId = $resultado['id']; // Obtener el id del documento creado
+                self::saveDocumentoTecnicoResponsable($documentoId); // Guardar los tecnicos responsables en la tabla documentos_tecnicos
 
-                    self::saveDocumentoTecnicoResponsable($documentoId); // Guardar los tecnicos responsables en la tabla documentos_tecnicos
-
-                    Documentos::setAlerta('success', 'Documento creado correctamente.');
-                    $documento = new Documentos(); // Limpiar el formulario
-                } catch (\Exception $e) {
-                    Documentos::setAlerta('fail', 'Error al crear el documento.');
-                }
-            } else {
-                Documentos::getAlertas();
+                Documentos::setAlerta('success', 'Documento creado correctamente.');
+                $documento = new Documentos(); // Limpiar el formulario
+            } catch (\Exception $e) {
+                Documentos::setAlerta('fail', 'Error al crear el documento.');
             }
+        } else {
+            Documentos::getAlertas();
         }
 
+
         $alertas = Documentos::getAlertas();
-        $router->render('admin/crearDocumento', [
-            'tipoHerramientas' => $tipoHerramientas,
-            'tematicas' => $tematicas,
-            'tecnicos' => $tecnicoResponsable,
-            'alertas' => $alertas
-        ]);
     }
 
     private static function crearCarpetaSiNoExiste($carpeta): void
@@ -97,6 +86,7 @@ class CreateDocumentController
 
         // Procesar la imagen
         try {
+            ini_set('memory_limit', '256M'); // Aumentar temporalmente el límite de memoria
             $image = Image::make($_FILES['imagen']['tmp_name'])->fit(800, 1200);
             $documento->setFileName($nombreImagen, "imagen");
             $image->save(CARPETA_IMAGENES_DOCUMENTOS . $nombreImagen);
@@ -148,7 +138,7 @@ class CreateDocumentController
         //obtiene el id de los tecnicos seleccionados
         $tecnicosId = $request->post('id_tecnico_responsable');
 
-        foreach($tecnicosId as $tecnicoId){
+        foreach ($tecnicosId as $tecnicoId) {
             $args = [
                 "id_documento" => $documentoId,
                 "id_tecnico_responsable" => $tecnicoId

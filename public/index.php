@@ -19,7 +19,7 @@ use Controller\colaborador\ColaboradorController;
 use Controller\colaborador\SearchDocumentController;
 use Controller\home\HomeController;
 use Controller\admin\libros\ManageBookController;
-
+use Controller\admin\documentos\ManageDocumentsController;
 use MVC\Router;
 
 $router = new Router();
@@ -85,6 +85,11 @@ $router->get("/usuarios/gestionar", [ManageUserController::class, 'index']);
 $router->get("/gestionar/libros", [ManageBookController::class, 'showBooks']);
 $router->post("/libro", [ManageBookController::class, 'gestionarLibro']);
 $router->get("/libro", [ManageBookController::class, 'gestionarLibro']);
+
+//CRUD de documentos
+$router->get("/repositorio/gestionar", [ManageDocumentsController::class, 'showDocuments']);
+$router->post("/documento", [ManageDocumentsController::class, 'gestionarDocumento']);
+$router->get("/documento", [ManageDocumentsController::class, 'gestionarDocumento']);
 
 // Comprueba y valida las rutas, que existan y les asigna las funciones del Controlador
 $router->comprobarRutas();

@@ -53,7 +53,7 @@
         </div>
 
         <div class="bg-gray-200 p-4 rounded-lg shadow cursor-pointer hover:bg-primary-300 flex items-center">
-            <a href="/crear-documento" class="flex">
+            <a href="/documento?mode=INS" class="flex">
                 <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 48 48" class="me-4">
                     <path fill="#333333"
                           d="M10.5 8.25c0-.966.784-1.75 1.75-1.75H24v8.75A3.75 3.75 0 0 0 27.75 19h9.75v20.75a1.75 1.75 0 0 1-1.75 1.75H24.26a13 13 0 0 1-1.88 2.5h13.37A4.25 4.25 0 0 0 40 39.75V18.414a2.25 2.25 0 0 0-.659-1.59L27.177 4.658A2.25 2.25 0 0 0 25.586 4H12.25A4.25 4.25 0 0 0 8 8.25v14.746a13 13 0 0 1 2.5-.756zm24.982 8.25H27.75c-.69 0-1.25-.56-1.25-1.25V7.518zM24 35c0 6.075-4.925 11-11 11S2 41.075 2 35s4.925-11 11-11s11 4.925 11 11m-10-7a1 1 0 1 0-2 0v6H6a1 1 0 1 0 0 2h6v6a1 1 0 1 0 2 0v-6h6a1 1 0 1 0 0-2h-6z"/>
@@ -96,7 +96,7 @@
         </div>
 
         <div class="bg-gray-200 p-4 rounded-lg shadow cursor-pointer hover:bg-primary-300 flex items-center">
-            <a href="/gestion-documentos" class="flex">
+            <a href="/repositorio/gestionar" class="flex">
                 <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 34 32" class="me-2">
                     <g fill="#333333">
                         <path d="M1.512 28H19.5c.827 0 1.5-.673 1.5-1.5v-19c0-.023-.01-.043-.013-.065a.4.4 0 0 0-.013-.062a.5.5 0 0 0-.122-.227L13.853.147a.5.5 0 0 0-.289-.135C13.543.01 13.523 0 13.5 0H1.506C.676 0 0 .673 0 1.5v25c0 .827.678 1.5 1.512 1.5M14 1.707L19.293 7H14.5a.5.5 0 0 1-.5-.5zM1 1.5c0-.276.227-.5.506-.5H13v5.5c0 .827.673 1.5 1.5 1.5H20v18.5a.5.5 0 0 1-.5.5H1.512A.506.506 0 0 1 1 26.5z"/>
@@ -136,19 +136,57 @@
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         <div class="bg-white p-4 rounded-lg shadow">
             <h3 class="text-xl ">Libros Registrados</h3>
-            <p class="text-3xl ">1,250</p>
+            <div class="flex justify-around items-center mt-3">
+                <p class="text-3xl "> <?= $totalLibros; ?> </p>
+
+                <span class="flex items-center text-gray-500">
+                    <span class="w-2.5 h-2.5 bg-green-500 rounded-full mr-2"></span>
+                    <?= $bookStatistics["activeCount"] ?> Activos
+                </span>
+                <span class="flex items-center text-gray-500">
+                    <span class="w-2.5 h-2.5 bg-red-600 rounded-full mr-2 "></span>
+                    <?= $bookStatistics["inactiveCount"] ?> Inactivos
+                </span>
+            </div>
+
         </div>
+
         <div class="bg-white p-4 rounded-lg shadow">
-            <h3 class="text-xl ">Documentos Totales</h3>
-            <p class="text-3xl "><?= $totalDocumentos ?></p>
+            <h3 class="text-xl ">Documentos Registrados</h3>
+
+            <div class="flex justify-around items-center mt-3">
+                <p class="text-3xl "><?= $totalDocumentos; ?></p>
+                <span class="flex items-center text-gray-500">
+                    <span class="w-2.5 h-2.5 bg-green-600 rounded-full mr-2"></span>
+                    <?= $documentStatistics["activeCount"] ?> Activos
+                </span>
+                <span class="flex items-center text-gray-500">
+                    <span class="w-2.5 h-2.5 bg-red-600 rounded-full mr-2 "></span>
+                    <?= $documentStatistics["inactiveCount"] ?> Inactivos
+                </span>
+            </div>
+
         </div>
+
         <div class="bg-white p-4 rounded-lg shadow">
-            <h3 class="text-xl">Usuarios Activos</h3>
-            <p class="text-3xl">450</p>
+            <h3 class="text-xl">Usuarios Registrados</h3>
+
+            <div class="flex justify-around items-center mt-3">
+                <p class="text-3xl"> <?= $totalUsuarios; ?> </p>
+                <span class="flex items-center text-gray-500">
+                    <span class="w-2.5 h-2.5 bg-green-500 rounded-full mr-2"></span>
+                    <?= $userStatistics["activeCount"] ?> Activos
+                </span>
+                <span class="flex items-center text-gray-500">
+                    <span class="w-2.5 h-2.5 bg-red-600 rounded-full mr-2 "></span>
+                    <?= $userStatistics["inactiveCount"] ?> Inactivos
+                </span>
+            </div>
+
         </div>
     </div>
 
-    <h2 class="text-2xl font-semibold mt-8 mb-4">Últimas Actividades</h2>
+    <h2 class="text-2xl font-semibold mt-12 mb-4">Últimas Actividades</h2>
     <!-- Tabla de Actividades -->
     <div class="bg-white rounded-lg shadow">
         <table class="min-w-full border-collapse">
@@ -160,21 +198,15 @@
             </tr>
             </thead>
             <tbody>
-            <tr>
-                <td class="p-4 border-b">Juan Pérez</td>
-                <td class="p-4 border-b">Registrado</td>
-                <td class="p-4 border-b">2024-10-01</td>
-            </tr>
-            <tr>
-                <td class="p-4 border-b">María López</td>
-                <td class="p-4 border-b">Compra</td>
-                <td class="p-4 border-b">2024-10-02</td>
-            </tr>
-            <tr>
-                <td class="p-4 border-b">Carlos Torres</td>
-                <td class="p-4 border-b">Comentario</td>
-                <td class="p-4 border-b">2024-10-03</td>
-            </tr>
+
+            <?php foreach ($accessLog as $log): ?>
+                <tr>
+                    <td class="p-4 border-b"><?= $log->id == $crrntUserId ? $log->user_id . " (Tú)" : $log->user_id  ?></td>
+                    <td class="p-4 border-b">Inicio de Sesión</td>
+                    <td class="p-4 border-b"><?= date("d \d\\e F \d\\e Y, g:i A", strtotime($log->fecha_acceso)) ?></td>
+                </tr>
+            <?php endforeach ?>
+
             </tbody>
         </table>
     </div>

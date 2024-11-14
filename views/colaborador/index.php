@@ -107,9 +107,9 @@
             <?php require_once __DIR__ . "/../templates/documentosContenedor.php"; ?>
 
                 <!-- Botón de ver más -->
-                <div class="flex justify-center mt-6" ">
+                <div class="flex justify-center mt-6 w-full" >
                 <button id="mostrar-mas-documentos-btn" type="button"
-                    class="border-2 border-gray-700 text-black px-6 py-3 rounded-md text-lg hover:bg-gray-200 transition">
+                    class="border-2 border-gray-700 text-black px-6 py-3 rounded-md text-lg hover:bg-gray-200 transition w-full">
                     Ver más
                     </button>
                 </div>

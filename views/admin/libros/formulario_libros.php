@@ -61,7 +61,10 @@
 
                             <?php foreach ($categorias as $categoria) : ?>
 
-                                <option value="<?= $categoria->id_categoria ?>" <?= ($libro->id_categoria == $categoria->id_categoria) ? 'selected' : "" ?> ><?= $categoria->nombre ?></option>
+                                <option value="<?= $categoria->id_categoria ?>"
+                                    <?= ($libro->id_categoria == $categoria->id_categoria) ? 'selected' : "" ?> >
+                                    <?= $categoria->nombre ?>
+                                </option>
 
                             <?php endforeach; ?>
 

@@ -43,7 +43,7 @@
                           fill="#666666"/>
                 </svg>
 
-                <p class="font-semibold ms-auto text-center text-xl ">+130 libros digitales</p>
+                <p class="font-semibold ms-auto text-center text-xl mt-2 ">+130 libros digitales</p>
 
             </div>
             <div class="flex justify-center flex-col mb-7 lg:mb-0">
@@ -54,17 +54,23 @@
                 </svg>
 
 
-                <p class="font-semibold ms-auto text-center text-xl ">Acceso gratuito</p>
+                <p class="font-semibold ms-auto text-center text-xl mt-2 ">Acceso gratuito</p>
 
             </div>
             <div class="flex justify-center flex-col mb-5 lg:mb-0">
-                <svg class="h-20 w-20 mx-auto" viewBox="0 0 90 90" fill="none"
-                     xmlns="http://www.w3.org/2000/svg">
-                    <path d="M73.125 8.4375H25.3125C22.3288 8.4375 19.4673 9.62276 17.3575 11.7325C15.2478 13.8423 14.0625 16.7038 14.0625 19.6875V78.75C14.0625 79.4959 14.3588 80.2113 14.8863 80.7387C15.4137 81.2662 16.1291 81.5625 16.875 81.5625H67.5C68.2459 81.5625 68.9613 81.2662 69.4887 80.7387C70.0162 80.2113 70.3125 79.4959 70.3125 78.75C70.3125 78.0041 70.0162 77.2887 69.4887 76.7613C68.9613 76.2338 68.2459 75.9375 67.5 75.9375H19.6875C19.6875 74.4457 20.2801 73.0149 21.335 71.96C22.3899 70.9051 23.8207 70.3125 25.3125 70.3125H73.125C73.8709 70.3125 74.5863 70.0162 75.1137 69.4887C75.6412 68.9613 75.9375 68.2459 75.9375 67.5V11.25C75.9375 10.5041 75.6412 9.78871 75.1137 9.26126C74.5863 8.73382 73.8709 8.4375 73.125 8.4375ZM70.3125 64.6875H25.3125C23.3372 64.6845 21.3963 65.2049 19.6875 66.1957V19.6875C19.6875 18.1957 20.2801 16.7649 21.335 15.71C22.3899 14.6551 23.8207 14.0625 25.3125 14.0625H70.3125V64.6875Z"
-                          fill="#666666"/>
+
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-20 w-20 mx-auto" viewBox="0 0 512 512">
+                    <path fill="none" stroke="#666666" stroke-linecap="round" stroke-linejoin="round" stroke-width="32"
+                          d="M176 416v64M80 32h192a32 32 0 0 1 32 32v412a4 4 0 0 1-4 4H48h0V64a32 32 0 0 1 32-32m240 160h112a32 32 0 0 1 32 32v256h0h-160h0V208a16 16 0 0 1 16-16"/>
+                    <path fill="#666666"
+                          d="M98.08 431.87a16 16 0 1 1 13.79-13.79a16 16 0 0 1-13.79 13.79m0-80a16 16 0 1 1 13.79-13.79a16 16 0 0 1-13.79 13.79m0-80a16 16 0 1 1 13.79-13.79a16 16 0 0 1-13.79 13.79m0-80a16 16 0 1 1 13.79-13.79a16 16 0 0 1-13.79 13.79m0-80a16 16 0 1 1 13.79-13.79a16 16 0 0 1-13.79 13.79m80 240a16 16 0 1 1 13.79-13.79a16 16 0 0 1-13.79 13.79m0-80a16 16 0 1 1 13.79-13.79a16 16 0 0 1-13.79 13.79m0-80a16 16 0 1 1 13.79-13.79a16 16 0 0 1-13.79 13.79m0-80a16 16 0 1 1 13.79-13.79a16 16 0 0 1-13.79 13.79m80 320a16 16 0 1 1 13.79-13.79a16 16 0 0 1-13.79 13.79m0-80a16 16 0 1 1 13.79-13.79a16 16 0 0 1-13.79 13.79m0-80a16 16 0 1 1 13.79-13.79a16 16 0 0 1-13.79 13.79"/>
+                    <ellipse cx="256" cy="176" fill="#666666" rx="15.95" ry="16.03"
+                             transform="rotate(-45 255.99 175.996)"/>
+                    <path fill="#666666"
+                          d="M258.08 111.87a16 16 0 1 1 13.79-13.79a16 16 0 0 1-13.79 13.79M400 400a16 16 0 1 0 16 16a16 16 0 0 0-16-16m0-80a16 16 0 1 0 16 16a16 16 0 0 0-16-16m0-80a16 16 0 1 0 16 16a16 16 0 0 0-16-16m-64 160a16 16 0 1 0 16 16a16 16 0 0 0-16-16m0-80a16 16 0 1 0 16 16a16 16 0 0 0-16-16m0-80a16 16 0 1 0 16 16a16 16 0 0 0-16-16"/>
                 </svg>
 
-                <p class="font-semibold ms-auto text-center text-xl ">+130 libros digitales</p>
+                <p class="font-semibold ms-auto text-center text-xl mt-2">Repositorio Institucional</p>
 
             </div>
         </div>
@@ -372,7 +378,7 @@
                             <div class="flex items-center space-x-1 rtl:space-x-reverse">
                                 <div class="flex items-center space-x-1 rtl:space-x-reverse">
                                     <div class="flex items-start space-x-1 rtl:space-x-reverse px-2 py-1 rounded-[1rem] bg-secondary-500">
-                                        <p class="text-xs sm:text-sm text-white max-w-[150px] truncate"><?= $libro->id_categoria //nombre de la categoria  ?></p>
+                                        <p class="text-xs sm:text-sm text-white max-w-[150px] truncate"><?= $libro->id_categoria //nombre de la categoria         ?></p>
                                     </div>
                                 </div>
                             </div>
@@ -402,26 +408,43 @@
     <!-- Sección de nosotros -->
     <div class="mx-auto max-w-screen-xl px-4 py-16">
         <!-- Título centrado -->
-        <h1 class="text-3xl font-semibold mb-8"></h1>
+        <h1 class="text-3xl font-semibold mb-8">Acerca de Nosotros</h1>
 
         <!-- Contenedor de dos columnas -->
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-20 items-center">
             <!-- Columna con imagen -->
             <div>
-                <img src="https://via.placeholder.com/400" alt="Imagen de ejemplo"
-                     class="w-full h-auto rounded-lg shadow-md">
+                <div class="relative bg-blue-100 rounded-tl-[6rem] w-[95%] h-96 mx-auto mt-10 sm:w-full">
+                    <!-- Imagen desplazada hacia la derecha -->
+                    <img src="/build/img/aboutUs.png"
+                         alt="Imagen desplazada"
+                         class="absolute top-20 left-1/2 transform -translate-x-1/2 w-80 h-80 sm:translate-x-12 sm:w-96 sm:h-96 sm:left-[12rem] sm:top-8 rounded-xl object-cover shadow-lg"
+                    />
+                </div>
             </div>
 
             <!-- Columna con texto -->
             <div>
                 <p class="text-lg leading-relaxed">
-                    Este es un ejemplo de texto en la columna derecha. Puedes personalizar este texto según el
-                    contenido
-                    que necesites mostrar. Aquí puedes agregar detalles, descripciones o cualquier información
-                    relevante
-                    para acompañar la imagen que se muestra a la izquierda.
+                    El <span
+                            class="font-semibold"> Centro de Recursos para la Gestión del Conocimiento de ASONOG </span>
+                    es una plataforma digital de acceso
+                    público e institucional que alberga una valiosa colección de recursos informativos enfocados en la
+                    <span class="font-semibold"> defensa de los derechos humanos, la equidad de género e inclusión, defensa del territorio y el medio
+                    ambiente</span>, así como el fortalecimiento institucional y la gestión de riesgos, entre otros
+                    temas. El
+                    CRGC sido creado con el propósito de preservar y difundir herramientas para promover la gestión del
+                    conocimiento de los usuarios.
                 </p>
+
+                <a href="/nosotros">
+                    <button class="hover:brightness-110 hover:animate-pulse
+                font-bold py-3 px-6 rounded-full bg-primary-500 shadow-lg shadow-primary-500/50 text-white mx-auto flex justify-center mt-12">
+                        Conoce más
+                    </button>
+                </a>
             </div>
+
         </div>
     </div>
 

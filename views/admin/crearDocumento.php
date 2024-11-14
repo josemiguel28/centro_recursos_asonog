@@ -14,7 +14,7 @@
                 include_once __DIR__ . "/../templates/alertas.php";
                 ?>
 
-                <form class="space-y-4 md:space-y-6" action="/crear-documento" method="post" enctype="multipart/form-data">
+                <form class="space-y-4 md:space-y-6" action="/documento?mode<?= $mode ?>&id= <?= $documento->id ?>" method="post" enctype="multipart/form-data">
                     <div>
                         <label for="nombreHerramienta" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Ingresa el nombre de la herramienta <span class="text-red-500">*</span> </label>
                         <input
@@ -108,27 +108,12 @@
 
 
                     <div>
-                        <div class="flex items-center justify-center w-full">
-                            <label for="dropzone-image"
-                                class="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-gray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600"
-                                id="dropzoneimage">
-                                <div class="flex flex-col items-center justify-center pt-5 pb-6" id="file-preview-image">
-
-
-                                    <svg class="w-8 h-8 mb-4 text-gray-500 dark:text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                                        <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
-                                            <rect width="18" height="18" x="3" y="3" rx="2" ry="2" />
-                                            <circle cx="9" cy="9" r="2" />
-                                            <path d="m21 15l-3.086-3.086a2 2 0 0 0-2.828 0L6 21" />
-                                        </g>
-                                    </svg>
-
-                                    <p class="mb-2 text-sm text-gray-500 dark:text-gray-400"><span class="font-semibold">Click para subir una imagen</span></p>
-                                    <p class="text-xs text-gray-500 dark:text-gray-400"></p>
-                                </div>
-                                <input id="dropzone-image" type="file" class="hidden" accept=".jpg, .png" name="imagen" required />
-                            </label>
-                        </div>
+                        <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="imagen">Imagen del libro</label>
+                        <input class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
+                               type="file"
+                               name="imagen"
+                               id="imagen"
+                               accept="image/jpeg, image/png">
                     </div>
 
                     <div>

@@ -12,7 +12,7 @@
                 </a>
                 <div class="flex flex-col justify-between h-full px-3 sm:px-5 pb-3 sm:pb-5">
                     <a href="/documentos/<?= $documento->archivo_url ?>" target="_blank">
-                        <h5 class="text-lg sm:text-xl font-semibold tracking-tight text-gray-900 dark:text-white truncate">
+                        <h5 class="text-lg sm:text-xl font-semibold tracking-tight text-gray-900 dark:text-white line-clamp-4">
                             <?= $documento->nombre_herramienta ?>
                         </h5>
                     </a>

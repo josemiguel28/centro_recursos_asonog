@@ -20,7 +20,7 @@ class Tecnicos extends ActiveRecord
 
     public static function getAllTecnicos()
     {
-        $query = "SELECT * FROM " . self::$tabla;
+        $query = "SELECT * FROM " . self::$tabla . " ORDER BY nombre ASC;";
         return self::consultarSQL($query);
     }
 

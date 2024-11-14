@@ -8,7 +8,7 @@ class DocumentosTecnicos extends ActiveRecord
 {
 
     protected static $tabla = 'documentos_tecnicos';
-    protected static $columnasDB = ['id', 'nombre_herramienta', 'descripcion','tipo_herramienta', 'tematica', 'tecnico', 'imagen', 'fecha_emision', 'archivo_url'];
+    protected static $columnasDB = ['id', 'nombre_herramienta', 'descripcion','tipo_herramienta', 'tematica', 'tecnico', 'estado' ,'imagen', 'fecha_emision', 'archivo_url'];
 
     public $id;
     public $nombre_herramienta;
@@ -16,6 +16,7 @@ class DocumentosTecnicos extends ActiveRecord
     public $tipo_herramienta;
     public $tematica;
     public $tecnico;
+    public $estado;
     public $imagen;
     public $fecha_emision;
     public $archivo_url;
@@ -29,12 +30,13 @@ class DocumentosTecnicos extends ActiveRecord
         $this->tipo_herramienta = $args['tipo_herramienta'] ?? '';
         $this->tematica = $args['tematica'] ?? '';
         $this->tecnico = $args['tecnico'] ?? '';
+        $this->estado = $args['estado'] ?? '';
         $this->imagen = $args['imagen'] ?? '';
         $this->fecha_emision = $args['fecha_emision'] ?? '';
         $this->archivo_url = $args['archivo_url'] ?? '';
     }
 
-    public static function getAllDocumentos($limit = 10){
+    public static function getAllDocumentosWithLimit($limit = 10){
         $sql = "SELECT documentos.id, 
        documentos.nombre_herramienta,
        documentos.descripcion,
@@ -44,18 +46,70 @@ class DocumentosTecnicos extends ActiveRecord
        documentos.imagen, 
        documentos.fecha_emision, 
        documentos.archivo_url 
-FROM documentos
-JOIN documentos_tecnicos  
-ON documentos_tecnicos.id_documento = documentos.id
-JOIN tecnicos_responsables
-ON tecnicos_responsables.id = documentos_tecnicos.id_tecnico_responsable
-JOIN tipos_herramienta 
-ON tipos_herramienta.id = documentos.id_tipo_herramienta
-JOIN tematicas 
-ON tematicas.id = documentos.id_tematica 
-WHERE documentos.estado = 'ACT'
-GROUP BY documentos.id
-LIMIT {$limit};";
+            FROM documentos
+            JOIN documentos_tecnicos  
+            ON documentos_tecnicos.id_documento = documentos.id
+            JOIN tecnicos_responsables
+            ON tecnicos_responsables.id = documentos_tecnicos.id_tecnico_responsable
+            JOIN tipos_herramienta 
+            ON tipos_herramienta.id = documentos.id_tipo_herramienta
+            JOIN tematicas 
+            ON tematicas.id = documentos.id_tematica 
+            WHERE documentos.estado = 'ACT'
+            GROUP BY documentos.id
+            LIMIT {$limit};";
+
+        return DocumentosTecnicos::SQL($sql);
+    }
+
+    public static function getAllDocumentos(){
+        $sql = "SELECT documentos.id, 
+       documentos.nombre_herramienta,
+       documentos.descripcion,
+       tipos_herramienta.nombre AS tipo_herramienta, 
+       tematicas.nombre AS tematica,
+       GROUP_CONCAT(tecnicos_responsables.nombre) AS tecnico, -- Agrupa los técnicos en una sola columna
+       documentos.estado,
+       documentos.imagen, 
+       documentos.fecha_emision, 
+       documentos.archivo_url
+       
+            FROM documentos
+            JOIN documentos_tecnicos  
+            ON documentos_tecnicos.id_documento = documentos.id
+            JOIN tecnicos_responsables
+            ON tecnicos_responsables.id = documentos_tecnicos.id_tecnico_responsable
+            JOIN tipos_herramienta 
+            ON tipos_herramienta.id = documentos.id_tipo_herramienta
+            JOIN tematicas 
+            ON tematicas.id = documentos.id_tematica 
+            GROUP BY documentos.id;";
+
+        return DocumentosTecnicos::SQL($sql);
+    }
+
+    public static function getDocumentById($id){
+        $sql = "SELECT documentos.id, 
+       documentos.nombre_herramienta,
+       documentos.descripcion,
+       tipos_herramienta.nombre AS tipo_herramienta, 
+       tematicas.nombre AS tematica,
+       tecnicos_responsables.id AS tecnico, -- Agrupa los técnicos en una sola columna
+       documentos.imagen, 
+       documentos.fecha_emision, 
+       documentos.archivo_url,
+       documentos.estado
+            FROM documentos
+            JOIN documentos_tecnicos  
+            ON documentos_tecnicos.id_documento = documentos.id
+            JOIN tecnicos_responsables
+            ON tecnicos_responsables.id = documentos_tecnicos.id_tecnico_responsable
+            JOIN tipos_herramienta 
+            ON tipos_herramienta.id = documentos.id_tipo_herramienta
+            JOIN tematicas 
+            ON tematicas.id = documentos.id_tematica
+            
+            where documentos.id = {$id};";
 
         return DocumentosTecnicos::SQL($sql);
     }
