@@ -5,11 +5,11 @@
          data-aos-duration="1500">
         <div class="mr-auto mx-auto place-self-center lg:col-span-6 text-center">
             <h1 class="max-w-2xl mb-4 text-5xl font-medium tracking-wide leading-none lg:text-left lg:text-6xl">
-                Descubre un mundo de conocimiento
+                Centro de recursos para la gestión del conocimiento
             </h1>
 
             <div class="text-center">
-                <p class="max-w-xl mb-6 font-light text-gray-500 lg:text-left lg:mb-8 md:text-lg ">Explora
+                <p class="max-w-xl mb-6 font-light text-gray-500 lg:text-left lg:mb-8 md:text-lg ">ASONOG te ofrece
                     una colección de libros y recursos exclusivos para enriquecer tu aprendizaje.</p>
             </div>
 
@@ -87,7 +87,7 @@
                     <source srcset="build/img/banner-library.webp" type="image/webp">
                     <source srcset="build/img/banner-library.jpg" type="image/jpeg">
                     <img class="h-full w-full rounded-md md:rounded-lg object-cover"
-                         loading="lazy" src="build/img/banner-library.png" alt="hero img">
+                         loading="lazy" src="build/img/banner-library.png" alt="library img">
                 </picture>
             </div>
             <div class="p-6">
@@ -122,7 +122,7 @@
                     <source srcset="build/img/banner-colaboradores.webp" type="image/webp">
                     <source srcset="build/img/banner-colaboradores.jpg" type="image/jpeg">
                     <img class="h-full w-full rounded-md md:rounded-lg object-cover"
-                         loading="lazy" src="build/img/banner-colaboradores.jpg" alt="hero img">
+                         loading="lazy" src="build/img/banner-colaboradores.jpg" alt="colaborador img">
                 </picture>
             </div>
             <div class="p-6">
@@ -378,7 +378,7 @@
                             <div class="flex items-center space-x-1 rtl:space-x-reverse">
                                 <div class="flex items-center space-x-1 rtl:space-x-reverse">
                                     <div class="flex items-start space-x-1 rtl:space-x-reverse px-2 py-1 rounded-[1rem] bg-secondary-500">
-                                        <p class="text-xs sm:text-sm text-white max-w-[150px] truncate"><?= $libro->id_categoria //nombre de la categoria         ?></p>
+                                        <p class="text-xs sm:text-sm text-white max-w-[150px] truncate"><?= $libro->id_categoria //nombre de la categoria          ?></p>
                                     </div>
                                 </div>
                             </div>
@@ -415,11 +415,13 @@
             <!-- Columna con imagen -->
             <div>
                 <div class="relative bg-blue-100 rounded-tl-[6rem] w-[95%] h-96 mx-auto mt-10 sm:w-full">
-                    <!-- Imagen desplazada hacia la derecha -->
-                    <img src="/build/img/aboutUs.png"
-                         alt="Imagen desplazada"
-                         class="absolute top-20 left-1/2 transform -translate-x-1/2 w-80 h-80 sm:translate-x-12 sm:w-96 sm:h-96 sm:left-[12rem] sm:top-8 rounded-xl object-cover shadow-lg"
-                    />
+                    <picture>
+                        <source srcset="build/img/aboutUs.webp" type="image/webp">
+                        <source srcset="build/img/aboutUs.jpg" type="image/jpeg">
+                        <img loading="lazy"
+                             class="absolute top-20 left-1/2 transform -translate-x-1/2 w-80 h-80 sm:translate-x-12 sm:w-96 sm:h-96 sm:left-[12rem] sm:top-8 rounded-xl object-cover shadow-lg"
+                             src="/build/img/aboutUs.png" alt="about us">
+                    </picture>
                 </div>
             </div>
 

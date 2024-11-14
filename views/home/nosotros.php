@@ -4,18 +4,22 @@
         Centro de recursos para la gestión del conocimiento (CRGC)
     </h1>
 
-    <!-- Imagen a la derecha -->
-    <div class="w-full mx-auto sm:w-[90%]">
-        <img src="/build/img/img_aboutus.jpg" alt="Imagen de gestión del conocimiento"
-             class="w-full rounded-lg shadow-lg sm:w-[90%]">
+    <div class="w-full mx-auto md:max-w-[70%]">
+        <picture>
+            <source srcset="build/img/img_aboutus.webp" type="image/webp">
+            <source srcset="build/img/img_aboutus.jpg" type="image/jpeg">
+            <img loading="lazy" class="w-full rounded-lg shadow-lg" src="/build/img/img_aboutus.jpg" alt="about us">
+        </picture>
+
     </div>
 
     <!-- Contenedor principal -->
-    <div class="flex flex-col lg:flex-row items-center gap-8 mb-20 mt-12">
+    <div class="flex flex-col lg:flex-row items-center gap-8 mb-20 mt-12 mx-auto md:max-w-[90%]">
         <!-- Texto a la izquierda -->
         <div class="w-full lg:w-1/2 space-y-4">
             <p class="text-gray-700 text-lg">
-                Bienvenido al Centro de Recursos para la Gestión del Conocimiento. Aquí encontrarás una amplia colección
+                <span class="font-semibold"> Bienvenido al Centro de Recursos para la Gestión del Conocimiento. </span>
+                Aquí encontrarás una amplia colección
                 de
                 materiales y herramientas diseñadas para mejorar la gestión y el intercambio de conocimientos en nuestra
                 organización.
@@ -26,7 +30,98 @@
                 el aprendizaje continuo. Explora nuestros materiales y aprovecha al máximo estos recursos para
                 enriquecer tus
                 conocimientos.
+
+                <br>
+                <br>
+                En nuestra biblioteca puedes explorar las siguientes categorías:
             </p>
+            <ul class="space-y-3 font-semibold">
+                <li class="text-body-color flex text-base">
+        <span class="text-primary mr-2.5 mt-0.5">
+            <svg
+                    width="20"
+                    height="20"
+                    viewBox="0 0 20 20"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+            >
+                <path
+                        d="M18 9.5L11.5312 2.9375C11.25 2.65625 10.8125 2.65625 10.5312 2.9375C10.25 3.21875 10.25 3.65625 10.5312 3.9375L15.7812 9.28125H2.5C2.125 9.28125 1.8125 9.59375 1.8125 9.96875C1.8125 10.3438 2.125 10.6875 2.5 10.6875H15.8437L10.5312 16.0938C10.25 16.375 10.25 16.8125 10.5312 17.0938C10.6562 17.2188 10.8437 17.2812 11.0312 17.2812C11.2187 17.2812 11.4062 17.2188 11.5312 17.0625L18 10.5C18.2812 10.2187 18.2812 9.78125 18 9.5Z"
+                        fill="#EFAE00"
+                />
+            </svg>
+        </span>
+                    Derechos Humanos
+                </li>
+                <li class="text-body-color dark:text-dark-6 flex text-base">
+        <span class="text-primary mr-2.5 mt-0.5">
+            <svg
+                    width="20"
+                    height="20"
+                    viewBox="0 0 20 20"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+            >
+                <path
+                        d="M18 9.5L11.5312 2.9375C11.25 2.65625 10.8125 2.65625 10.5312 2.9375C10.25 3.21875 10.25 3.65625 10.5312 3.9375L15.7812 9.28125H2.5C2.125 9.28125 1.8125 9.59375 1.8125 9.96875C1.8125 10.3438 2.125 10.6875 2.5 10.6875H15.8437L10.5312 16.0938C10.25 16.375 10.25 16.8125 10.5312 17.0938C10.6562 17.2188 10.8437 17.2812 11.0312 17.2812C11.2187 17.2812 11.4062 17.2188 11.5312 17.0625L18 10.5C18.2812 10.2187 18.2812 9.78125 18 9.5Z"
+                        fill="#EFAE00"
+                />
+            </svg>
+        </span>
+                    Seguridad Alimentaria y nutricional (SAN)
+                </li>
+                <li class="text-body-color dark:text-dark-6 flex text-base">
+        <span class="text-primary mr-2.5 mt-0.5">
+            <svg
+                    width="20"
+                    height="20"
+                    viewBox="0 0 20 20"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+            >
+                <path
+                        d="M18 9.5L11.5312 2.9375C11.25 2.65625 10.8125 2.65625 10.5312 2.9375C10.25 3.21875 10.25 3.65625 10.5312 3.9375L15.7812 9.28125H2.5C2.125 9.28125 1.8125 9.59375 1.8125 9.96875C1.8125 10.3438 2.125 10.6875 2.5 10.6875H15.8437L10.5312 16.0938C10.25 16.375 10.25 16.8125 10.5312 17.0938C10.6562 17.2188 10.8437 17.2812 11.0312 17.2812C11.2187 17.2812 11.4062 17.2188 11.5312 17.0625L18 10.5C18.2812 10.2187 18.2812 9.78125 18 9.5Z"
+                        fill="#EFAE00"
+                />
+            </svg>
+        </span>
+                    Cambio Climático
+                </li>
+                <li class="text-body-color dark:text-dark-6 flex text-base">
+        <span class="text-primary mr-2.5 mt-0.5">
+            <svg
+                    width="20"
+                    height="20"
+                    viewBox="0 0 20 20"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+            >
+                <path
+                        d="M18 9.5L11.5312 2.9375C11.25 2.65625 10.8125 2.65625 10.5312 2.9375C10.25 3.21875 10.25 3.65625 10.5312 3.9375L15.7812 9.28125H2.5C2.125 9.28125 1.8125 9.59375 1.8125 9.96875C1.8125 10.3438 2.125 10.6875 2.5 10.6875H15.8437L10.5312 16.0938C10.25 16.375 10.25 16.8125 10.5312 17.0938C10.6562 17.2188 10.8437 17.2812 11.0312 17.2812C11.2187 17.2812 11.4062 17.2188 11.5312 17.0625L18 10.5C18.2812 10.2187 18.2812 9.78125 18 9.5Z"
+                        fill="#EFAE00"
+                />
+            </svg>
+        </span>
+                    Género e inclusión
+                </li>
+                <li class="text-body-color dark:text-dark-6 flex text-base">
+        <span class="text-primary mr-2.5 mt-0.5">
+            <svg
+                    width="20"
+                    height="20"
+                    viewBox="0 0 20 20"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+            >
+                <path
+                        d="M18 9.5L11.5312 2.9375C11.25 2.65625 10.8125 2.65625 10.5312 2.9375C10.25 3.21875 10.25 3.65625 10.5312 3.9375L15.7812 9.28125H2.5C2.125 9.28125 1.8125 9.59375 1.8125 9.96875C1.8125 10.3438 2.125 10.6875 2.5 10.6875H15.8437L10.5312 16.0938C10.25 16.375 10.25 16.8125 10.5312 17.0938C10.6562 17.2188 10.8437 17.2812 11.0312 17.2812C11.2187 17.2812 11.4062 17.2188 11.5312 17.0625L18 10.5C18.2812 10.2187 18.2812 9.78125 18 9.5Z"
+                        fill="#EFAE00"
+                />
+            </svg>
+        </span>
+                    Participación Ciudadana
+                </li>
+            </ul>
         </div>
     </div>
 
@@ -96,7 +191,7 @@
             </a>
         </div>
 
-        <div class="text-white block bg-secondary-500 hover:bg-secondary-300 font-medium text-sm py-3 px-6 rounded-full sm:inline-flex">
+        <div class="text-white block mt-5 bg-secondary-500 hover:bg-secondary-300 font-medium text-sm py-3 px-6 rounded-full sm:inline-flex sm:mt-0">
             <a href="/login">
                 <button class="w-full flex items-center justify-center"
                         type="button"> Accede al repositorio institucional
