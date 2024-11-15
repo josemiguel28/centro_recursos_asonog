@@ -101,7 +101,8 @@
                                            class="text-primary-500">
 
                                             <div>
-                                                <img class="rounded-[0.5rem]" src="/imagenesLibros/<?= $libro->imagen; ?>"
+                                                <img class="rounded-[0.5rem]"
+                                                     src="/imagenesLibros/<?= $libro->imagen; ?>"
                                                      alt=""
                                                      width="100"
                                                      height="100"
@@ -147,7 +148,6 @@
                                             accept=".pdf"
                                             name="archivo"
                                         <?= $mode === "DSP" || $mode === "DEL" ? "disabled" : ""; ?>
-
                                     />
                                 </label>
                             </div>
@@ -155,41 +155,14 @@
 
                     <?php else : ?>
 
-                        <div class="mb-5 flex justify-center">
-
-                            <div>
-                                <a href="/libros/<?= $libro->archivo_url; ?>" target="_blank" class="text-primary-500">
-
-                                    <div>
-                                        <img class="rounded-[0.5rem]" src="/imagenesLibros/<?= $libro->imagen; ?>" alt=""
-                                             width="100"
-                                             height="100"
-                                        >
-                                    </div>
-
-                                    <div class="px-2 py-4 bg-primary-500 mt-4 rounded-[0.5rem] hover:bg-primary-300">
-                                        <a href="/libros/<?= $libro->archivo_url; ?>" target="_blank"
-                                           class="font-semibold text-center">
-                                            <p class="text-xs text-white">Ver Libro</p>
-                                        </a>
-                                    </div>
-                                </a>
-
-                            </div>
-                        </div>
+                        <?php
+                            include_once __DIR__ . "/../../templates/formularios/show_file.php";
+                            mostrarArchivo("libros", $libro->archivo_url, "imagenesLibros", $libro->imagen);
+                        ?>
 
                     <?php endif; ?>
 
-                    <?php if ($mode === "UPD" || $mode === "DEL" || $mode === "INS") : ?>
-
-                        <div class="bg-primary-500 hover:bg-primary-300 font-medium rounded-lg <?= $mode === "DEL" ? 'bg-red-600 hover:bg-red-300' : '' ?>">
-                            <button type="submit"
-                                    class="w-full text-white text-sm px-5 py-2.5 text-center ">
-                                <?= $mode === "DEL" ? 'Eliminar' : 'Guardar' ?>
-                            </button>
-                        </div>
-
-                    <?php endif; ?>
+                    <?php include_once __DIR__ . "/../../templates/formularios/button_actions.php"; ?>
 
                 </form>
 

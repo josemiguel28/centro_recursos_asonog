@@ -3,7 +3,6 @@
 namespace Controller\admin;
 
 use Clases\Request;
-use Model\ActiveRecord;
 use Model\Libros;
 use Model\Usuario;
 use MVC\models\Bitacora;

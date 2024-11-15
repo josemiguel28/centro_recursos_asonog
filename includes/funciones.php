@@ -35,7 +35,7 @@ function redirectToWithMsg($url, $msg)
 //funcion para verificar si el usuario esta autenticado
 function isUserAuth() : void{
     if(!isset($_SESSION["login"])){
-        header("Location: /");
+        header("Location: /login");
     }
 }
 

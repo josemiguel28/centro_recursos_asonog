@@ -18,4 +18,9 @@ class DocumentosResponsable extends ActiveRecord
         $this->id_tecnico_responsable = $args['id_tecnico_responsable'] ?? '';
     }
 
+    public static function deleteRecord($id_documento){
+        $sql = "DELETE FROM " . self::$tabla . " WHERE id_documento = {$id_documento}; ";
+        return self::$db->query($sql);
+    }
+
 }

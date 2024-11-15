@@ -31,7 +31,7 @@ class CreateDocumentController
         if ($imagenValida && $pdfValido) {
 
             try {
-                $resultado = $documento->crear();
+                $resultado = $documento->guardar();
                 $documentoId = $resultado['id']; // Obtener el id del documento creado
 
                 self::saveDocumentoTecnicoResponsable($documentoId); // Guardar los tecnicos responsables en la tabla documentos_tecnicos
@@ -131,7 +131,7 @@ class CreateDocumentController
         return true;
     }
 
-    private static function saveDocumentoTecnicoResponsable($documentoId): void
+    public static function saveDocumentoTecnicoResponsable($documentoId): void
     {
         $request = new Request();
 
@@ -143,7 +143,6 @@ class CreateDocumentController
                 "id_documento" => $documentoId,
                 "id_tecnico_responsable" => $tecnicoId
             ];
-
             $documentoTecnico = new DocumentosResponsable($args);
             $documentoTecnico->guardar();
         }

@@ -23,7 +23,7 @@ class ManageBookController extends ActiveRecord
             ]);
     }
 
-    public static function gestionarLibro(Router $router)
+    public static function gestionarLibro(Router $router): void
     {
 
         $request = new Request();
