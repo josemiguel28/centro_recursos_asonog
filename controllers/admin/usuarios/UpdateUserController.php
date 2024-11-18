@@ -2,13 +2,11 @@
 
 namespace Controller\admin\usuarios;
 
-use Clases\Request;
 use Model\ActiveRecord;
 use Model\Usuario;
 
 class UpdateUserController extends ActiveRecord
 {
-
     public static function actualizarUsuario($args,$usuario): void
     {
         try {

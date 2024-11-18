@@ -8,7 +8,16 @@ use Model\Libros;
 class DeleteBookController extends ActiveRecord
 {
 
-    public static function eliminarLibro($libro)
+    /**
+     * Elimina un libro y sus archivos asociados.
+     *
+     * Este metodo elimina los archivos de imagen y PDF asociados con el libro,
+     * y luego elimina el registro del libro. También establece una alerta según el resultado.
+     *
+     * @param Libros $libro El libro a eliminar.
+     * @return void
+     */
+    public static function eliminarLibro($libro): void
     {
         try {
             //$libro = self::getBookbyIdFromDb($libro['id']);

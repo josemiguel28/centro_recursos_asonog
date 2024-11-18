@@ -15,7 +15,8 @@ class HomeController
         $router->render('home/index',
             [
                 'categorias' => $categorias,
-                'libros' => $libros
+                'libros' => $libros,
+                'titlePage' => "Inicio"
             ]
         );
     }

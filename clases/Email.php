@@ -2,8 +2,6 @@
 
 namespace Clases;
 
-use Controller\auth\LoginController;
-use Model\Usuario;
 use PHPMailer\PHPMailer\Exception;
 use PHPMailer\PHPMailer\PHPMailer;
 
@@ -15,7 +13,12 @@ class Email
     public $token;
     public $rol;
 
-
+    /**
+     * @param string $email La dirección de correo electrónico del destinatario.
+     * @param string $nombre El nombre del destinatario.
+     * @param string $token El token para la confirmación de cuenta o restablecimiento de contraseña.
+     * @param string $rol El rol del usuario (1 para Administrador, 2 para Colaborador).
+     */
     public function __construct($email, $nombre, $token, $rol)
     {
         $this->email = $email;
@@ -30,12 +33,15 @@ class Email
 
     }
 
+    /**
+     * Configura la instancia de PHPMailer con la configuración SMTP.
+     *
+     * @return PHPMailer La instancia de PHPMailer configurada.
+     */
     private function setupMailer()
     {
-        // crear una instancia de phpmailer
         $mail = new PHPMailer();
 
-        //configurar SMTP
         $mail->isSMTP();
         $mail->Host = $_ENV["EMAIL_HOST"];
         $mail->SMTPAuth = true;
@@ -52,12 +58,14 @@ class Email
     }
 
     /**
-     * @throws Exception
+     * Envía un correo electrónico de confirmación de cuenta.
+     *
+     * @throws Exception Si hay un error al enviar el correo electrónico.
      */
     public function enviarEmail(): void
     {
-        $mail = $this->setUpMailer();
-        $mail->Subject = 'Confirma tu cuenta';
+        $mail = $this->setupMailer();
+        $mail->Subject = 'Confirma tu cuenta | Centro de recursos para la gestión del conocimiento';
 
 // Contenido del correo electrónico
         $contenido = "<html>";
@@ -75,25 +83,30 @@ class Email
         $contenido .= "<div class='container'>";
         $contenido .= "<div class='logo'><img src='URL_DE_TU_LOGO' alt='Centro de Recursos' style='max-width: 100%; height: auto;'></div>";
         $contenido .= "<p class='message'><strong>Hola, {$this->nombre}</strong></p>";
-        $contenido .= "<p class='message'>Se ha creado tu cuenta de <strong> {$this->rol} </strong> para acceder al repositorio.</p>";
-        $contenido .= "<p class='message'>Por favor, confirma tu cuenta haciendo clic en el botón a continuación:</p>";
+        $contenido .= "<p class='message'>¡Bienvenido! Tu cuenta como <strong>{$this->rol}</strong> ha sido creada con éxito para acceder al repositorio.</p>";
+        $contenido .= "<p class='message'>Para activar tu cuenta, por favor confirma tu correo haciendo clic en el siguiente botón:</p>";
         $contenido .= "<a href='" . $_ENV['APP_URL'] . "/confirmar-cuenta?token={$this->token}' class='button'>Confirmar cuenta</a>";
-        $contenido .= "<p>Si no solicitaste esta cuenta, ignora este mensaje.</p>";
-        $contenido .= "<p class='footer'>Centro de Recursos | ASONOG,<br>El equipo de soporte</p>";
+        $contenido .= "<p>Si no has solicitado esta cuenta, puedes ignorar este mensaje.</p>";
+        $contenido .= "<p class='footer'>CRGC | ASONOG,<br>Equipo de soporte</p>";
         $contenido .= "</div>";
         $contenido .= "</body>";
         $contenido .= "</html>";
-
 
         $mail->Body = $contenido;
         $mail->send();
     }
 
+    /**
+     * Envía un correo electrónico para restablecer la contraseña.
+     *
+     * @throws Exception Si hay un error al enviar el correo electrónico.
+     */
     public function restablecerContrasena(): void
     {
-        $mail = $this->setUpMailer();
+        $mail = $this->setupMailer();
         $mail->Subject = 'Restablece tu contraseña | Centro de recursos para la gestión del conocimiento';
 
+        // Contenido del correo electrónico
         $contenido = "<html>";
         $contenido .= "<head>";
         $contenido .= "<style>";
@@ -117,7 +130,6 @@ class Email
         $contenido .= "</div>";
         $contenido .= "</body>";
         $contenido .= "</html>";
-
 
         $mail->Body = $contenido;
         $mail->send();

@@ -10,14 +10,16 @@ use MVC\Router;
 
 class ManageUserController extends ActiveRecord
 {
-    public static function index(Router $router)
+    public static function index(Router $router): void
     {
         isAdmin();
         $usuarios = Usuario::getAllUsers();
 
         $router->render('admin/usuarios/gestion_usuarios',
             [
-                'usuarios' => $usuarios
+                'usuarios' =>
+                $usuarios,
+                'titlePage' => "Gestión de usuarios"
             ]
         );
     }
@@ -90,12 +92,12 @@ class ManageUserController extends ActiveRecord
             'title' => $formTitle,
             'mode' => $formAction,
             'roles' => $roles,
-            'alertas' => $alertas
+            'alertas' => $alertas,
+            'titlePage' => $formTitle
         ]);
     }
 
     private static function getUsuarioByIdFromDb($id) {
         return Usuario::where('id', $id);
     }
-
 }

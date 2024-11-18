@@ -91,7 +91,7 @@
             </div>
         </div>
     </div>
-
+</div>
 
     <script>
         // Función para manejar los filtros desplegables

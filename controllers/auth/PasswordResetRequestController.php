@@ -10,6 +10,16 @@ use MVC\Router;
 
 class PasswordResetRequestController extends ActiveRecord
 {
+    /**
+     * Maneja la solicitud de restablecimiento de contraseña.
+     *
+     * Este metodo procesa la solicitud de restablecimiento de contraseña validando la entrada del usuario,
+     * encontrando al usuario registrado y procesando la solicitud si se encuentra al usuario.
+     * Renderiza la vista correspondiente con alertas según el resultado.
+     *
+     * @param Router $router La instancia del router para renderizar vistas.
+     * @return void
+     */
     public static function requestReset(Router $router): void
     {
         $alertas = [];
@@ -18,19 +28,16 @@ class PasswordResetRequestController extends ActiveRecord
 
             $auth = new Usuario($_POST);
 
-           // $alertas = self::validarEmail($auth);
+            $user = self::findRegisteredUser('correo', $auth->correo);
 
-            if (empty($alertas)) {
-                $user = self::findRegisteredUser('correo', $auth->correo);
-
-                if (!$user) {
-                    $alertas = Usuario::getAlertas();
-                    $router->render('auth/olvidePassword', ["alertas" => $alertas]);
-                    return;
-                }
-
-                self::processRequest($user);
+            if (!$user) {
+                $alertas = Usuario::getAlertas();
+                $router->render('auth/olvidePassword', ["alertas" => $alertas]);
+                return;
             }
+
+            self::processRequest($user);
+
             $alertas = Usuario::getAlertas();
             $router->render('auth/olvidePassword', ["alertas" => $alertas]);
         } else {

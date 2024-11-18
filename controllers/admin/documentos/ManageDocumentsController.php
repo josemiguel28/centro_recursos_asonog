@@ -22,7 +22,8 @@ class ManageDocumentsController extends ActiveRecord
         $documents = DocumentosTecnicos::getAllDocumentos();
         $router->render('admin/documentos/gestion_documentos',
             [
-                'documentos' => $documents
+                'documentos' => $documents,
+                'titlePage' => "Gestión del repositorio"
             ]);
     }
 
@@ -70,7 +71,8 @@ class ManageDocumentsController extends ActiveRecord
                 'tecnicos' => $tecnicoResponsable,
                 'mode' => $formAction,
                 'documento' => $documentData,
-                'alertas' => $alertas
+                'alertas' => $alertas,
+                'titlePage' => $formTitle
             ]
 
         );

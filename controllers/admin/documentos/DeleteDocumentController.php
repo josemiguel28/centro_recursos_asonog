@@ -2,28 +2,34 @@
 
 namespace Controller\admin\documentos;
 
-use Model\Libros;
+use MVC\models\Documentos;
 use MVC\models\DocumentosResponsable;
-use MVC\models\DocumentosTecnicos;
 
 class DeleteDocumentController
 {
+    /**
+     * Elimina un documento y sus archivos asociados.
+     *
+     * Este metodo elimina el registro del documento responsable, los archivos de imagen y PDF asociados,
+     * y finalmente elimina el registro del documento. También establece una alerta según el resultado.
+     *
+     * @param Documentos $documento El documento a eliminar.
+     * @return void
+     */
     public static function eliminarDocumento($documento)
     {
         try {
-            //$documento = self::getBookbyIdFromDb($documento['id']);
             $resultado = DocumentosResponsable::deleteRecord($documento->id);
 
-            if($resultado){
-
+            if ($resultado) {
                 self::deleteFile(CARPETA_IMAGENES_DOCUMENTOS . $documento->imagen);
                 self::deleteFile(CARPETA_DOCUMENTOS . $documento->archivo_url);
                 $documento->eliminar();
-                Libros::setAlerta("success", "Libro eliminado correctamente");
+                Documentos::setAlerta("success", "Libro eliminado correctamente");
             }
 
         } catch (Exception $e) {
-            Libros::setAlerta("fail", "Error al eliminar el libro: " . $e->getMessage());
+            Documentos::setAlerta("fail", "Error al eliminar el libro: " . $e->getMessage());
         }
     }
 
@@ -33,12 +39,4 @@ class DeleteDocumentController
             throw new Exception("Error al eliminar el archivo anterior.");
         }
     }
-
-    private static function deleteDocumentoTecnicoRecord($documentId){
-        $document = DocumentosResponsable::where("id_documento", $documentId);
-
-        return $document;
-
-    }
-
 }

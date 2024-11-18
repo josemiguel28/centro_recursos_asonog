@@ -154,9 +154,9 @@
          data-aos-anchor-placement="top-center" data-aos-duration="1000">
         <!-- Título y Subtítulo -->
         <div class="mb-8">
-            <h1 class="text-3xl font-semibold mb-2">Explora Nuestras Categorías</h1>
-            <h2 class="text-lg md:text-xl text-gray-400 lg:w-1/2">Encuentra fácilmente los recursos que necesitas,
-                organizados por temas y áreas de interés.</h2>
+            <h2 class="text-3xl font-semibold mb-2">Explora Nuestras Categorías</h2>
+            <h3 class="text-lg md:text-xl text-gray-400 lg:w-1/2">Encuentra fácilmente los recursos que necesitas,
+                organizados por temas y áreas de interés.</h3>
         </div>
 
         <!-- 4 Columnas -->
@@ -310,9 +310,9 @@
 
             <!-- Columna 1: Título y subtítulo -->
             <div class="text-center md:text-left">
-                <h1 class="text-4xl font-bold mb-8">Todos pueden aprender.</h1>
-                <h2 class="text-xl text-gray-700 mb-8">Accede a recursos y materiales diseñados para todos los niveles
-                    de conocimiento.</h2>
+                <h2 class="text-4xl font-bold mb-8">Todos pueden aprender.</h2>
+                <h3 class="text-xl text-gray-700 mb-8">Accede a recursos y materiales diseñados para todos los niveles
+                    de conocimiento.</h3>
                 <button class="relative inline-block w-48 h-auto mx-auto mt-2 mb-4 cursor-pointer focus:outline-none border-0 text-inherit font-inherit group"
                         aria-label="Explorar recursos">
                     <a href="/biblioteca">
@@ -354,10 +354,10 @@
     <div class="mx-auto max-w-screen-xl px-4 py-16 ">
         <!-- Título y Subtítulo -->
         <div class="mb-8 w-full mx-auto">
-            <h1 class="text-3xl font-semibold mb-2 lg:w-1/2">Libros destacados</h1>
-            <h2 class="text-lg md:text-xl text-gray-400 lg:w-1/2">Descubre una selección de nuestras obras más populares
+            <h2 class="text-3xl font-semibold mb-2 lg:w-1/2">Libros destacados</h2>
+            <h3 class="text-lg md:text-xl text-gray-400 lg:w-1/2">Descubre una selección de nuestras obras más populares
                 y recomendadas.
-                Accede a su versión digital desde cualquier lugar.</h2>
+                Accede a su versión digital desde cualquier lugar.</h3>
         </div>
 
         <div class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-6 contenedor-libros">
@@ -368,7 +368,7 @@
                     <a href="/libros/<?= $libro->archivo_url ?>" class="flex justify-center p-4 sm:p-8" target="_blank"
                        style="background-color: #FCFCF7;">
                         <img class="rounded-xl" loading="lazy" src="imagenesLibros/<?php echo $libro->imagen ?>"
-                             alt="hero img">
+                             alt="libro img">
                     </a>
                     <div class="flex flex-col justify-between h-full px-3 sm:px-5 pb-3 sm:pb-5">
                         <a href="/libros/<?= $libro->archivo_url ?>" target="_blank">
@@ -408,7 +408,7 @@
     <!-- Sección de nosotros -->
     <div class="mx-auto max-w-screen-xl px-4 py-16">
         <!-- Título centrado -->
-        <h1 class="text-3xl font-semibold mb-8">Acerca de Nosotros</h1>
+        <h2 class="text-3xl font-semibold mb-8">Acerca de Nosotros</h2>
 
         <!-- Contenedor de dos columnas -->
         <div class="grid grid-cols-1 md:grid-cols-2 gap-20 items-center">

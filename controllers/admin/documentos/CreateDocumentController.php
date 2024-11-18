@@ -6,11 +6,6 @@ use Clases\Request;
 use Intervention\Image\ImageManagerStatic as Image;
 use MVC\models\Documentos;
 use MVC\models\DocumentosResponsable;
-use MVC\models\DocumentosTecnicos;
-use MVC\models\Tecnicos;
-use MVC\models\Tematicas;
-use MVC\models\TipoHerramienta;
-use MVC\Router;
 
 class CreateDocumentController
 {
@@ -19,6 +14,15 @@ class CreateDocumentController
     const ALLOWED_IMAGE_TYPES = ['image/jpeg', 'image/png'];
     const ALLOWED_PDF_TYPE = 'application/pdf';
 
+    /**
+     * Crea un nuevo documento con los argumentos proporcionados.
+     *
+     * Este metodo sincroniza el documento con los argumentos proporcionados, procesa los archivos de imagen y PDF,
+     * y guarda el documento junto con sus técnicos responsables. También establece alertas apropiadas según el resultado.
+     *
+     * @param array $args Los argumentos para sincronizar con el documento.
+     * @return void
+     */
     public static function createDocument($args): void
     {
         $documento = new Documentos();
@@ -37,16 +41,13 @@ class CreateDocumentController
                 self::saveDocumentoTecnicoResponsable($documentoId); // Guardar los tecnicos responsables en la tabla documentos_tecnicos
 
                 Documentos::setAlerta('success', 'Documento creado correctamente.');
-                $documento = new Documentos(); // Limpiar el formulario
+
             } catch (\Exception $e) {
                 Documentos::setAlerta('fail', 'Error al crear el documento.');
             }
         } else {
             Documentos::getAlertas();
         }
-
-
-        $alertas = Documentos::getAlertas();
     }
 
     private static function crearCarpetaSiNoExiste($carpeta): void
@@ -121,7 +122,6 @@ class CreateDocumentController
         $nombrepdf = self::generarNombreArchivo('pdf');
         self::crearCarpetaSiNoExiste(CARPETA_DOCUMENTOS);
 
-        // Mover el archivo PDF al servidor
         if (!move_uploaded_file($_FILES['archivo']['tmp_name'], CARPETA_DOCUMENTOS . $nombrepdf)) {
             Documentos::setAlerta('fail', 'Ocurrió un error al subir el archivo PDF.');
             return false;

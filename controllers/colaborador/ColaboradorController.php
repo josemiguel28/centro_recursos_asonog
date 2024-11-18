@@ -10,12 +10,10 @@ use MVC\models\Tematicas;
 
 class ColaboradorController
 {
-    public static function index(Router $router)
+    public static function index(Router $router): void
     {
         $session = new Request();
         $session->startSession();
-
-
 
         $tipos_herramienta = TipoHerramienta::getAllHerramientas();
         $tematicas = Tematicas::getAllTematicas();
@@ -25,7 +23,8 @@ class ColaboradorController
             [
                 'documentos' => $documentos,
                 'tipos_herramienta' => $tipos_herramienta,
-                'tematicas' => $tematicas
+                'tematicas' => $tematicas,
+                'titlePage' => 'Repositorio Institucional',
             ]
         );
     }

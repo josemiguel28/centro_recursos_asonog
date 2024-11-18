@@ -10,20 +10,37 @@ use MVC\Router;
 
 class ManageBookController extends ActiveRecord
 {
-
-
-    public static function showBooks(Router $router)
+    /**
+     * Muestra la lista de libros.
+     *
+     * Este metodo verifica si el usuario es administrador, recupera todos los libros de la base de datos,
+     * y renderiza la vista 'gestion_libros' con la lista de libros y el título de la página.
+     *
+     * @param Router $router La instancia del router utilizada para renderizar la vista.
+     * @return void
+     */
+    public static function showBooks(Router $router): void
     {
-
         isAdmin();
         $books = Libros::getAllBooks();
 
         $router->render('admin/libros/gestion_libros',
             [
-                'libros' => $books
+                'libros' => $books,
+                'titlePage' => "Gestión de biblioteca"
             ]);
     }
 
+    /**
+     * Gestiona las acciones relacionadas con un libro.
+     *
+     * Este metodo verifica si el usuario es administrador, obtiene la acción del formulario y el ID del libro de la URL,
+     * recupera las categorías de libros y el título del formulario, y luego realiza la acción correspondiente (crear, actualizar o eliminar).
+     * Finalmente, renderiza el formulario de libros con las alertas generadas.
+     *
+     * @param Router $router La instancia del router utilizada para renderizar la vista.
+     * @return void
+     */
     public static function gestionarLibro(Router $router): void
     {
         isAdmin();
@@ -58,16 +75,13 @@ class ManageBookController extends ActiveRecord
                 'libro' => $book,
                 'categorias' => $bookCategories,
                 'mode' => $formAction,
-                'alertas' => $alertas
+                'alertas' => $alertas,
+                'titlePage' => $formTitle
             ]
-
         );
     }
-
     private static function getBookbyIdFromDb($id)
     {
         return Libros::where('id', $id);
     }
-
-
 }

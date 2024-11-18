@@ -37,10 +37,20 @@ class LoginController extends ActiveRecord
         $router->render("auth/login", [
             "alertas" => $alertas,
             "userEmail" => $userEmail,
-            "auth" => $auth
+            "auth" => $auth,
+            "titlePage" => "Iniciar Sesión"
         ]);
     }
 
+    /**
+     * Intenta iniciar sesión de un usuario.
+     *
+     * Este metodo verifica si el usuario existe y si la contraseña es correcta.
+     * Si tiene éxito, autentica al usuario.
+     *
+     * @param Usuario $auth Los datos de autenticación del usuario.
+     * @return bool True si el inicio de sesión es exitoso, false en caso contrario.
+     */
     private static function attemptLogin(Usuario $auth): bool
     {
         $usuario = Usuario::where("correo", $auth->correo);
@@ -54,6 +64,16 @@ class LoginController extends ActiveRecord
         return false;
     }
 
+    /**
+     * Autentica a un usuario e inicializa la sesión.
+     *
+     * Este metodo inicia una sesión si no está ya iniciada, recupera la dirección IP del usuario,
+     * el agente de usuario y el sistema operativo, y almacena estos detalles junto con la información
+     * del usuario en la sesión. También registra el acceso y redirige al usuario según su rol.
+     *
+     * @param Usuario $user El usuario a autenticar.
+     * @return void
+     */
     private static function authenticateUser(Usuario $user): void
     {
 
@@ -87,7 +107,7 @@ class LoginController extends ActiveRecord
             $redirectUrl = ($user->rol === '1') ? '/admin' : '/colaborador';
             header("Location: $redirectUrl");
             exit;
-        } catch (Exception$e) {
+        } catch (Exception $e) {
             Usuario::setAlerta('text-red-500', 'Error al iniciar sesión: ' . $e->getMessage());
         }
 
@@ -126,9 +146,7 @@ class LoginController extends ActiveRecord
             'iPhone' => 'iOS',
             'iPad' => 'iOS',
             'Android' => 'Android',
-            'BlackBerry' => 'BlackBerry',
-            'PlayStation' => 'PlayStation',
-            // Puedes agregar más sistemas operativos según necesites
+
         ];
 
         foreach ($osArray as $os => $osName) {

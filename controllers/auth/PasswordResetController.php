@@ -10,7 +10,6 @@ class PasswordResetController
 {
     public static function changePassword(Router $router): void
     {
-        $alertas = '';
 
         if (!self::isTokenValid()) {
             $error = true;

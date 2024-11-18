@@ -22,7 +22,8 @@ class BibliotecaController
         $router->render('biblioteca/index',
             [
                 'libros' => $libros,
-                'categorias' => $categorias
+                'categorias' => $categorias,
+                'titlePage' => "Biblioteca"
                 //'offset' => $offset + $limit Para la siguiente página
             ]
         );

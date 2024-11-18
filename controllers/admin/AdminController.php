@@ -13,10 +13,8 @@ date_default_timezone_set('UTC');
 
 class AdminController
 {
-
     public static function index(Router $router): void
     {
-
         $session = new Request();
         $session->startSession();
 
@@ -52,7 +50,8 @@ class AdminController
             'userStatistics' => $getUserState,
             'documentStatistics' => $getDocumentsState,
             'bookStatistics' => $getBooksState,
-            'accessLog' => $getAccessLog
+            'accessLog' => $getAccessLog,
+            'titlePage' => "Panel de administrador"
         ]);
 
     }
@@ -68,7 +67,7 @@ class AdminController
         // Obtiene todos los registros del modelo
         $allRecords = $modelo::all();
 
-        $USER_STATE_ACTIVE = "ACT";
+        $RECORD_STATE_ACTIVE = "ACT";
         $USER_STATE_INACTIVE = "INA";
 
         $activeCount = 0;
@@ -78,7 +77,7 @@ class AdminController
         foreach ($allRecords as $record) {
 
             switch ($record->estado) {
-                case $USER_STATE_ACTIVE:
+                case $RECORD_STATE_ACTIVE:
                     $activeCount++;
                     break;
 

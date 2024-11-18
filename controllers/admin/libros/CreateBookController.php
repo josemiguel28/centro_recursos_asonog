@@ -13,7 +13,16 @@ class CreateBookController extends ActiveRecord
     const ALLOWED_IMAGE_TYPES = ['image/jpeg', 'image/png'];
     const ALLOWED_PDF_TYPE = 'application/pdf';
 
-    public static function crearLibro($args)
+    /**
+     * Crea un nuevo libro con los argumentos proporcionados.
+     *
+     * Este metodo sincroniza el libro con los argumentos proporcionados, procesa los archivos de imagen y PDF,
+     * y guarda el libro. También establece alertas apropiadas según el resultado.
+     *
+     * @param array $args Los argumentos para sincronizar con el libro.
+     * @return array Las alertas generadas durante el proceso.
+     */
+    public static function crearLibro($args): array
     {
         $libro = new Libros();
 
@@ -36,22 +45,22 @@ class CreateBookController extends ActiveRecord
         /*
         $router->render('admin/crearLibro', ['libro' => $libro,
             'alertas' => $alertas]);
-    */
+        */
     }
 
-    private static function crearCarpetaSiNoExiste($carpeta)
+    private static function crearCarpetaSiNoExiste($carpeta): void
     {
         if (!is_dir($carpeta)) {
             mkdir($carpeta, 0755, true);
         }
     }
 
-    private static function generarNombreArchivo($extension)
+    private static function generarNombreArchivo($extension): string
     {
         return md5(uniqid(strval(rand()), true)) . '.' . $extension;
     }
 
-    public static function procesarImagen($libro)
+    public static function procesarImagen($libro): bool
     {
         if (!isset($_FILES['imagen']) || $_FILES['imagen']['error'] !== UPLOAD_ERR_OK) {
             Libros::setAlerta('fail', 'Error al subir la imagen.');
@@ -89,7 +98,7 @@ class CreateBookController extends ActiveRecord
         return true;
     }
 
-    public static function procesarPDF($libro)
+    public static function procesarPDF($libro): bool
     {
         if (!isset($_FILES['archivo']) || $_FILES['archivo']['error'] !== UPLOAD_ERR_OK) {
             Libros::setAlerta('fail', 'Error al subir el archivo PDF.');
