@@ -71,13 +71,7 @@ class ConfirmarCuenta
         if (isPostBack()) {
             session_start();
 
-            $passwordTemporal = $_POST['tmpPassword'] ?? '';
             $nuevaPassword = $_POST['contrasena'] ?? '';
-
-            if (!$usuario->comprobarTmpPassword($passwordTemporal)) {
-                Usuario::setAlerta('text-red-500 bg-red-100', "Contraseña temporal incorrecta.");
-                return;
-            }
 
             if (empty($nuevaPassword) || strlen($nuevaPassword) < 6) {
                 Usuario::setAlerta('fail', "La nueva contraseña debe tener al menos 6 caracteres.");
@@ -93,7 +87,8 @@ class ConfirmarCuenta
             $_SESSION['token'] = '';
             $usuario->guardar();
 
-            Usuario::setAlerta('success', "Cuenta activada correctamente. <a class='underline font-semibold' href='/login'>Iniciar Sesion</a> .");
+            Usuario::setAlerta('success',
+                "Cuenta activada correctamente. <a class='underline font-semibold' href='/login?email={$usuario->correo}'>Iniciar Sesion</a> .");
         }
     }
 }

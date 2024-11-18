@@ -20,6 +20,8 @@ class AdminController
         $session = new Request();
         $session->startSession();
 
+        isAdmin();
+
         //usuario que acaba de iniciar sesion
         $crrntUser = $_SESSION['nombre'] ?? "";
         $crrntUserId = $_SESSION["id"];

@@ -16,6 +16,9 @@ class LoginController extends ActiveRecord
     public static function login(Router $router): void
     {
         $auth = new Usuario();
+        $request = new Request();
+        $userEmail = $request->get("email");
+
         $alertas = [];
 
         if (isPostBack()) {
@@ -33,6 +36,7 @@ class LoginController extends ActiveRecord
         $alertas = Usuario::getAlertas();
         $router->render("auth/login", [
             "alertas" => $alertas,
+            "userEmail" => $userEmail,
             "auth" => $auth
         ]);
     }

@@ -14,34 +14,28 @@ class PasswordResetRequestController extends ActiveRecord
     {
         $alertas = [];
 
-        if (isPostBack()){
+        if (isPostBack()) {
 
-        $auth = new Usuario($_POST);
+            $auth = new Usuario($_POST);
 
-        $alertas = self::validarEmail($auth);
+           // $alertas = self::validarEmail($auth);
 
-        if (empty($alertas)) {
-            $user = self::findRegisteredUser('email', $auth->email);
+            if (empty($alertas)) {
+                $user = self::findRegisteredUser('correo', $auth->correo);
 
-            if (!$user) {
-                $alertas = Usuario::getAlertas();
-                $router->render('auth/olvidePassword', ["alertas" => $alertas]);
-                return;
+                if (!$user) {
+                    $alertas = Usuario::getAlertas();
+                    $router->render('auth/olvidePassword', ["alertas" => $alertas]);
+                    return;
+                }
+
+                self::processRequest($user);
             }
-
-            self::processRequest($user);
-        }
             $alertas = Usuario::getAlertas();
             $router->render('auth/olvidePassword', ["alertas" => $alertas]);
         } else {
             $router->render('auth/olvidePassword', ["alertas" => $alertas]);
         }
-    }
-    
-
-    private static function validarEmail(Usuario $auth): array
-    {
-        return $auth->validarEmail();
     }
 
     public static function findRegisteredUser($column, $value)
@@ -49,7 +43,7 @@ class PasswordResetRequestController extends ActiveRecord
         //verificar que el usuario exista
         $usuario = Usuario::where($column, $value);
 
-        if ($usuario && $usuario->confirmado === '1') {
+        if ($usuario && $usuario->confirmado === '1' && $usuario->estado === 'ACT') {
             return $usuario;
         }
 
@@ -63,17 +57,17 @@ class PasswordResetRequestController extends ActiveRecord
             $user->createToken();
             $user->guardar();
             self::sendEmail($user);
-            Usuario::setAlerta('exito', 'Revisa tu correo para restablecer tu contraseña');
+            Usuario::setAlerta('success', 'Revisa tu correo para restablecer tu contraseña');
             return true;
         } catch (\Exception $e) {
-            Usuario::setAlerta('error', 'Ocurrió un error al procesar tu solicitud. Inténtalo de nuevo más tarde.');
+            Usuario::setAlerta('fail', 'Ocurrió un error al procesar tu solicitud. Inténtalo de nuevo más tarde.');
             return false;
         }
     }
 
     private static function sendEmail(Usuario $user): void
     {
-        $email = new Email($user->email, $user->nombre, $user->token);
+        $email = new Email($user->correo, $user->nombre, $user->token, $user->rol);
         $email->restablecerContrasena();
     }
 }

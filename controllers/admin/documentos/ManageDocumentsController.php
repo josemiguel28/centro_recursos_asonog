@@ -17,6 +17,8 @@ class ManageDocumentsController extends ActiveRecord
 {
     public static function showDocuments(Router $router)
     {
+        isAdmin();
+
         $documents = DocumentosTecnicos::getAllDocumentos();
         $router->render('admin/documentos/gestion_documentos',
             [
@@ -26,6 +28,7 @@ class ManageDocumentsController extends ActiveRecord
 
     public static function gestionarDocumento(Router $router): void
     {
+        isAdmin();
 
         $request = new Request();
         $formAction = $request->get('mode');

@@ -15,6 +15,8 @@ class ColaboradorController
         $session = new Request();
         $session->startSession();
 
+
+
         $tipos_herramienta = TipoHerramienta::getAllHerramientas();
         $tematicas = Tematicas::getAllTematicas();
         $documentos = DocumentosTecnicos::getAllDocumentosWithLimit();

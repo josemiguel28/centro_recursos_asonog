@@ -1,5 +1,6 @@
 <?php
 
+//define las rutas en donde se guardaran los archivos e imagenes
 define("CARPETA_IMAGENES_LIBROS", $_SERVER["DOCUMENT_ROOT"] . '/imagenesLibros/');
 define("CARPETA_LIBROS", $_SERVER["DOCUMENT_ROOT"] . '/libros/');
 define("CARPETA_DOCUMENTOS", $_SERVER["DOCUMENT_ROOT"] . '/documentos/');
@@ -17,7 +18,6 @@ function sanitizar($html) : string {
     return htmlspecialchars($html, ENT_QUOTES);
 }
 
-//funcion para verificar si un SERVER es igual a un POST
 function isPostBack() : bool
 {
     return $_SERVER["REQUEST_METHOD"] == "POST";
@@ -32,20 +32,29 @@ function redirectToWithMsg($url, $msg)
     die();
 }
 
-//funcion para verificar si el usuario esta autenticado
-function isUserAuth() : void{
-    if(!isset($_SESSION["login"])){
-        header("Location: /login");
+/**
+ * Verifica si el usuario actual es un administrador.
+ *
+ * Esta función comprueba si el rol del usuario almacenado en la sesión es el de un administrador.
+ * Si el usuario no es un administrador, se le redirige a la página de colaborador.
+ */
+function isAdmin() {
+    $ADMIN_ROL = "1"; // Define el identificador del rol de administrador
+
+    if (!isset($_SESSION["rol"]) || $_SESSION["rol"] !== $ADMIN_ROL) {
+        header("Location: /colaborador");
+        exit;
     }
 }
 
-function isAdmin(){
-    if(!isset($_SESSION["admin"]))
-    {
-        header("Location: /");
-    }
-}
-
+/**
+ * Establece el título del formulario basado en la acción dada.
+ *
+ * Esta función toma un código de acción y devuelve el título correspondiente del formulario.
+ *
+ * @param string $action El código de acción (por ejemplo, 'DSP', 'INS', 'UPD', 'DEL').
+ * @return string El título correspondiente del formulario.
+ */
 function setFormTitle($action): string
 {
     $modes = [

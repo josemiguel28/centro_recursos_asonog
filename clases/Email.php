@@ -14,15 +14,14 @@ class Email
     public $nombre;
     public $token;
     public $rol;
-    public $tmpPassword;
 
-    public function __construct($email, $nombre, $token, $rol, $tmpPassword)
+
+    public function __construct($email, $nombre, $token, $rol)
     {
         $this->email = $email;
         $this->nombre = $nombre;
         $this->token = $token;
         $this->rol = $rol;
-        $this->tmpPassword = $tmpPassword;
 
         $this->rol = match ($rol) {
             '1' => 'Administrador',
@@ -76,8 +75,7 @@ class Email
         $contenido .= "<div class='container'>";
         $contenido .= "<div class='logo'><img src='URL_DE_TU_LOGO' alt='Centro de Recursos' style='max-width: 100%; height: auto;'></div>";
         $contenido .= "<p class='message'><strong>Hola, {$this->nombre}</strong></p>";
-        $contenido .= "<p class='message'>Se ha creado tu cuenta de <strong> {$this->rol} </strong> para acceder al repositorio. Para activar tu cuenta, utiliza la siguiente contraseña temporal:</p>";
-        $contenido .= "<p class='message'><strong>{$this->tmpPassword}</strong></p>";
+        $contenido .= "<p class='message'>Se ha creado tu cuenta de <strong> {$this->rol} </strong> para acceder al repositorio.</p>";
         $contenido .= "<p class='message'>Por favor, confirma tu cuenta haciendo clic en el botón a continuación:</p>";
         $contenido .= "<a href='" . $_ENV['APP_URL'] . "/confirmar-cuenta?token={$this->token}' class='button'>Confirmar cuenta</a>";
         $contenido .= "<p>Si no solicitaste esta cuenta, ignora este mensaje.</p>";
@@ -94,25 +92,32 @@ class Email
     public function restablecerContrasena(): void
     {
         $mail = $this->setUpMailer();
-        $mail->Subject = 'Restablece tu contraseña';
+        $mail->Subject = 'Restablece tu contraseña | Centro de recursos para la gestión del conocimiento';
 
         $contenido = "<html>";
         $contenido .= "<head>";
         $contenido .= "<style>";
-        $contenido .= "body {font-family: Arial, sans-serif;}";
-        $contenido .= ".container {width: 80%; margin: auto; padding: 20px; border: 1px solid #ddd; border-radius: 5px; background-color: #f6f6f6;}";
-        $contenido .= ".message {font-size: 1.2em;}";
-        $contenido .= ".button {background-color: #4CAF50; border: none; color: white; padding: 15px 32px; text-align: center; text-decoration: none; display: inline-block; font-size: 16px; margin: 4px 2px; cursor: pointer;}";
+        $contenido .= "body {font-family: Arial, sans-serif; margin: 0; padding: 0; background-color: #f2f2f2;}";
+        $contenido .= ".container {width: 80%; max-width: 600px; margin: auto; padding: 20px; border: 1px solid #ddd; border-radius: 5px; background-color: #ffffff; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);}";
+        $contenido .= ".logo {text-align: center; margin-bottom: 20px;}";
+        $contenido .= ".message {font-size: 1.2em; line-height: 1.5; margin-bottom: 20px;}";
+        $contenido .= ".button {background-color: #FFD700; border: none; color: white; padding: 15px 32px; text-align: center; text-decoration: none; display: inline-block; font-size: 16px; margin: 20px 0; cursor: pointer; border-radius: 5px;}";
+        $contenido .= ".footer {font-size: 0.9em; color: #888; margin-top: 20px; text-align: center;}";
         $contenido .= "</style>";
         $contenido .= "</head>";
         $contenido .= "<body>";
         $contenido .= "<div class='container'>";
-        $contenido .= "<p class='message'> <strong> Hola {$this->nombre} </strong> Has solicitado restablecer tu contraseña, solo debes seguir estos pasos presionando el siguiente enlace</p>";
+        $contenido .= "<div class='logo'><img src='/build/img/aboutUs.png' alt='Centro de Recursos' style='max-width: 100%; height: auto;'></div>";
+        $contenido .= "<p class='message'><strong>Hola, {$this->nombre} 👋 </strong></p>";
+        $contenido .= "<p class='message'>Recibimos una solicitud para restablecer tu contraseña en nuestra plataforma.</p>";
+        $contenido .= "<p class='message'>Si deseas continuar con el proceso, simplemente haz clic en el botón a continuación. Esto te llevará a una página donde podrás configurar una nueva contraseña de forma segura:</p>";
         $contenido .= "<a href='" . $_ENV['APP_URL'] . "/recuperar?token={$this->token}' class='button'>Restablecer Contraseña</a>";
-        $contenido .= "<p> Si tu no has solicitado esta cuenta, ignora este mensaje </p>";
+        $contenido .= "<p class='message'>Si no realizaste esta solicitud, puedes ignorar este mensaje. Tu cuenta continuará segura y no se realizarán cambios.</p>";
+        $contenido .= "<p class='footer'>Centro de Recursos para la gestión del conocimiento | ASONOG,<br>El equipo de soporte</p>";
         $contenido .= "</div>";
         $contenido .= "</body>";
         $contenido .= "</html>";
+
 
         $mail->Body = $contenido;
         $mail->send();

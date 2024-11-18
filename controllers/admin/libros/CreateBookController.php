@@ -4,7 +4,6 @@ namespace Controller\admin\libros;
 
 use Model\ActiveRecord;
 use Model\Libros;
-use MVC\Router;
 use Intervention\Image\ImageManagerStatic as Image;
 
 class CreateBookController extends ActiveRecord

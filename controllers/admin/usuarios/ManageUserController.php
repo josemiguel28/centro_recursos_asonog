@@ -12,6 +12,7 @@ class ManageUserController extends ActiveRecord
 {
     public static function index(Router $router)
     {
+        isAdmin();
         $usuarios = Usuario::getAllUsers();
 
         $router->render('admin/usuarios/gestion_usuarios',
@@ -44,6 +45,9 @@ class ManageUserController extends ActiveRecord
      */
     public static function gestionarUsuario(Router $router): void
     {
+
+        isAdmin();
+
         $request = new Request();
         $formAction = $request->get('mode');
         $getUserIdFromUrl = $request->get('id');

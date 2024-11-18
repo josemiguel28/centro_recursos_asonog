@@ -23,11 +23,13 @@ class PasswordResetController
         $passwordSucces = self::saveNewPassword();
         
         if ($passwordSucces) {
-            redirectToWithMsg('/', 'La contraseña se actualizo correctamente');
+            redirectToWithMsg('/login', 'La contraseña se actualizo correctamente');
         }
         
         $alertas = Usuario::getAlertas();
-        $router->render('auth/recuperar-password', ["alertas" => $alertas]);
+        $router->render('auth/recuperar-password', [
+            "alertas" => $alertas
+        ]);
     }
 
     private static function isTokenValid()
@@ -43,22 +45,24 @@ class PasswordResetController
             Usuario::setAlerta('error', 'Token no valido');
             return false;
         }
+
         return $usuario;
     }
 
     private static function saveNewPassword()
     {
         if (isPostBack()) {
+
             //leer la nueva contraseña
             $newPassword = new Usuario($_POST);
 
             $usuario = self::isTokenValid();
 
-            $alertas = $usuario->validarPassword($newPassword->password);
+            $alertas = $usuario->validarPassword($newPassword->contrasena);
 
             if (empty($alertas)) {
-                $usuario->password = null;
-                $usuario->password = $newPassword->password;
+                $usuario->contrasena = null;
+                $usuario->contrasena = $newPassword->contrasena;
                 $usuario->token = '';
 
                 $usuario->hashPassword();

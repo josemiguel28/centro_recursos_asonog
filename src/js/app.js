@@ -7,29 +7,32 @@ import { filterDocumentsByHerramientaAPI } from "./documentosAPI/filter/herramie
 
 let offset = 0;
 
-document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener('DOMContentLoaded', async function () {
     console.log('DOM cargado');
 
     // Obtener todas las secciones con el atributo data-section
     const sections = document.querySelectorAll('[data-section]');
 
-    sections.forEach(section => {
+    for (const section of sections) {
         const sectionType = section.getAttribute('data-section');
 
-        // Verifica el tipo de sección y ejecuta la función correspondiente
-        if (sectionType === 'biblioteca') {
-            biblioteca();
-            filtrarLibroPorCategoria();
-        }
+        try {
+            if (sectionType === 'biblioteca') {
+                await biblioteca(); // Await the Promise
+                await filtrarLibroPorCategoria(); // Await if this also returns a Promise
+            }
 
-        if (sectionType === 'documentos') {
-            documentos();
-            filtrarLibroPorTematica();
-            filtrarLibroPorHerramienta();
+            if (sectionType === 'documentos') {
+                await documentos(); // Await the Promise
+                await filtrarLibroPorTematica();
+                await filtrarLibroPorHerramienta();
+            }
+        } catch (error) {
+            console.error(`Error in section "${sectionType}":`, error);
         }
-    });
-
+    }
 });
+
 
 async function biblioteca() {
     //manda a llamar la api para mostrar mas libros en la pagina de biblioteca
@@ -46,7 +49,7 @@ async function filtrarLibroPorCategoria() {
 
         let categoria = e.target.value;
 
-        if (categoria == 'todos') {
+        if (categoria === 'todos') {
             window.location.reload();
         }
 
@@ -70,7 +73,7 @@ async function filtrarLibroPorTematica() {
 
         let tematica = e.target.value;
 
-        if (tematica == 'todos') {
+        if (tematica === 'todos') {
             window.location.reload();
         }
 
@@ -84,7 +87,7 @@ async function filtrarLibroPorHerramienta() {
 
         let herramienta = e.target.value;
 
-        if (herramienta == 'todos') {
+        if (herramienta === 'todos') {
             window.location.reload();
         }
 

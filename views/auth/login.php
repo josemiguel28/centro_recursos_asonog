@@ -21,17 +21,25 @@
                             email</label>
                         <input type="email" name="correo" id="email"
                                class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                               placeholder="correo@asonog.com" required="">
+                               placeholder="correo@asonog.com"
+                               required=""
+                               value="<?= $userEmail ?? '' ?>">
                     </div>
                     <div>
                         <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Contraseña</label>
-                        <input type="password" name="contrasena" id="password" placeholder="••••••••"
-                               class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                               required="">
+                        <div class="relative">
+                            <input type="password" name="contrasena" id="password" placeholder="••••••••"
+                                   class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                   required="">
+                            <button type="button" id="togglePassword"
+                                    class="absolute right-2 top-2 text-gray-600 dark:text-gray-400">
+                                <i class="fas fa-eye mr-2 mx-auto text-center"></i>
+                            </button>
+                        </div>
                     </div>
                     <div class="flex items-center justify-end">
 
-                        <a href="#" class="text-sm font-medium text-primary-600 hover:underline dark:text-primary-500">¿Olvidaste
+                        <a href="/olvide" class="text-sm font-medium text-primary-600 hover:underline dark:text-primary-500">¿Olvidaste
                             tu contraseña?</a>
                     </div>
 
@@ -47,3 +55,5 @@
         </div>
     </div>
 </section>
+
+<script src="/build/js/login/show_password_input.js"></script>

@@ -2,9 +2,9 @@
 
 namespace Controller\admin\documentos;
 
-use Controller\admin\libros\CreateBookController;
 use Model\ActiveRecord;
-use Model\Libros;
+use MVC\models\Documentos;
+
 
 class UpdateDocumentController extends ActiveRecord
 {
@@ -13,6 +13,7 @@ class UpdateDocumentController extends ActiveRecord
     {
 
         try {
+
             //guarda el nombre antes que se sinconice con los nuevos nombres
             $oldImage = $documento->imagen;
             $oldPDF = $documento->archivo_url;
@@ -26,10 +27,10 @@ class UpdateDocumentController extends ActiveRecord
 
                 CreateDocumentController::saveDocumentoTecnicoResponsable($documentoId);
 
-                Libros::setAlerta("success", "Documento actualizado correctamente");
+                Documentos::setAlerta("success", "Documento actualizado correctamente");
             }
         } catch (Exception $e) {
-            Libros::setAlerta("fail", "Error al actualizar el libro: " . $e->getMessage());
+            Documentos::setAlerta("fail", "Error al actualizar el libro: " . $e->getMessage());
         }
     }
 
@@ -40,7 +41,7 @@ class UpdateDocumentController extends ActiveRecord
                 self::deleteFile(CARPETA_IMAGENES_DOCUMENTOS . $oldImage);
                 return true;
             } else {
-                Libros::setAlerta("fail", "Error al procesar la nueva imagen.");
+                Documentos::setAlerta("fail", "Error al procesar la nueva imagen.");
                 return false;
             }
         }
@@ -54,7 +55,7 @@ class UpdateDocumentController extends ActiveRecord
                 self::deleteFile(CARPETA_DOCUMENTOS . $oldPDF);
                 return true;
             } else {
-                Libros::setAlerta("fail", "Error al procesar el nuevo PDF.");
+                Documentos::setAlerta("fail", "Error al procesar el nuevo PDF.");
                 return false;
             }
         }

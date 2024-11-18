@@ -19,7 +19,7 @@ function mostrarDocumentos(data, limpiar = false) {
 
     documentos.forEach(documento => {
 
-        if (id != documento.id) {
+        if (id !== documento.id) {
 
             const libroDiv = document.createElement('div');
             libroDiv.className = 'w-full mb-7 max-w-sm bg-white flex flex-col justify-between sm:max-w-xs';

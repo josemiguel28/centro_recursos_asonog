@@ -15,6 +15,7 @@ class ManageBookController extends ActiveRecord
     public static function showBooks(Router $router)
     {
 
+        isAdmin();
         $books = Libros::getAllBooks();
 
         $router->render('admin/libros/gestion_libros',
@@ -25,6 +26,7 @@ class ManageBookController extends ActiveRecord
 
     public static function gestionarLibro(Router $router): void
     {
+        isAdmin();
 
         $request = new Request();
         $formAction = $request->get('mode');

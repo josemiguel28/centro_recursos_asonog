@@ -17,7 +17,7 @@ async function filterBooksByCategoryAPI(category, offset) {
         mostrarLibros(data, true); // Llama a la función para mostrar los libros
 
     } catch (e) {
-        console.log(e);
+        console.error(e);
     }
 }
 

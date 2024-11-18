@@ -34,14 +34,14 @@ class CreateUserController extends ActiveRecord
         $usuario->hashPassword();
         $usuario->createToken();
 
-        self::enviarEmail($usuario, $tmpPassword);
+        self::enviarEmail($usuario);
 
         return $usuario->guardar();
     }
 
-    private static function enviarEmail(Usuario $usuario, $tmpPassword): void
+    private static function enviarEmail(Usuario $usuario): void
     {
-        $email = new Email($usuario->correo, $usuario->nombre, $usuario->token, $usuario->rol, $tmpPassword);
+        $email = new Email($usuario->correo, $usuario->nombre, $usuario->token, $usuario->rol);
         $email->enviarEmail();
     }
 }

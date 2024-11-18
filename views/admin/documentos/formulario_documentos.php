@@ -2,7 +2,7 @@
 
     <?php //debuguear($documento); ?>
 
-    <a href="/admin" class="underline text-lg">&larr; Volver</a>
+    <a href="/repositorio/gestionar" class="underline text-lg">&larr; Volver</a>
 
     <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto lg:py-0">
         <h1 class="text-2xl font-bold leading-tight tracking-tight text-gray-900 mb-8 md:text-2xl">
@@ -22,8 +22,10 @@
                     <div>
                         <label for="nombreHerramienta"
                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Ingresa el nombre de
-                            la herramienta <span class="text-red-500">*</span> </label>
+                            la herramienta <span class="text-red-500">*</span>
+                        </label>
                         <input
+                            <?= $mode === "DSP" || $mode === "DEL" ? "disabled" : ""; ?>
                                 type="text"
                                 name="nombre_herramienta"
                                 id="nombreHerramienta"
@@ -38,6 +40,8 @@
                         <label for="countries" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Selecciona
                             el tipo de herramienta</label>
                         <select
+                            <?= $mode === "DSP" || $mode === "DEL" ? "disabled" : ""; ?>
+
                                 id="countries"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                                 name="id_tipo_herramienta">
@@ -57,6 +61,8 @@
                         <label for="countries" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Selecciona
                             la tematica de la herramienta</label>
                         <select
+                            <?= $mode === "DSP" || $mode === "DEL" ? "disabled" : ""; ?>
+
                                 id="countries"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                                 name="id_tematica">
@@ -95,6 +101,8 @@
                                     <li>
                                         <div class="flex items-center p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-600">
                                             <input
+                                                <?= $mode === "DSP" || $mode === "DEL" ? "disabled" : ""; ?>
+
                                                     id="checkbox-item-<?= $responsable->id ?>"
                                                     type="checkbox"
                                                     value="<?= $responsable->id ?>"
@@ -119,6 +127,8 @@
                         <label for="fecha" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Año de
                             publicacion<span class="text-red-500">*</span> </label>
                         <input
+                            <?= $mode === "DSP" || $mode === "DEL" ? "disabled" : ""; ?>
+
                                 type="text"
                                 name="fecha_emision"
                                 id="fecha"
@@ -131,13 +141,32 @@
 
                     <div>
                         <label for="message" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Descripción</label>
-                        <textarea id="message" rows="4"
-                                  class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 "
-                                  placeholder="Escribe una descripcion del documento..."
-                                  name="descripcion">
+                        <textarea
+                                <?= $mode === "DSP" || $mode === "DEL" ? "disabled" : ""; ?>
+
+                                id="message" rows="4"
+                                class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 "
+                                placeholder="Escribe una descripcion del documento..."
+                                name="descripcion">
                                 <?= htmlspecialchars($documento['descripcion']) ?>
 
                         </textarea>
+                    </div>
+
+                    <div>
+                        <label for="role" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Selecciona
+                            el estado</label>
+
+                        <select
+                            <?= $mode === "DSP" || $mode === "DEL" ? "disabled" : ""; ?>
+                                name="estado"
+                                id="estado"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5">
+
+                            <option value="ACT" <?= $documento["estado"] === "ACT" ? 'selected' : "" ?> >Activo</option>
+                            <option value="INA" <?= $documento["estado"] === "INA" ? 'selected' : "" ?> >Inactivo</option>
+
+                        </select>
                     </div>
 
                     <?php if ($mode === "UPD" || $mode === "INS") : ?>
@@ -192,7 +221,7 @@
                                         <p class="text-xs text-gray-500 dark:text-gray-400"></p>
                                     </div>
                                     <input id="dropzone-file" type="file" class="hidden" accept=".pdf" name="archivo"
-                                           />
+                                    />
                                 </label>
                             </div>
                         </div>
