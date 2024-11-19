@@ -2,6 +2,7 @@
 
 namespace Controller\admin\documentos;
 
+use Clases\FileHandler;
 use Model\ActiveRecord;
 use MVC\models\Documentos;
 
@@ -41,10 +42,10 @@ class UpdateDocumentController extends ActiveRecord
         }
     }
 
-    private static function checkForNewImage($documento, $oldImage)
+    private static function checkForNewImage($documento, $oldImage): bool
     {
         if (isset($_FILES['imagen']) && $_FILES['imagen']['error'] === UPLOAD_ERR_OK) {
-            if (CreateDocumentController::procesarImagen($documento)) {
+            if (FileHandler::procesarImagen($documento, CARPETA_IMAGENES_DOCUMENTOS)) {
                 self::deleteFile(CARPETA_IMAGENES_DOCUMENTOS . $oldImage);
                 return true;
             } else {
@@ -55,10 +56,10 @@ class UpdateDocumentController extends ActiveRecord
         return true;
     }
 
-    private static function checkForNewPDF($documento, $oldPDF)
+    private static function checkForNewPDF($documento, $oldPDF): bool
     {
         if (isset($_FILES['archivo']) && $_FILES['archivo']['error'] === UPLOAD_ERR_OK) {
-            if (CreateDocumentController::procesarPDF($documento)) {
+            if (FileHandler::procesarPDF($documento,CARPETA_DOCUMENTOS)) {
                 self::deleteFile(CARPETA_DOCUMENTOS . $oldPDF);
                 return true;
             } else {

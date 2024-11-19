@@ -83,7 +83,7 @@ class DocumentosTecnicos extends ActiveRecord
             ON tipos_herramienta.id = documentos.id_tipo_herramienta
             JOIN tematicas 
             ON tematicas.id = documentos.id_tematica 
-            GROUP BY documentos.id;";
+            GROUP BY documentos.id order by documentos.id desc;";
 
         return DocumentosTecnicos::SQL($sql);
     }

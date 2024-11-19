@@ -4,3 +4,9 @@ vendor/
 .env
 .DS_Store
 includes/.env
+public/imagenesDocumentos
+public/documentos
+public/imagenesLibros
+public/libros
+
+
