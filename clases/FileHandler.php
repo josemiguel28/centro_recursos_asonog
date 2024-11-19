@@ -4,7 +4,6 @@ namespace Clases;
 
 use Exception;
 use Intervention\Image\ImageManagerStatic as Image;
-use MVC\models\Documentos;
 
 class FileHandler
 {
@@ -14,8 +13,20 @@ class FileHandler
     const ALLOWED_PDF_TYPE = 'application/pdf';
 
 
+    /**
+     * Procesa un archivo de imagen subido.
+     *
+     * Este metodo maneja la carga, validación y procesamiento de un archivo de imagen.
+     * Verifica si hay errores en la carga, valida el tipo y tamaño del archivo, genera un nombre
+     * de archivo único, crea el directorio necesario si no existe y redimensiona la imagen.
+     *
+     * @param object $model La instancia del modelo para establecer alertas y nombre de archivo.
+     * @param string $imagePath La ruta donde se guardará la imagen procesada.
+     * @return bool Devuelve true si la imagen se procesó correctamente, false en caso contrario.
+     */
     public static function procesarImagen($model, $imagePath): bool
     {
+
         if (!isset($_FILES['imagen']) || $_FILES['imagen']['error'] !== UPLOAD_ERR_OK) {
             $model::setAlerta('fail', 'Error al subir la imagen.');
             return false;
@@ -37,9 +48,9 @@ class FileHandler
         $nombreImagen = self::generarNombreArchivo('jpg');
         self::crearCarpetaSiNoExiste(CARPETA_IMAGENES_DOCUMENTOS);
 
-        // Procesar la imagen
+        // Procesa la imagen
         try {
-            ini_set('memory_limit', '256M'); // Aumentar temporalmente el límite de memoria
+            ini_set('memory_limit', '256M'); // Aumenta temporalmente el límite de memoria
             $image = Image::make($_FILES['imagen']['tmp_name'])->fit(800, 1200);
             $model->setFileName($nombreImagen, "imagen");
             $image->save($imagePath . $nombreImagen);
@@ -51,6 +62,17 @@ class FileHandler
         return true;
     }
 
+    /**
+     * Procesa un archivo PDF subido.
+     *
+     * Este metodo maneja la carga, validación y procesamiento de un archivo PDF.
+     * Verifica si hay errores en la carga, valida el tipo y tamaño del archivo, genera un nombre
+     * de archivo único, crea el directorio necesario si no existe y mueve el archivo a la ubicación deseada.
+     *
+     * @param object $model La instancia del modelo para establecer alertas y nombre de archivo.
+     * @param string $pdfPath La ruta donde se guardará el archivo PDF procesado.
+     * @return bool Devuelve true si el archivo PDF se procesó correctamente, false en caso contrario.
+     */
     public static function procesarPDF($model, $pdfPath): bool
     {
         if (!isset($_FILES['archivo']) || $_FILES['archivo']['error'] !== UPLOAD_ERR_OK) {
@@ -74,15 +96,16 @@ class FileHandler
         $nombrepdf = self::generarNombreArchivo('pdf');
         self::crearCarpetaSiNoExiste(CARPETA_DOCUMENTOS);
 
+        // Mueve el archivo PDF a la ubicación deseada
         if (!move_uploaded_file($_FILES['archivo']['tmp_name'], $pdfPath . $nombrepdf)) {
             $model::setAlerta('fail', 'Ocurrió un error al subir el archivo PDF.');
             return false;
         }
 
+        // Establece el nombre del archivo en el modelo
         $model->setFileName($nombrepdf, "archivo");
         return true;
     }
-
 
     public static function crearCarpetaSiNoExiste($carpeta): void
     {
@@ -112,5 +135,4 @@ class FileHandler
             throw new Exception("Error al eliminar el archivo anterior.");
         }
     }
-
 }
