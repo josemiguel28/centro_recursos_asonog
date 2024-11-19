@@ -2,6 +2,8 @@
 
 namespace Controller\admin\libros;
 
+use Clases\FileHandler;
+use Intervention\Image\File;
 use Model\ActiveRecord;
 use Model\Libros;
 use Intervention\Image\ImageManagerStatic as Image;
@@ -48,18 +50,6 @@ class CreateBookController extends ActiveRecord
         */
     }
 
-    private static function crearCarpetaSiNoExiste($carpeta): void
-    {
-        if (!is_dir($carpeta)) {
-            mkdir($carpeta, 0755, true);
-        }
-    }
-
-    private static function generarNombreArchivo($extension): string
-    {
-        return md5(uniqid(strval(rand()), true)) . '.' . $extension;
-    }
-
     public static function procesarImagen($libro): bool
     {
         if (!isset($_FILES['imagen']) || $_FILES['imagen']['error'] !== UPLOAD_ERR_OK) {
@@ -80,8 +70,8 @@ class CreateBookController extends ActiveRecord
             return false;
         }
 
-        $nombreImagen = self::generarNombreArchivo('jpg');
-        self::crearCarpetaSiNoExiste(CARPETA_IMAGENES_LIBROS);
+        $nombreImagen = FileHandler::generarNombreArchivo('jpg');
+        FileHandler::crearCarpetaSiNoExiste(CARPETA_IMAGENES_LIBROS);
 
         // Procesar la imagen
         try {
@@ -119,8 +109,8 @@ class CreateBookController extends ActiveRecord
             return false;
         }
 
-        $nombrepdf = self::generarNombreArchivo('pdf');
-        self::crearCarpetaSiNoExiste(CARPETA_LIBROS);
+        $nombrepdf = FileHandler::generarNombreArchivo('pdf');
+        FileHandler::crearCarpetaSiNoExiste(CARPETA_LIBROS);
 
         // Mover el archivo PDF al servidor
         if (!move_uploaded_file($_FILES['archivo']['tmp_name'], CARPETA_LIBROS . $nombrepdf)) {

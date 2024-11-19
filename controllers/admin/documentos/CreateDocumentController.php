@@ -2,6 +2,7 @@
 
 namespace Controller\admin\documentos;
 
+use Clases\FileHandler;
 use Clases\Request;
 use Intervention\Image\ImageManagerStatic as Image;
 use MVC\models\Documentos;
@@ -50,18 +51,6 @@ class CreateDocumentController
         }
     }
 
-    private static function crearCarpetaSiNoExiste($carpeta): void
-    {
-        if (!is_dir($carpeta)) {
-            mkdir($carpeta, 0755, true);
-        }
-    }
-
-    private static function generarNombreArchivo($extension): string
-    {
-        return md5(uniqid(strval(rand()), true)) . '.' . $extension;
-    }
-
     public static function procesarImagen($documento): bool
     {
         if (!isset($_FILES['imagen']) || $_FILES['imagen']['error'] !== UPLOAD_ERR_OK) {
@@ -82,8 +71,8 @@ class CreateDocumentController
             return false;
         }
 
-        $nombreImagen = self::generarNombreArchivo('jpg');
-        self::crearCarpetaSiNoExiste(CARPETA_IMAGENES_DOCUMENTOS);
+        $nombreImagen = FileHandler::generarNombreArchivo('jpg');
+        FileHandler::crearCarpetaSiNoExiste(CARPETA_IMAGENES_DOCUMENTOS);
 
         // Procesar la imagen
         try {
@@ -119,8 +108,8 @@ class CreateDocumentController
             return false;
         }
 
-        $nombrepdf = self::generarNombreArchivo('pdf');
-        self::crearCarpetaSiNoExiste(CARPETA_DOCUMENTOS);
+        $nombrepdf = FileHandler::generarNombreArchivo('pdf');
+        FileHandler::crearCarpetaSiNoExiste(CARPETA_DOCUMENTOS);
 
         if (!move_uploaded_file($_FILES['archivo']['tmp_name'], CARPETA_DOCUMENTOS . $nombrepdf)) {
             Documentos::setAlerta('fail', 'Ocurrió un error al subir el archivo PDF.');
