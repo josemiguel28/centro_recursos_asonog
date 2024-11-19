@@ -19,7 +19,7 @@ class UpdateDocumentController extends ActiveRecord
      * @param Documentos $documento El documento a actualizar.
      * @return void
      */
-    public static function actualizarDocumento($args, $documento)
+    public static function actualizarDocumento($args, $documento): void
     {
         try {
             // Guarda la ruta antes de que se sincronice con los nuevos nombres
@@ -46,7 +46,7 @@ class UpdateDocumentController extends ActiveRecord
     {
         if (isset($_FILES['imagen']) && $_FILES['imagen']['error'] === UPLOAD_ERR_OK) {
             if (FileHandler::procesarImagen($documento, CARPETA_IMAGENES_DOCUMENTOS)) {
-                self::deleteFile(CARPETA_IMAGENES_DOCUMENTOS . $oldImage);
+                FileHandler::deleteFile(CARPETA_IMAGENES_DOCUMENTOS . $oldImage);
                 return true;
             } else {
                 Documentos::setAlerta("fail", "Error al procesar la nueva imagen.");
@@ -60,7 +60,7 @@ class UpdateDocumentController extends ActiveRecord
     {
         if (isset($_FILES['archivo']) && $_FILES['archivo']['error'] === UPLOAD_ERR_OK) {
             if (FileHandler::procesarPDF($documento,CARPETA_DOCUMENTOS)) {
-                self::deleteFile(CARPETA_DOCUMENTOS . $oldPDF);
+                FileHandler::deleteFile(CARPETA_DOCUMENTOS . $oldPDF);
                 return true;
             } else {
                 Documentos::setAlerta("fail", "Error al procesar el nuevo PDF.");
@@ -69,13 +69,4 @@ class UpdateDocumentController extends ActiveRecord
         }
         return true;
     }
-
-    private static function deleteFile($filePath): void
-    {
-        if ($filePath && file_exists($filePath) && !unlink($filePath)) {
-            throw new Exception("Error al eliminar el archivo anterior.");
-        }
-    }
-
-
 }

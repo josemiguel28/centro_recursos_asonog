@@ -2,6 +2,7 @@
 
 namespace Clases;
 
+use Exception;
 use Intervention\Image\ImageManagerStatic as Image;
 use MVC\models\Documentos;
 
@@ -93,6 +94,23 @@ class FileHandler
     public static function generarNombreArchivo($extension): string
     {
         return md5(uniqid(strval(rand()), true)) . '.' . $extension;
+    }
+
+
+    /**
+     * Elimina un archivo del servidor.
+     *
+     * Este metodo elimina el archivo especificado si existe y lanza una excepción si la eliminación falla.
+     *
+     * @param string $filePath La ruta al archivo a eliminar.
+     * @return void
+     * @throws Exception Si el archivo no pudo ser eliminado.
+     */
+    public static function deleteFile($filePath): void
+    {
+        if ($filePath && file_exists($filePath) && !unlink($filePath)) {
+            throw new Exception("Error al eliminar el archivo anterior.");
+        }
     }
 
 }

@@ -2,6 +2,7 @@
 
 namespace Controller\admin\libros;
 
+use Clases\FileHandler;
 use Model\ActiveRecord;
 use Model\Libros;
 use Exception;
@@ -21,7 +22,7 @@ class UpdateBookController extends ActiveRecord
     public static function actualizarLibro($args, $libro): void
     {
         try {
-            //guarda el nombre antes que se sinconice con los nuevos nombres
+            //guarda la ruta antes que se sinconice con los nuevos nombres (en caso que existan)
             $oldImage = $libro->imagen;
             $oldPDF = $libro->archivo_url;
 
@@ -45,12 +46,13 @@ class UpdateBookController extends ActiveRecord
      * @param Libros $libro El libro que se está actualizando.
      * @param string $oldImage El nombre del archivo de la imagen antigua.
      * @return bool True si la nueva imagen se procesó correctamente, false en caso contrario.
+     * @throws Exception
      */
     private static function checkForNewImage($libro, $oldImage): bool
     {
         if (isset($_FILES['imagen']) && $_FILES['imagen']['error'] === UPLOAD_ERR_OK) {
-            if (CreateBookController::procesarImagen($libro)) {
-                self::deleteFile(CARPETA_IMAGENES_LIBROS . $oldImage);
+            if (FileHandler::procesarImagen($libro, CARPETA_IMAGENES_LIBROS)) {
+                FileHandler::deleteFile(CARPETA_IMAGENES_LIBROS . $oldImage);
                 return true;
             } else {
                 Libros::setAlerta("fail", "Error al procesar la nueva imagen.");
@@ -69,12 +71,13 @@ class UpdateBookController extends ActiveRecord
      * @param Libros $libro El libro que se está actualizando.
      * @param string $oldPDF El nombre del archivo del PDF antiguo.
      * @return bool True si el nuevo PDF se procesó correctamente, false en caso contrario.
+     * @throws Exception
      */
     private static function checkForNewPDF($libro, $oldPDF): bool
     {
         if (isset($_FILES['archivo']) && $_FILES['archivo']['error'] === UPLOAD_ERR_OK) {
-            if (CreateBookController::procesarPDF($libro)) {
-                self::deleteFile(CARPETA_LIBROS . $oldPDF);
+            if (FileHandler::procesarPDF($libro, CARPETA_LIBROS)) {
+                FileHandler::deleteFile(CARPETA_LIBROS . $oldPDF);
                 return true;
             } else {
                 Libros::setAlerta("fail", "Error al procesar el nuevo PDF.");
@@ -84,19 +87,4 @@ class UpdateBookController extends ActiveRecord
         return true;
     }
 
-    /**
-     * Elimina un archivo del sistema de archivos.
-     *
-     * Este metodo elimina el archivo especificado si existe y lanza una excepción si la eliminación falla.
-     *
-     * @param string $filePath La ruta al archivo a eliminar.
-     * @return void
-     * @throws Exception Si el archivo no pudo ser eliminado.
-     */
-    private static function deleteFile($filePath): void
-    {
-        if ($filePath && file_exists($filePath) && !unlink($filePath)) {
-            throw new Exception("Error al eliminar el archivo anterior.");
-        }
-    }
 }
