@@ -36,20 +36,25 @@ y los libros que puedan ser consultados por cualquier persona que desee enriquec
 - Tailwind CSS
 - Gulp.js (para minificar código e imágenes)
 
+### Patron de diseño 
+- MVC
+
 ## Instalación
-1. Clonar el repositorio en la carpeta del servidor web (Descargar https://www.apachelounge.com/download/ y descomprimir en la carpeta C:\apache) y mover el proyecto a la carpeta `htdocs` (C:\apache\htdocs)
+1. Descargar [apache](https://www.apachelounge.com/download/) y descomprimir en la carpeta `C:\apache`
 
-2. Ejecutar el comando `composer install` para instalar las dependencias de PHP'
+2. Clonar el repositorio en la carpeta `htdocs` (C:\apache\htdocs)
 
-3. Ejecutar el comando `npm install` para instalar las dependencias de Node.js
+3. Ejecutar el comando `composer install` para instalar las dependencias de PHP'
 
-4. Crear una base de datos en MySQL (la estructura de la base de datos se encuentra en `/scripts` del proyecto)
+4. Ejecutar el comando `npm install` para instalar las dependencias de Node.js
 
-5. Modificar el archivo `.env` en la carpeta `/includes` del proyecto y configurar las variables de entorno
+5. Crear una base de datos en MySQL (la estructura de la base de datos se encuentra en `/scripts` del proyecto)
 
-6. En la raiz del proyecto, moverse a la carpeta `/public` con el comando `cd public` y ejecutar el comando `php -S localhost:3000`
+6. Modificar el archivo `.env` en la carpeta `/includes` del proyecto y configurar las variables de entorno
 
-7. En el navegador, ingresar a la dirección `http://localhost:3000` para acceder a la aplicación
+7. En la raiz del proyecto, moverse a la carpeta `/public` con el comando `cd public` y ejecutar el comando `php -S localhost:3000`
+
+8. En el navegador, ingresar a la dirección `http://localhost:3000` para acceder a la aplicación
 
 - Nota: Para el correcto funcionamiento de la aplicación, es necesario tener instalado PHP y MySQL en el servidor.
 
