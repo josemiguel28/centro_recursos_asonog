@@ -13,6 +13,15 @@ date_default_timezone_set('UTC');
 
 class AdminController
 {
+    /**
+     * Renderiza la página de inicio del administrador con varias estadísticas y registros.
+     *
+     * Este metodo inicia una sesión, verifica si el usuario es administrador, recupera varias estadísticas
+     * y registros, y renderiza la página de inicio del administrador con los datos recuperados.
+     *
+     * @param Router $router La instancia del router para renderizar vistas.
+     * @return void
+     */
     public static function index(Router $router): void
     {
         $session = new Request();
@@ -20,11 +29,10 @@ class AdminController
 
         isAdmin();
 
-        //usuario que acaba de iniciar sesion
         $crrntUser = $_SESSION['nombre'] ?? "";
         $crrntUserId = $_SESSION["id"];
 
-        //pasa la instancia de cada modelo a los metodos
+        // Pasa la instancia de cada modelo a los métodos
         $Usuario = new Usuario();
         $Documentos = new Documentos();
         $Libros = new Libros();
@@ -53,7 +61,6 @@ class AdminController
             'accessLog' => $getAccessLog,
             'titlePage' => "Panel de administrador"
         ]);
-
     }
 
     private static function getRecordsStats($modelo): int
@@ -64,7 +71,6 @@ class AdminController
 
     private static function countActiveAndInactiveRecords($modelo): array
     {
-        // Obtiene todos los registros del modelo
         $allRecords = $modelo::all();
 
         $RECORD_STATE_ACTIVE = "ACT";

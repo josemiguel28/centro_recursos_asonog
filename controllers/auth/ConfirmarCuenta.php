@@ -61,7 +61,7 @@ class ConfirmarCuenta
     }
 
     /**
-     * Establece una nueva contraseña para el usuario validando la contraseña temporal.
+     * Establece una nueva contraseña para el usuario.
      *
      * @param Usuario $usuario El usuario al que se le cambiará la contraseña.
      * @return void

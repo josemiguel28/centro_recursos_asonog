@@ -1,1 +1,0 @@
-create table citas (    id int(11) not null auto_increment,    fecha date not null,    hora time not null,    usuarioId int(11),    primary key (id),    foreign key (usuarioId) references usuarios(id)) engine=InnoDB default charset=utf8;

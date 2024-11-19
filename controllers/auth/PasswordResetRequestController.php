@@ -47,10 +47,13 @@ class PasswordResetRequestController extends ActiveRecord
 
     public static function findRegisteredUser($column, $value)
     {
+        $USER_CONFIRMED = '1';
+        $USER_ACTIVE = 'ACT';
+
         //verificar que el usuario exista
         $usuario = Usuario::where($column, $value);
 
-        if ($usuario && $usuario->confirmado === '1' && $usuario->estado === 'ACT') {
+        if ($usuario && $usuario->confirmado === $USER_CONFIRMED && $usuario->estado === $USER_ACTIVE) {
             return $usuario;
         }
 

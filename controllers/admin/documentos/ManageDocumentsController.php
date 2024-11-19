@@ -89,7 +89,7 @@ class ManageDocumentsController extends ActiveRecord
 
         foreach ($document as $doc) {
             foreach ($doc as $key => $val) {
-                // Si la clave es 'id_tecnico', almacena los valores en un array
+                // Si la clave es 'tecnico', almacena los valores en un array
                 if ($key === 'tecnico') {
                     // Inicializa como array si aún no existe
                     if (!isset($documentData[$key])) {
