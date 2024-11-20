@@ -73,4 +73,4 @@ export function dev() {
     watch('src/img/**/*.{png,jpg}', imagenes)
 }
 
-export default series( js, imagenes ,dev )
+export default series( js, imagenes ,dev,watch)

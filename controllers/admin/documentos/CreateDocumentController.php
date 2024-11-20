@@ -4,7 +4,6 @@ namespace Controller\admin\documentos;
 
 use Clases\FileHandler;
 use Clases\Request;
-use Intervention\Image\ImageManagerStatic as Image;
 use MVC\models\Documentos;
 use MVC\models\DocumentosResponsable;
 
@@ -47,20 +46,29 @@ class CreateDocumentController
         }
     }
 
-    public static function saveDocumentoTecnicoResponsable($documentoId): void
-    {
-        $request = new Request();
+/**
+ * Guarda los técnicos responsables para un documento específico.
+ *
+ * Este metodo obtiene los IDs de los técnicos responsables seleccionados desde la solicitud ,
+ * y guarda cada uno de ellos en la base de datos asociándolos con el documento proporcionado.
+ *
+ * @param int $documentoId El ID del documento para el cual se guardarán los técnicos responsables.
+ * @return void
+ */
+public static function saveDocumentoTecnicoResponsable($documentoId): void
+{
+    $request = new Request();
 
-        //obtiene el id de los tecnicos seleccionados
-        $tecnicosId = $request->post('id_tecnico_responsable');
+    // Obtiene el ID de los técnicos seleccionados
+    $tecnicosId = $request->post('id_tecnico_responsable');
 
-        foreach ($tecnicosId as $tecnicoId) {
-            $args = [
-                "id_documento" => $documentoId,
-                "id_tecnico_responsable" => $tecnicoId
-            ];
-            $documentoTecnico = new DocumentosResponsable($args);
-            $documentoTecnico->guardar();
-        }
+    foreach ($tecnicosId as $tecnicoId) {
+        $args = [
+            "id_documento" => $documentoId,
+            "id_tecnico_responsable" => $tecnicoId
+        ];
+        $documentoTecnico = new DocumentosResponsable($args);
+        $documentoTecnico->guardar();
     }
+}
 }
