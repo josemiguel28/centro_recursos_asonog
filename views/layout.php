@@ -19,7 +19,7 @@
     <meta property="og:type" content="website"/>
     <meta property="og:site_name" content="Mi Biblioteca Online"/>
     <meta property="og:locale" content="es_ES"/>
-
+    <link rel="icon" href="/build/img/logo_img.webp" type="image/x-icon">
 
     <!-- Font Awesome icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
@@ -30,8 +30,9 @@
           rel="stylesheet">
     <!-- tailwind css link-->
     <link rel="stylesheet" href="/build/css/output.css">
-    <!--AOS transitions -->
+    <!--AOS transitions
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+-->
     <!--Flowbite css link-->
     <link href="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.css" rel="stylesheet"/>
 
@@ -43,9 +44,14 @@
 <!-- barra de navegacion -->
 <nav class="bg-white py-5 start-0 border-b sticky top-0 z-50 shadow-md">
     <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-        <a href="https://flowbite.com/" class="flex items-center space-x-3 rtl:space-x-reverse">
-            <img src="https://flowbite.com/docs/images/logo.svg" class="h-8" alt="Flowbite Logo">
-            <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">Flowbite</span>
+        <a href="/" class="flex items-center flex-col space-x-3 rtl:space-x-reverse">
+            <picture>
+                <source srcset="build/img/logo_img.webp" type="image/webp">
+                <source srcset="build/img/logo_img.jpg" type="image/jpeg">
+                <img loading="lazy" class="h-[5rem] md:h-24"
+                     src="build/img/logo_img.png" alt="logo">
+            </picture>
+            <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white"></span>
         </a>
         <div class="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
             <a

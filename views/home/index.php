@@ -85,8 +85,8 @@
                 <picture>
                     <source srcset="build/img/banner-library.webp" type="image/webp">
                     <source srcset="build/img/banner-library.jpg" type="image/jpeg">
-                    <img class="h-full w-full rounded-md md:rounded-lg object-fit"
-                         loading="lazy" src="build/img/banner-library.png" alt="library img">
+                    <img class="h-full w-full rounded-md md:rounded-lg object-cover"
+                         loading="lazy" src="build/img/banner-library.jpeg" alt="library img">
                 </picture>
             </div>
             <div class="p-6">
@@ -118,10 +118,10 @@
              data-aos="fade-left" data-aos-duration="1000">
             <div class="relative md:w-2/5 shrink-0 overflow-hidden">
                 <picture>
-                    <source srcset="build/img/banner-colaboradores.webp" type="image/webp">
-                    <source srcset="build/img/banner-colaboradores.jpg" type="image/jpeg">
-                    <img class="h-full w-full rounded-md md:rounded-lg object-cover"
-                         loading="lazy" src="build/img/banner-colaboradores.jpg" alt="colaborador img">
+                    <source srcset="build/img/logo_asonog.webp" type="image/webp">
+                    <source srcset="build/img/logo_asonog.jpg" type="image/jpeg">
+                    <img class="h-full w-full rounded-md md:rounded-lg object-contain"
+                         loading="lazy" src="build/img/logo_asonog.png" alt="colaborador img">
                 </picture>
             </div>
             <div class="p-6">
@@ -161,100 +161,141 @@
         <!-- 4 Columnas -->
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             <!-- Derechos Humanos -->
-            <div class="bg-white shadow-md rounded-lg p-6 border border-transparent transition transform hover:-translate-y-2 hover:shadow-lg hover:border-blue-500"
+            <div class="bg-white shadow-md rounded-lg border border-transparent transition transform hover:-translate-y-2 hover:shadow-lg hover:border-blue-500 flex flex-col"
                  data-aos="fade-right">
-                <a href="/search-book?busqueda-libro=derechos+humanos">
-
-                    <div class="mb-4">
+                <a href="/search-book?busqueda-libro=derechos+humanos" class="flex-grow">
+                    <div>
                         <picture>
                             <source srcset="build/img/img_categoria_derechos.webp" type="image/webp">
                             <source srcset="build/img/img_categoria_derechos.jpg" type="image/jpeg">
-                            <img loading="lazy" class="rounded w-full h-56 object-cover"
+                            <img loading="lazy" class="rounded-t-lg w-full h-56 object-cover"
                                  src="build/img/img_categoria_derechos.jpeg" alt="derechos humanos">
                         </picture>
                     </div>
-                    <h3 class="text-xl font-semibold mb-2">Derechos Humanos</h3>
-                    <p class="text-gray-700">Recursos enfocados en la protección y promoción de los derechos
-                        humanos.</p>
+                    <div class="p-4">
+                        <h3 class="text-xl font-semibold">Derechos Humanos</h3>
+                        <p class="text-gray-700">Recursos enfocados en la protección y promoción de los derechos
+                            humanos.</p>
+                    </div>
                 </a>
+                <!-- Call to Action -->
+                <div class="mt-4 text-right">
+                    <a href="/search-book?busqueda-libro=derechos+humanos"
+                       class="inline-block bg-blue-500 text-white text-sm font-semibold py-3 px-6 rounded-full mb-6 mx-4 shadow hover:bg-blue-600 transition">
+                        Explorar Recursos
+                    </a>
+                </div>
             </div>
 
             <!-- Seguridad Alimentaria -->
-            <div class="bg-white shadow-md rounded-lg p-6 border border-transparent transition transform hover:-translate-y-2 hover:shadow-lg hover:border-green-500"
+            <div class="bg-white shadow-md rounded-lg border border-transparent transition transform hover:-translate-y-2 hover:shadow-lg hover:border-green-500 flex flex-col"
                  data-aos="fade-left">
-                <a href="/search-book?busqueda-libro=seguridad+alimentaria">
-                    <div class="mb-4">
+                <a href="/search-book?busqueda-libro=seguridad+alimentaria" class="flex-grow">
+                    <div>
                         <picture>
                             <source srcset="build/img/img_categoria_san.webp" type="image/webp">
                             <source srcset="build/img/img_categoria_san.jpg" type="image/jpeg">
-                            <img loading="lazy" class="rounded w-full h-56 object-cover"
+                            <img loading="lazy" class="rounded-t-lg w-full h-56 object-cover"
                                  src="build/img/img_categoria_san.jpeg" alt="seguridad alimentaria">
                         </picture>
                     </div>
-                    <h3 class="text-xl font-semibold mb-2">Seguridad alimentaria y nutricional (SAN)</h3>
-                    <p class="text-gray-700">Información sobre políticas y prácticas de acceso a alimentos.</p>
+                    <div class="p-4">
+                        <h3 class="text-xl font-semibold mb-2">Seguridad alimentaria y nutricional (SAN)</h3>
+                        <p class="text-gray-700">Información sobre políticas y prácticas de acceso a alimentos.</p>
+                    </div>
                 </a>
+                <!-- Call to Action -->
+                <div class="mt-4 text-right">
+                    <a href="/search-book?busqueda-libro=seguridad+alimentaria"
+                       class="inline-block bg-green-500 text-white text-sm font-semibold py-3 px-6 rounded-full mb-6 mx-4 shadow hover:bg-green-600 transition">
+                        Explorar Recursos
+                    </a>
+                </div>
             </div>
 
             <!-- Cambio Climático -->
-            <div class="bg-white shadow-md rounded-lg p-6 border border-transparent transition transform hover:-translate-y-2 hover:shadow-lg hover:border-yellow-500"
-                 data-aos="fade-right">
-
-                <a href="/search-book?busqueda-libro=cambio+climatico">
-                    <div class="mb-4">
+            <div class="bg-white shadow-md rounded-lg border border-transparent transition transform hover:-translate-y-2 hover:shadow-lg hover:border-yellow-500 flex flex-col"
+                 data-aos="fade-left">
+                <a href="/search-book?busqueda-libro=cambio+climatico" class="flex-grow">
+                    <div>
                         <picture>
                             <source srcset="build/img/img_categoria_ambiente.webp" type="image/webp">
                             <source srcset="build/img/img_categoria_ambiente.jpg" type="image/jpeg">
-                            <img loading="lazy" class="rounded w-full h-56 object-cover"
+                            <img loading="lazy" class="rounded-t-lg w-full h-56 object-cover"
                                  src="build/img/img_categoria_ambiente.jpeg" alt="cambio climatico">
                         </picture>
                     </div>
-                    <h3 class="text-xl font-semibold mb-2">Cambio Climático</h3>
-                    <p class="text-gray-700">Recursos relacionados con el impacto y soluciones ante el cambio
-                        climático.</p>
+                    <div class="p-4">
+                        <h3 class="text-xl font-semibold mb-2">Cambio Climático</h3>
+                        <p class="text-gray-700">Recursos relacionados con el impacto y soluciones ante el cambio
+                            climático.</p>
+                    </div>
                 </a>
+                <!-- Call to Action -->
+                <div class="mt-4 text-right">
+                    <a href="/search-book?busqueda-libro=cambio+climatico"
+                       class="inline-block bg-yellow-500 text-white text-sm font-semibold py-3 px-6 rounded-full mb-6 mx-4 shadow transition hover:bg-yellow-600">
+                        Explorar Recursos
+                    </a>
+                </div>
+
             </div>
 
             <!-- Género e Inclusión -->
-            <div class="bg-white shadow-md rounded-lg p-6 border border-transparent transition transform hover:-translate-y-2 hover:shadow-lg hover:border-purple-500"
+            <div class="bg-white shadow-md rounded-lg border border-transparent transition transform hover:-translate-y-2 hover:shadow-lg hover:border-purple-500 flex flex-col"
                  data-aos="fade-left">
-
-                <a href="/search-book?busqueda-libro=genero+e+inclusion">
-
-                    <div class="mb-4">
+                <a href="/search-book?busqueda-libro=genero+e+inclusion" class="flex-grow">
+                    <div>
                         <picture>
                             <source srcset="build/img/img_categoria_genero.webp" type="image/webp">
                             <source srcset="build/img/img_categoria_genero.jpg" type="image/jpeg">
-                            <img loading="lazy" class="rounded w-full h-56 object-cover"
-                                 src="build/img/img_categoria_genero.jpeg" alt="categoria img">
+                            <img loading="lazy" class="rounded-t-lg w-full h-56 object-cover"
+                                 src="build/img/img_categoria_genero.jpeg" alt="genero e inclusion">
                         </picture>
                     </div>
-                    <h3 class="text-xl font-semibold mb-2">Género e Inclusión</h3>
-                    <p class="text-gray-700">Materiales sobre equidad de género e inclusión social.</p>
+                    <div class="p-4">
+                        <h3 class="text-xl font-semibold mb-2">Género e Inclusión</h3>
+                        <p class="text-gray-700">Materiales sobre equidad de género e inclusión social.</p>
+                    </div>
                 </a>
+                <!-- Call to Action -->
+                <div class="mt-4 text-right">
+                    <a href="/search-book?busqueda-libro=genero+e+inclusion"
+                       class="inline-block bg-purple-500 text-white text-sm font-semibold py-3 px-6 rounded-full mb-6 mx-4 shadow hover:bg-purple-600 transition">
+                        Ver Recursos
+                    </a>
+                </div>
             </div>
 
             <!-- Participación Ciudadana -->
-            <div class="bg-white shadow-md rounded-lg p-6 border border-transparent transition transform hover:-translate-y-2 hover:shadow-lg hover:border-red-500"
+            <div class="bg-white shadow-md rounded-lg border border-transparent transition transform hover:-translate-y-2 hover:shadow-lg hover:border-red-500 flex flex-col"
                  data-aos="fade-right">
-
-                <a href="/search-book?busqueda-libro=participacion+ciudadana">
-
-                    <div class="mb-4">
+                <a href="/search-book?busqueda-libro=participacion+ciudadana" class="flex-grow">
+                    <div>
                         <picture>
                             <source srcset="build/img/img_categoria_participacion.webp" type="image/webp">
                             <source srcset="build/img/img_categoria_participacion.jpg" type="image/jpeg">
-                            <img loading="lazy" class="rounded w-full h-56 object-cover"
+                            <img loading="lazy" class="rounded-t-lg w-full h-56 object-cover"
                                  src="build/img/img_categoria_participacion.jpeg" alt="participacion ciudadana">
                         </picture>
                     </div>
-                    <h3 class="text-xl font-semibold mb-2">Participación Ciudadana</h3>
-                    <p class="text-gray-700">Guías y herramientas para fomentar la participación cívica.</p>
+                    <div class="p-4">
+                        <h3 class="text-xl font-semibold mb-2">Participación Ciudadana</h3>
+                        <p class="text-gray-700">Guías y herramientas para fomentar la participación cívica.</p>
+                    </div>
                 </a>
+                <!-- Call to Action -->
+                <div class="mt-4 text-right">
+                    <a href="/search-book?busqueda-libro=participacion+ciudadana"
+                       class="inline-block bg-red-500 text-white text-sm font-semibold py-3 px-6 rounded-full mb-6 mx-4 shadow hover:bg-red-600 transition">
+                        Explorar Guías
+                    </a>
+                </div>
             </div>
+
         </div>
 
-        <!-- Botón Ver Más 
+        <!-- Botón Ver Más
         <div class="flex justify-center mt-7">
             <a href="#"
                 class="border-2 border-gray-700 text-black px-6 py-3 rounded-md text-lg hover:bg-gray-200 transition">
@@ -271,7 +312,8 @@
             <!-- Columna 1: Título y subtítulo -->
             <div class="text-center md:text-left">
                 <h2 class="text-4xl font-bold mb-8">Todos pueden aprender.</h2>
-                <h3 class="text-xl text-gray-700 mb-8">Accede a recursos y materiales diseñados para todos los niveles
+                <h3 class="text-xl text-gray-700 mb-8">Accede a recursos y materiales diseñados para todos los
+                    niveles
                     de conocimiento.</h3>
                 <button class="relative inline-block w-48 h-auto mx-auto mt-2 mb-4 cursor-pointer focus:outline-none border-0 text-inherit font-inherit group"
                         aria-label="Explorar recursos">
@@ -315,7 +357,8 @@
         <!-- Título y Subtítulo -->
         <div class="mb-8 w-full mx-auto">
             <h2 class="text-3xl font-semibold mb-2 lg:w-1/2">Libros destacados</h2>
-            <h3 class="text-lg md:text-xl text-gray-400 lg:w-1/2">Descubre una selección de nuestras obras más populares
+            <h3 class="text-lg md:text-xl text-gray-400 lg:w-1/2">Descubre una selección de nuestras obras más
+                populares
                 y recomendadas.
                 Accede a su versión digital desde cualquier lugar.</h3>
         </div>
@@ -325,7 +368,8 @@
             <?php foreach ($libros as $libro) : ?>
                 <div class="w-full mb-7 max-w-sm bg-white flex flex-col justify-between sm:max-w-xs"
                      data-aos="flip-left" data-aos-duration="1500">
-                    <a href="/libros/<?= $libro->archivo_url ?>" class="flex justify-center p-4 sm:p-8" target="_blank"
+                    <a href="/libros/<?= $libro->archivo_url ?>" class="flex justify-center p-4 sm:p-8"
+                       target="_blank"
                        style="background-color: #FCFCF7;">
                         <img class="rounded-xl" loading="lazy" src="imagenesLibros/<?php echo $libro->imagen ?>"
                              alt="libro img">
@@ -338,7 +382,7 @@
                             <div class="flex items-center space-x-1 rtl:space-x-reverse">
                                 <div class="flex items-center space-x-1 rtl:space-x-reverse">
                                     <div class="flex items-start space-x-1 rtl:space-x-reverse px-2 py-1 rounded-[1rem] bg-secondary-500">
-                                        <p class="text-xs sm:text-sm text-white max-w-[150px] truncate"><?= $libro->id_categoria //nombre de la categoria                ?></p>
+                                        <p class="text-xs sm:text-sm text-white max-w-[150px] truncate"><?= $libro->id_categoria //nombre de la categoria                   ?></p>
                                     </div>
                                 </div>
                             </div>
@@ -348,8 +392,8 @@
                     </div>
                     <div class="flex items-center justify-end px-3 sm:px-5 pb-3 sm:pb-5">
                         <a href="/libros/<?= $libro->archivo_url ?>" target="_blank"
-                           class="text-white bg-primary-500 hover:bg-primary-300 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg
-                                     text-xs sm:text-lg px-4 py-2 sm:px-5 sm:py-2.5 text-center w-full">
+                           class="text-white bg-primary-500 hover:bg-primary-300 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium
+                                     text-sm sm:text-lg py-3 px-6 rounded-full text-center w-full">
                             Ver Libro</a>
                     </div>
                 </div>
@@ -391,11 +435,13 @@
                     El <span
                             class="font-semibold"> Centro de Recursos para la Gestión del Conocimiento de ASONOG </span>
                     es una plataforma digital de acceso
-                    público e institucional que alberga una valiosa colección de recursos informativos enfocados en la
+                    público e institucional que alberga una valiosa colección de recursos informativos enfocados en
+                    la
                     <span class="font-semibold"> defensa de los derechos humanos, la equidad de género e inclusión, defensa del territorio y el medio
                     ambiente</span>, así como el fortalecimiento institucional y la gestión de riesgos, entre otros
                     temas. El
-                    CRGC sido creado con el propósito de preservar y difundir herramientas para promover la gestión del
+                    CRGC sido creado con el propósito de preservar y difundir herramientas para promover la gestión
+                    del
                     conocimiento de los usuarios.
                 </p>
 
@@ -414,7 +460,8 @@
     <section class="mx-auto max-w-screen-xl px-4 py-16">
         <div class="py-8 lg:py-16 px-4 mx-auto max-w-screen-md">
             <h2 class="mb-4 text-4xl tracking-tight font-semibold text-center text-gray-900">Contactanos</h2>
-            <p class="mb-8 lg:mb-16 font-light text-center text-gray-500 dark:text-gray-400 sm:text-xl">Si tienes dudas
+            <p class="mb-8 lg:mb-16 font-light text-center text-gray-500 dark:text-gray-400 sm:text-xl">Si tienes
+                dudas
                 o consultas, puedes contactarnos a través de nuestro formulario de contacto.</p>
             <form action="#" class="space-y-8">
                 <div>

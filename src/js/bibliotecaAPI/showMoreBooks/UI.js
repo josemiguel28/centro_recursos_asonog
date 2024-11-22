@@ -35,7 +35,7 @@ function mostrarLibros(data, limpiar = false) {
                 </div>
             </div>
             <div class="flex items-center justify-end px-3 sm:px-5 pb-3 sm:pb-5">
-                <a href="libros/${libro.archivo_url}" target="_blank" class="text-white bg-primary-500 hover:bg-primary-300 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-xs sm:text-lg px-4 py-2 sm:px-5 sm:py-2.5 text-center w-full">Ver Libro</a>
+                <a href="libros/${libro.archivo_url}" target="_blank" class="text-white bg-primary-500 hover:bg-primary-300 focus:ring-4 focus:outline-none text-sm sm:text-lg py-3 px-6 rounded-full text-center w-full">Ver Libro</a>
             </div>
         `;
         contenedorLibros.appendChild(libroDiv);
