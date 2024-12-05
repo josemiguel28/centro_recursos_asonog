@@ -16,7 +16,9 @@ class Router
             '/libro',
             '/gestionar/libros',
             '/documento',
-            '/repositorio/gestionar'
+            '/repositorio/gestionar',
+            '/colaborador',
+            '/search-document',
         ];
 
     public function get($url, $fn)

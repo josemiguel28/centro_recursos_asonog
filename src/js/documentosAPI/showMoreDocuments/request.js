@@ -14,13 +14,10 @@ async function CargarMasDocumentosAPI(offset) {
         }
         const data = await resultado.json();
 
-        console.log(data);
-
-
         mostrarDocumentos(data); // Llama a la función para mostrar los libros
 
     } catch (e) {
-        console.log(e);
+        console.error(e);
     }
 }
 export {CargarMasDocumentosAPI};

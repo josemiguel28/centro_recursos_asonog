@@ -19,7 +19,7 @@ class UpdateBookController extends ActiveRecord
      * @param Libros $libro El libro a actualizar.
      * @return void
      */
-    public static function actualizarLibro($args, $libro): void
+    public static function actualizarLibro($args, $libro)
     {
         try {
             //guarda la ruta antes que se sinconice con los nuevos nombres (en caso que existan)

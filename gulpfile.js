@@ -45,10 +45,10 @@ export async function imagenes(done) {
 
 function procesarImagenes(file, outputSubDir) {
     if (!fs.existsSync(outputSubDir)) {
-        fs.mkdirSync(outputSubDir, { recursive: true })
+        fs.mkdirSync(outputSubDir, { recursive: true });
     }
-    const baseName = path.basename(file, path.extname(file))
-    const extName = path.extname(file)
+    const baseName = path.basename(file, path.extname(file));
+    const extName = path.extname(file);
 
     if (extName.toLowerCase() === '.svg') {
         // If it's an SVG file, move it to the output directory
@@ -61,9 +61,12 @@ function procesarImagenes(file, outputSubDir) {
         const outputFileAvif = path.join(outputSubDir, `${baseName}.avif`);
         const options = { quality: 80 };
 
-        sharp(file).jpeg(options).toFile(outputFile);
-        sharp(file).webp(options).toFile(outputFileWebp);
-        sharp(file).avif().toFile(outputFileAvif);
+        sharp(file).jpeg(options).toFile(outputFile)
+            .catch(err => console.error(`Error processing ${file}: ${err.message}`));
+        sharp(file).webp(options).toFile(outputFileWebp)
+            .catch(err => console.error(`Error processing ${file}: ${err.message}`));
+        sharp(file).avif().toFile(outputFileAvif)
+            .catch(err => console.error(`Error processing ${file}: ${err.message}`));
     }
 }
 

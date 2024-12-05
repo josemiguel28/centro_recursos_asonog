@@ -1,5 +1,6 @@
 <section class="w-full mx-auto">
 
+    <?php //debuguear($libro);  ?>
     <a href="/gestionar/libros" class="text-lg">&larr; Volver</a>
 
     <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto lg:py-0">
@@ -26,7 +27,7 @@
                                 id="titulo"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600
                                 focus:border-primary-600 block w-full p-2.5 "
-                                placeholder="Recursos de la vida"
+                                placeholder="Cómo podemos ayudar a prevenir los desastres"
                                 required=""
                                 value="<?= $libro->titulo; ?>"
                             <?= $mode === "DSP" || $mode === "DEL" ? "disabled" : ""; ?>

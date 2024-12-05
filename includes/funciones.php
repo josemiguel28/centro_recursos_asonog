@@ -47,6 +47,16 @@ function isAdmin() {
     }
 }
 
+function isUserAuthenticated()
+{
+    if (!isset($_SESSION["login"])) {
+        header("Location: /login");
+        exit;
+    }
+
+
+}
+
 /**
  * Establece el título del formulario basado en la acción dada.
  *

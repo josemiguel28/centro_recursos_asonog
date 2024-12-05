@@ -21,7 +21,7 @@ class TipoHerramienta extends ActiveRecord
 
     public static function getAllHerramientas()
     {
-        $query = "SELECT * FROM " . self::$tabla;
+        $query = "SELECT * FROM " . self::$tabla . " ORDER BY nombre";
         return self::consultarSQL($query);
     }
 }

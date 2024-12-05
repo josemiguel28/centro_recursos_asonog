@@ -17,7 +17,8 @@ class SearchDocumentController
         $router->render('colaborador/search',
             [
                 'documentos' => $documentos,
-                'search' => $search
+                'search' => $search,
+                'titlePage' => 'Resultados de busqueda',
             ]
         );
     }

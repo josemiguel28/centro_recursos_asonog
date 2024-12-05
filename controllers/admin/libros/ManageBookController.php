@@ -52,11 +52,12 @@ class ManageBookController extends ActiveRecord
         $formTitle = setFormTitle($formAction);
 
         $book = self::getBookbyIdFromDb($getBookIdFromUrl);
+        $bookData = $book;
 
         if (isPostBack()) {
             switch ($formAction) {
                 case 'INS':
-                    CreateBookController::crearLibro($_POST);
+                    $bookData = CreateBookController::crearLibro($_POST);
                     break;
                 case 'UPD':
                     UpdateBookController::actualizarLibro($_POST, $book);
@@ -72,14 +73,16 @@ class ManageBookController extends ActiveRecord
         $router->render('admin/libros/formulario_libros',
             [
                 'title' => $formTitle,
-                'libro' => $book,
+                'libro' => $bookData,
                 'categorias' => $bookCategories,
                 'mode' => $formAction,
                 'alertas' => $alertas,
-                'titlePage' => $formTitle
+                'titlePage' => $formTitle,
+                //'bookData' => $bookData
             ]
         );
     }
+
     private static function getBookbyIdFromDb($id)
     {
         return Libros::where('id', $id);

@@ -21,7 +21,7 @@ class Tematicas extends ActiveRecord
 
     public static function getAllTematicas()
     {
-        $query = "SELECT * FROM " . self::$tabla;
+        $query = "SELECT * FROM " . self::$tabla . " ORDER BY nombre";;
         return self::consultarSQL($query);
     }
 

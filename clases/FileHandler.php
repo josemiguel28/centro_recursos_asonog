@@ -8,7 +8,7 @@ use Intervention\Image\ImageManagerStatic as Image;
 class FileHandler
 {
     const MAX_IMAGE_SIZE = 2 * 1024 * 1024; // 2MB
-    const MAX_PDF_SIZE = 10 * 1024 * 1024; // 10MB
+    const MAX_PDF_SIZE = 100 * 1024 * 1024; // 10MB
     const ALLOWED_IMAGE_TYPES = ['image/jpeg', 'image/png'];
     const ALLOWED_PDF_TYPE = 'application/pdf';
 

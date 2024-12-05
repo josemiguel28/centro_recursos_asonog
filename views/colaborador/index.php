@@ -38,7 +38,7 @@
     <!-- Contenedor de dos columnas -->
     <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-start">
         <!-- Columna con filtros (ocupa 1/3) -->
-        <div class="md:col-span-1">
+        <div class="md:col-span-1 h-full sticky top-0 ">
             <div class="p-4">
                 <h1 class="font-semibold text-lg mb-6">Filtros</h1>
 
@@ -100,9 +100,8 @@
             </div>
         </div>
 
-        <div class="md:col-span-2">
+        <div class="md:col-span-2 h-full overflow-auto">
             <div class="p-6 contenedor">
-
 
                 <?php require_once __DIR__ . "/../templates/documentosContenedor.php"; ?>
 

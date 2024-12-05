@@ -85,7 +85,7 @@
                 <picture>
                     <source srcset="build/img/banner-library.webp" type="image/webp">
                     <source srcset="build/img/banner-library.jpg" type="image/jpeg">
-                    <img class="h-full w-full rounded-md md:rounded-lg object-cover"
+                    <img class="h-full w-full rounded-md md:rounded-lg object-contain"
                          loading="lazy" src="build/img/banner-library.jpeg" alt="library img">
                 </picture>
             </div>
@@ -97,7 +97,7 @@
                     Accede a todos nuestros libros de forma gratuita
                 </h4>
                 <p class="mb-8 text-slate-600 leading-normal font-light">
-                    Puedes acceder a todos nuestros libros de forma gratuita 📕.
+                    Puedes acceder a todos nuestros libros de forma gratuita.
                 </p>
                 <div>
                     <a href="/biblioteca"
@@ -129,7 +129,7 @@
                     PRIVADO
                 </div>
                 <h4 class="mb-2 text-slate-800 text-xl font-semibold">
-                    ¿Eres parte de nuestra organizacion?
+                    ¿Eres parte de nuestra organización?
                 </h4>
                 <p class="mb-8 text-slate-600 leading-normal font-light">
                     Si eres parte de nuestra organizacion puedes acceder a nuestros recursos de forma online.
@@ -168,8 +168,8 @@
                         <picture>
                             <source srcset="build/img/img_categoria_derechos.webp" type="image/webp">
                             <source srcset="build/img/img_categoria_derechos.jpg" type="image/jpeg">
-                            <img loading="lazy" class="rounded-t-lg w-full h-56 object-cover"
-                                 src="build/img/img_categoria_derechos.jpeg" alt="derechos humanos">
+                            <img loading="lazy" class="rounded-t-lg w-full h-56 object-fit"
+                                 src="build/img/img_categoria_derechos.jpg" alt="derechos humanos">
                         </picture>
                     </div>
                     <div class="p-4">
@@ -195,7 +195,7 @@
                         <picture>
                             <source srcset="build/img/img_categoria_san.webp" type="image/webp">
                             <source srcset="build/img/img_categoria_san.jpg" type="image/jpeg">
-                            <img loading="lazy" class="rounded-t-lg w-full h-56 object-cover"
+                            <img loading="lazy" class="rounded-t-lg w-full h-56 object-fit"
                                  src="build/img/img_categoria_san.jpeg" alt="seguridad alimentaria">
                         </picture>
                     </div>
@@ -221,7 +221,7 @@
                         <picture>
                             <source srcset="build/img/img_categoria_ambiente.webp" type="image/webp">
                             <source srcset="build/img/img_categoria_ambiente.jpg" type="image/jpeg">
-                            <img loading="lazy" class="rounded-t-lg w-full h-56 object-cover"
+                            <img loading="lazy" class="rounded-t-lg w-full h-56 object-fit"
                                  src="build/img/img_categoria_ambiente.jpeg" alt="cambio climatico">
                         </picture>
                     </div>
@@ -249,8 +249,8 @@
                         <picture>
                             <source srcset="build/img/img_categoria_genero.webp" type="image/webp">
                             <source srcset="build/img/img_categoria_genero.jpg" type="image/jpeg">
-                            <img loading="lazy" class="rounded-t-lg w-full h-56 object-cover"
-                                 src="build/img/img_categoria_genero.jpeg" alt="genero e inclusion">
+                            <img loading="lazy" class="rounded-t-lg w-full h-56 object-fit"
+                                 src="build/img/img_categoria_genero.jpg" alt="genero e inclusion">
                         </picture>
                     </div>
                     <div class="p-4">
@@ -275,7 +275,7 @@
                         <picture>
                             <source srcset="build/img/img_categoria_participacion.webp" type="image/webp">
                             <source srcset="build/img/img_categoria_participacion.jpg" type="image/jpeg">
-                            <img loading="lazy" class="rounded-t-lg w-full h-56 object-cover"
+                            <img loading="lazy" class="rounded-t-lg w-full h-56 object-fit"
                                  src="build/img/img_categoria_participacion.jpeg" alt="participacion ciudadana">
                         </picture>
                     </div>
@@ -431,7 +431,7 @@
 
             <!-- Columna con texto -->
             <div>
-                <p class="text-lg leading-relaxed">
+                <p class="text-lg leading-relaxed ">
                     El <span
                             class="font-semibold"> Centro de Recursos para la Gestión del Conocimiento de ASONOG </span>
                     es una plataforma digital de acceso
@@ -457,31 +457,34 @@
     </div>
 
     <!-- Sección de contacto -->
-    <section class="mx-auto max-w-screen-xl px-4 py-16">
+    <section class="mx-auto max-w-screen-xl px-4 py-16" id="contact-form">
         <div class="py-8 lg:py-16 px-4 mx-auto max-w-screen-md">
             <h2 class="mb-4 text-4xl tracking-tight font-semibold text-center text-gray-900">Contactanos</h2>
             <p class="mb-8 lg:mb-16 font-light text-center text-gray-500 dark:text-gray-400 sm:text-xl">Si tienes
                 dudas
                 o consultas, puedes contactarnos a través de nuestro formulario de contacto.</p>
-            <form action="#" class="space-y-8">
+
+            <?php include_once __DIR__ . '/../templates/alertas.php'; ?>
+
+            <form action ="/" class="space-y-8" method="post">
                 <div>
                     <label for="email" class="block mb-2 font-medium text-gray-900 dark:text-gray-300">Tu
                         email</label>
-                    <input type="email" id="email"
+                    <input type="email" id="email" name="correo"
                            class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-medium rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 "
                            placeholder="correo@correo.com" required>
                 </div>
                 <div>
                     <label for="subject"
                            class="block mb-2 font-medium text-gray-900 dark:text-gray-300">Tema</label>
-                    <input type="text" id="subject"
+                    <input type="text" id="subject" name="tema"
                            class="block p-3 w-full text-gray-900 bg-gray-50 rounded-lg border border-gray-300 shadow-sm focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 dark:shadow-sm-light"
                            placeholder="¿En qué te podemos ayudar?" required>
                 </div>
                 <div class="sm:col-span-2">
                     <label for="message" class="block mb-2 font-medium text-gray-900 dark:text-gray-400">Tu
                         mensaje</label>
-                    <textarea id="message" rows="6"
+                    <textarea id="message" rows="6" name="mensaje"
                               class="block p-2.5 w-full text-gray-900 bg-gray-50 rounded-lg shadow-sm border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                               placeholder="Dejanos un mensaje..."></textarea>
                 </div>
@@ -496,6 +499,5 @@
             </form>
         </div>
     </section>
-
 
 </section>

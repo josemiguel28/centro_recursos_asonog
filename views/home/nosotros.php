@@ -170,9 +170,9 @@
                 <h3 class="text-2xl font-semibold mb-2">Visión</h3>
             </div>
             <p class="text-gray-600">
-                Nuestra vision es ser un referente en el accesoy la gestión de conocimiento a través de una plataforma
-                colaborativa donde individuos y organizaciones puedan accedr a recursos valiosos para la construcción de
-                una sociedad mas justa y equitativa
+                Nuestra visión es ser un referente en el acceso y la gestión de conocimiento a través de una plataforma
+                colaborativa donde individuos y organizaciones puedan acceder a recursos valiosos para la construcción de
+                una sociedad mas justa y equitativa.
             </p>
         </div>
     </div>

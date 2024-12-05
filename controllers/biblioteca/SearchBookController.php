@@ -17,7 +17,8 @@ class SearchBookController
         $router->render('biblioteca/search',
             [
                 'libros' => $libros,
-                'search' => $search
+                'search' => $search,
+                'titlePage' => 'Resultados de busqueda',
             ]
         );
     }

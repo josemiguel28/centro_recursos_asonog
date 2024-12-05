@@ -36,7 +36,7 @@ class DocumentosTecnicos extends ActiveRecord
         $this->archivo_url = $args['archivo_url'] ?? '';
     }
 
-    public static function getAllDocumentosWithLimit($limit = 10){
+    public static function getAllDocumentosWithLimit($limit = 5){
         $sql = "SELECT documentos.id, 
        documentos.nombre_herramienta,
        documentos.descripcion,
@@ -134,7 +134,7 @@ class DocumentosTecnicos extends ActiveRecord
             JOIN tematicas 
             ON tematicas.id = documentos.id_tematica
             WHERE documentos.estado = 'ACT'
-GROUP BY documentos.id
+            GROUP BY documentos.id ORDER BY documentos.id ASC
 
             LIMIT {$limit} OFFSET {$offset};";
 

@@ -46,7 +46,6 @@ class ManageDocumentsController extends ActiveRecord
             $documento = Documentos::where("id", $getDocumentIdFromUrl);
         }
 
-
         if (isPostBack()) {
             switch ($formAction) {
                 case 'INS':
@@ -74,7 +73,6 @@ class ManageDocumentsController extends ActiveRecord
                 'alertas' => $alertas,
                 'titlePage' => $formTitle
             ]
-
         );
     }
 
@@ -107,6 +105,4 @@ class ManageDocumentsController extends ActiveRecord
         }
         return $documentData;
     }
-
-
 }

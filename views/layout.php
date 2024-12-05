@@ -9,17 +9,26 @@
           content="Descubre una amplia selección de libros digitales en nuestra biblioteca. Encuentra los títulos más destacados, explora diferentes géneros y accede a recursos exclusivos solo para miembros.">
     <meta name="keywords"
           content="libros digitales, biblioteca online, libros destacados, libros electrónicos, lectura, recursos educativos, genero, inclusion, derechos humanos, cambio climatico, seguridad alimentaria, SAN ,asonog, ASONOG, centro de recursos">
+    <meta name="author" content="CRGC - Centro de Recursos para la Gestión del Conocimiento">
+
 
     <!-- Open Graph Meta Tags -->
-    <meta property="og:title" content="Descubre los Libros Más Destacados de Nuestra Biblioteca"/>
-    <meta property="og:description"
-          content="Explora una amplia colección de libros digitales y físicos. Encuentra títulos exclusivos, desde clásicos hasta novedades, solo para miembros."/>
-    <meta property="og:image" content="https://tusitio.com/images/libros-destacados.jpg"/>
-    <meta property="og:url" content="https://tusitio.com/libros/destacados"/>
+    <meta property="og:title" content="CRGC | ASONOG"/>
+    <meta property="og:description" content="ASONOG te ofrece una amplia colección de libros digitales. Encuentra categorías de derechos humanos, género e inclusión y más."/>
+    <meta property="og:image" content="https://<?= htmlspecialchars($_ENV['APP_URL'], ENT_QUOTES) ?>/build/img/logo_img.webp"/>
+    <meta property="og:url" content="https://<?= htmlspecialchars($_ENV['APP_URL'], ENT_QUOTES) ?>"/>
     <meta property="og:type" content="website"/>
-    <meta property="og:site_name" content="Mi Biblioteca Online"/>
+    <meta property="og:site_name" content="Centro de recursos para la gestión del conocimiento"/>
     <meta property="og:locale" content="es_ES"/>
-    <link rel="icon" href="/build/img/logo_img.webp" type="image/x-icon">
+
+    <!-- Twitter Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="CRGC | ASONOG">
+    <meta name="twitter:description" content="ASONOG te ofrece una amplia colección de libros digitales. Encuentra categorías de derechos humanos, género e inclusión y más.">
+    <meta name="twitter:image" content="https://<?= htmlspecialchars($_ENV['APP_URL'], ENT_QUOTES) ?>/build/img/logo_img.webp">
+    <meta name="twitter:site" content="@ASONOG">
+
+    <link rel="icon" href="/build/img/logo_img.avif" type="image/x-icon">
 
     <!-- Font Awesome icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
@@ -46,18 +55,18 @@
     <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
         <a href="/" class="flex items-center flex-col space-x-3 rtl:space-x-reverse">
             <picture>
-                <source srcset="build/img/logo_img.webp" type="image/webp">
-                <source srcset="build/img/logo_img.jpg" type="image/jpeg">
+                <source srcset="/build/img/logo_img.webp" type="image/webp">
+                <source srcset="/build/img/logo_img.jpg" type="image/jpeg">
                 <img loading="lazy" class="h-[5rem] md:h-24"
-                     src="build/img/logo_img.png" alt="logo">
+                     src="/build/img/logo_img.png" alt="logo">
             </picture>
             <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white"></span>
         </a>
         <div class="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
             <a
                     class="text-sm font-medium bg-primary-500 hover:bg-primary-400 transition text-white py-3 px-6 rounded-full"
-                    href="#">
-                Contactanos
+                    href="https://asonog.hn/">
+                ASONOG
             </a>
 
             <button data-collapse-toggle="navbar-sticky" type="button"
@@ -72,7 +81,7 @@
             </button>
         </div>
         <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-sticky">
-            <ul class="flex flex-col p-4 md:p-0 mt-4 font-medium border border-gray-100 rounded-lg bg-gray-50 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
+            <ul class="flex flex-col p-4 md:p-0 mt-4 font-medium border border-gray-100 rounded-lg bg-gray-50 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-white md:text-lg">
                 <li>
                     <a href="/"
                        class="block py-2 px-3 text-gray-900 rounded md:bg-transparent md:p-0"
@@ -222,7 +231,7 @@
                     </a>
                 </li>
                 <li class="bg-[#343538] h-10 w-10 rounded-full flex items-center justify-center shrink-0">
-                    <a href="jhttps://www.linkedin.com/company/asonog" target="_blank">
+                    <a href="https://www.linkedin.com/company/asonog" target="_blank">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" fill='#fff'
                              viewBox="0 0 511 512">
                             <path

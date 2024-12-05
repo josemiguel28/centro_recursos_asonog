@@ -19,7 +19,7 @@ class CreateBookController extends ActiveRecord
      * @param array $args Los argumentos para sincronizar con el libro.
      * @return array Las alertas generadas durante el proceso.
      */
-    public static function crearLibro($args): array
+    public static function crearLibro($args)
     {
         $libro = new Libros();
 
@@ -32,11 +32,12 @@ class CreateBookController extends ActiveRecord
         if ($imagenValida && $pdfValido) {
             $libro->crear();
             Libros::setAlerta('success', 'Libro creado correctamente.');
+            return [];
         } else {
             Libros::getAlertas();
         }
 
-        return Libros::getAlertas();
+        return $libro;
     }
 }
 

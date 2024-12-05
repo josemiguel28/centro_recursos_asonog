@@ -11,19 +11,19 @@ function mostrarDocumentos(data, limpiar = false) {
     }
 
     const documentos = data.documentos;
-    const hasMoreBooks = data.hasMoreBooks; // Obtener si hay más documentos
+    const hasMoreBooks = data.hasMoreDocuments; // Obtener si hay más documentos
     let id = 0;
-
+    console.log(documentos)
     hideShowMoreButton(hasMoreBooks);
 
-
     documentos.forEach(documento => {
-
         if (id !== documento.id) {
 
-            const libroDiv = document.createElement('div');
-            libroDiv.className = 'w-full mb-7 max-w-sm bg-white flex flex-col justify-between sm:max-w-xs';
-            libroDiv.innerHTML = `
+           // console.log(`el ${id} es diferente de ${documento.id}`)
+
+            const documentoDiv = document.createElement('div');
+            documentoDiv.className = 'w-full mb-7 max-w-sm bg-white flex flex-col justify-between sm:max-w-xs';
+            documentoDiv.innerHTML = `
     <a href="/documentos/${documento.archivo_url}" class="flex justify-center p-4 sm:p-8" target="_blank" style="background-color: #FCFCF7;">
         <img class="rounded-xl" loading="lazy" src="imagenesDocumentos/${documento.imagen}" alt="hero img">
     </a>
@@ -53,7 +53,7 @@ function mostrarDocumentos(data, limpiar = false) {
         </a>
     </div>
 `;
-            contenedordocumentos.appendChild(libroDiv);
+            contenedordocumentos.appendChild(documentoDiv);
         }
 
         id = documento.id;

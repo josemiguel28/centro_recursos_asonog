@@ -16,7 +16,7 @@ class getPaginatedDocuments
      */
     public static function getPaginatedDocuments(): void
     {
-        $limit = 20; // Número de documentos por página
+        $limit = 5; // Número de documentos por página
         $offset = $_GET['offset'] ?? 0; // Usamos 0 si no hay offset enviado desde js
 
         $documentos = DocumentosTecnicos::getPaginatedDocuments($limit, $offset);

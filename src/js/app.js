@@ -8,7 +8,6 @@ import { filterDocumentsByHerramientaAPI } from "./documentosAPI/filter/herramie
 let offset = 0;
 
 document.addEventListener('DOMContentLoaded', async function () {
-    console.log('DOM cargado');
 
     // Obtener todas las secciones con el atributo data-section
     const sections = document.querySelectorAll('[data-section]');
@@ -61,7 +60,7 @@ async function documentos() {
 
     document.querySelector('#mostrar-mas-documentos-btn').addEventListener('click', async () => {
 
-        offset += 10; // numero de libros que se manda a llamar
+        offset += 5; // numero de libros que se manda a llamar
         await CargarMasDocumentosAPI(offset);
     });
 

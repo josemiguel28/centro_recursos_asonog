@@ -19,7 +19,7 @@ class Email
      * @param string $token El token para la confirmación de cuenta o restablecimiento de contraseña.
      * @param string $rol El rol del usuario (1 para Administrador, 2 para Colaborador).
      */
-    public function __construct($email, $nombre, $token, $rol)
+    public function __construct(string $email = "", string $nombre ="", string $token ="", string $rol ="")
     {
         $this->email = $email;
         $this->nombre = $nombre;
@@ -28,7 +28,8 @@ class Email
 
         $this->rol = match ($rol) {
             '1' => 'Administrador',
-            '2' => 'Colaborador'
+            '2' => 'Colaborador',
+            default => ''
         };
 
     }
@@ -38,7 +39,7 @@ class Email
      *
      * @return PHPMailer La instancia de PHPMailer configurada.
      */
-    private function setupMailer()
+    public function setupMailer()
     {
         $mail = new PHPMailer();
 

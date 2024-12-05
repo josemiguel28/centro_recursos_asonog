@@ -21,6 +21,7 @@ class BibliotecaAPI
 
         $libros = ModeloLibros::getPaginatedBooks($limit, $offset);
 
+
         if (isset($_SERVER['HTTP_X_REQUESTED_WITH']) && $_SERVER['HTTP_X_REQUESTED_WITH'] === 'XMLHttpRequest') {
             header('Content-Type: application/json');
 
@@ -52,6 +53,9 @@ class BibliotecaAPI
             echo json_encode(["libros" => $libros, "hasMoreBooks" => false]);
             exit;
         }
+
+        echo json_encode(["error" => "No se especifico una categoria"]);
+        exit;
     }
 
     /**

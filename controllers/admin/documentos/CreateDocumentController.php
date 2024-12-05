@@ -19,7 +19,7 @@ class CreateDocumentController
      * @param array $args Los argumentos para sincronizar con el documento.
      * @return void
      */
-    public static function createDocument($args): void
+    public static function createDocument($args)
     {
         $documento = new Documentos();
         $documento->sincronizar($args);
