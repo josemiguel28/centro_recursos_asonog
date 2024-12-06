@@ -1,7 +1,7 @@
 <div class="container mx-auto px-4">
     <!-- Título -->
     <h1 class="text-center text-3xl sm:text-3xl font-semibold mb-16">
-        Centro de recursos para la gestión del conocimiento (CRGC)
+        Centro de Recursos para la Gestión del Conocimiento (CRGC)
     </h1>
 
     <div class="w-full mx-auto md:max-w-[70%]">
@@ -68,7 +68,7 @@
                 />
             </svg>
         </span>
-                    Seguridad Alimentaria y nutricional (SAN)
+                    Seguridad Alimentaria y Nutricional (SAN)
                 </li>
                 <li class="text-body-color dark:text-dark-6 flex text-base">
         <span class="text-primary mr-2.5 mt-0.5">
@@ -102,7 +102,7 @@
                 />
             </svg>
         </span>
-                    Género e inclusión
+                    Género e Inclusión
                 </li>
                 <li class="text-body-color dark:text-dark-6 flex text-base">
         <span class="text-primary mr-2.5 mt-0.5">

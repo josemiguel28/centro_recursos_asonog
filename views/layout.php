@@ -14,8 +14,10 @@
 
     <!-- Open Graph Meta Tags -->
     <meta property="og:title" content="CRGC | ASONOG"/>
-    <meta property="og:description" content="ASONOG te ofrece una amplia colección de libros digitales. Encuentra categorías de derechos humanos, género e inclusión y más."/>
-    <meta property="og:image" content="https://<?= htmlspecialchars($_ENV['APP_URL'], ENT_QUOTES) ?>/build/img/logo_img.webp"/>
+    <meta property="og:description"
+          content="ASONOG te ofrece una amplia colección de libros digitales. Encuentra categorías de derechos humanos, género e inclusión y más."/>
+    <meta property="og:image"
+          content="https://<?= htmlspecialchars($_ENV['APP_URL'], ENT_QUOTES) ?>/build/img/logo_img.webp"/>
     <meta property="og:url" content="https://<?= htmlspecialchars($_ENV['APP_URL'], ENT_QUOTES) ?>"/>
     <meta property="og:type" content="website"/>
     <meta property="og:site_name" content="Centro de recursos para la gestión del conocimiento"/>
@@ -24,8 +26,10 @@
     <!-- Twitter Meta Tags -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="CRGC | ASONOG">
-    <meta name="twitter:description" content="ASONOG te ofrece una amplia colección de libros digitales. Encuentra categorías de derechos humanos, género e inclusión y más.">
-    <meta name="twitter:image" content="https://<?= htmlspecialchars($_ENV['APP_URL'], ENT_QUOTES) ?>/build/img/logo_img.webp">
+    <meta name="twitter:description"
+          content="ASONOG te ofrece una amplia colección de libros digitales. Encuentra categorías de derechos humanos, género e inclusión y más.">
+    <meta name="twitter:image"
+          content="https://<?= htmlspecialchars($_ENV['APP_URL'], ENT_QUOTES) ?>/build/img/logo_img.webp">
     <meta name="twitter:site" content="@ASONOG">
 
     <link rel="icon" href="/build/img/logo_img.avif" type="image/x-icon">
@@ -63,10 +67,15 @@
             <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white"></span>
         </a>
         <div class="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
-            <a
-                    class="text-sm font-medium bg-primary-500 hover:bg-primary-400 transition text-white py-3 px-6 rounded-full"
-                    href="https://asonog.hn/">
+            <a class="flex items-center text-sm font-medium border-gray-700 text-black px-5 py-2.5 rounded-md hover:bg-gray-200 transition w-full text-center"
+               href="https://asonog.hn/" target="_blank">
                 ASONOG
+
+                <svg xmlns="http://www.w3.org/2000/svg" class="ml-2 h-4 w-4" fill="none" viewBox="0 0 24 24"
+                     stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                          d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                </svg>
             </a>
 
             <button data-collapse-toggle="navbar-sticky" type="button"
@@ -149,7 +158,7 @@
 <footer class="font-sans tracking-wide bg-[#181818] py-12 px-16 rounded-t-xl text-white sm:mx-4 sm:my-4 sm:py-16 sm:rounded-xl">
     <div class="grid lg:grid-cols-2 gap-20 mx-auto max-md:grid-cols-1">
         <div>
-            <h4 class="text-white font-bold text-xl">Centro de Recursos para la Gestión del conocimiento</h4>
+            <h4 class="text-white font-bold text-xl">Centro de Recursos para la Gestión del Conocimiento</h4>
             <ul class="grid sm:grid-cols-2 mt-12 gap-8">
                 <!-- Teléfono -->
                 <li class="flex items-center">
@@ -162,7 +171,7 @@
                         </svg>
                     </div>
                     <a href="tel:+50426622626" class="text-gray-100 text-sm ml-4">
-                        <small class="block">Tel</small>
+                        <small class="block">Teléfono</small>
                         <strong>+(504) 2662-2626</strong>
                     </a>
                 </li>
@@ -177,7 +186,7 @@
                         </svg>
                     </div>
                     <a href="mailto:comunicacion@asonog.hn" class="text-gray-100 text-sm ml-4">
-                        <small class="block">Mail</small>
+                        <small class="block">Correo</small>
                         <strong>comunicacion@asonog.hn</strong>
                     </a>
                 </li>

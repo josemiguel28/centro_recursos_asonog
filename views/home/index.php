@@ -4,8 +4,8 @@
     <div class="grid max-w-screen-xl px-4 mx-auto lg:gap-8 xl:gap-0 lg:grid-cols-12" data-aos="zoom-in"
          data-aos-duration="1500">
         <div class="mr-auto mx-auto place-self-center lg:col-span-6 text-center">
-            <h1 class="max-w-2xl mb-4 text-5xl font-medium tracking-wide leading-none lg:text-left lg:text-6xl">
-                Centro de recursos para la gestión del conocimiento
+            <h1 class="max-w-2xl mb-4 text-4xl font-medium tracking-wide leading-none lg:text-left lg:text-6xl">
+                Centro de Recursos para la Gestión del Conocimiento
             </h1>
 
             <div class="text-center">
@@ -28,7 +28,7 @@
         <picture>
             <source srcset="build/img/hero_img.webp" type="image/webp">
             <source srcset="build/img/hero_img.jpg" type="image/jpeg">
-            <img loading="lazy" class="rounded px-4" src="build/img/hero_img.jpg" alt="hero img">
+            <img loading="lazy" class="px-4" src="build/img/hero_img.jpg" alt="hero img">
         </picture>
     </div>
     </div>
@@ -262,7 +262,7 @@
                 <div class="mt-4 text-right">
                     <a href="/search-book?busqueda-libro=genero+e+inclusion"
                        class="inline-block bg-purple-500 text-white text-sm font-semibold py-3 px-6 rounded-full mb-6 mx-4 shadow hover:bg-purple-600 transition">
-                        Ver Recursos
+                        Explorar Recursos
                     </a>
                 </div>
             </div>
@@ -288,7 +288,7 @@
                 <div class="mt-4 text-right">
                     <a href="/search-book?busqueda-libro=participacion+ciudadana"
                        class="inline-block bg-red-500 text-white text-sm font-semibold py-3 px-6 rounded-full mb-6 mx-4 shadow hover:bg-red-600 transition">
-                        Explorar Guías
+                        Explorar Recursos
                     </a>
                 </div>
             </div>
@@ -459,7 +459,7 @@
     <!-- Sección de contacto -->
     <section class="mx-auto max-w-screen-xl px-4 py-16" id="contact-form">
         <div class="py-8 lg:py-16 px-4 mx-auto max-w-screen-md">
-            <h2 class="mb-4 text-4xl tracking-tight font-semibold text-center text-gray-900">Contactanos</h2>
+            <h2 class="mb-4 text-4xl tracking-tight font-semibold text-center text-gray-900">Contáctanos</h2>
             <p class="mb-8 lg:mb-16 font-light text-center text-gray-500 dark:text-gray-400 sm:text-xl">Si tienes
                 dudas
                 o consultas, puedes contactarnos a través de nuestro formulario de contacto.</p>

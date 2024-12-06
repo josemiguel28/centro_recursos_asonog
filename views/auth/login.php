@@ -7,7 +7,7 @@
                     Inicia sesión en tu cuenta
                 </h1>
 
-                <p class="text-gray-400">Si eres parte de nuestra organizacion puedes acceder a nuestros recursos de
+                <p class="text-gray-400">Si eres parte de nuestra organización puedes acceder a nuestros recursos de
                     forma online.</p>
                 <?php
                 include_once __DIR__ . "/../templates/alertas.php";
