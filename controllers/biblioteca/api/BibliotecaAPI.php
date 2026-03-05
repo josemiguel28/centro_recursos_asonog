@@ -45,7 +45,7 @@ class BibliotecaAPI
         $limit = 10; // Número de libros por página
         $offset = $_GET['offset'] ?? 0; // Usamos 0 si no hay offset enviado desde js
 
-        $libros = ModeloLibros::filterBooksByCategory($categoria, $limit, $offset);
+        $libros = ModeloLibros::filterBooksByCategory($categoria, $offset);
 
         if (isset($_SERVER['HTTP_X_REQUESTED_WITH']) && $_SERVER['HTTP_X_REQUESTED_WITH'] === 'XMLHttpRequest') {
 

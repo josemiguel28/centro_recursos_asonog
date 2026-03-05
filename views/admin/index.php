@@ -89,7 +89,7 @@
                           d="M208 24H72a32 32 0 0 0-32 32v168a8 8 0 0 0 8 8h144a8 8 0 0 0 0-16H56a16 16 0 0 1 16-16h136a8 8 0 0 0 8-8V32a8 8 0 0 0-8-8m-8 160H72a31.8 31.8 0 0 0-16 4.29V56a16 16 0 0 1 16-16h128Z"/>
                 </svg>
                 <div>
-                    <h3 class="text-xl font-semibold">Gestion de Libros</h3>
+                    <h3 class="text-xl font-semibold">Gestión de Libros</h3>
                     <p class="text-gray-600">Revisa y gestiona los libros existentes.</p>
                 </div>
             </a>
@@ -106,7 +106,7 @@
                     </g>
                 </svg>
                 <div>
-                    <h3 class="text-xl font-semibold">Gestion de Documentos</h3>
+                    <h3 class="text-xl font-semibold">Gestión de Documentos</h3>
                     <p class="text-gray-600">Revisa y gestiona los documentos existentes.</p>
                 </div>
             </a>

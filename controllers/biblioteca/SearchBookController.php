@@ -14,9 +14,11 @@ class SearchBookController
 
         $libros = ModeloLibros::searchBook($search);
 
+
         $router->render('biblioteca/search',
             [
                 'libros' => $libros,
+                'countBooks' => count($libros),
                 'search' => $search,
                 'titlePage' => 'Resultados de busqueda',
             ]

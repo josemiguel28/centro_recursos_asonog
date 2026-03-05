@@ -18,6 +18,7 @@ class SearchDocumentController
             [
                 'documentos' => $documentos,
                 'search' => $search,
+                'countDocuments' => count($documentos),
                 'titlePage' => 'Resultados de busqueda',
             ]
         );

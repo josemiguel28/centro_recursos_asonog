@@ -12,9 +12,6 @@ class BibliotecaController
     public static function index(Router $router): void
     {
 
-        $session = new Request();
-        $session->startSession();
-
         $categorias = self::getBookCategories();
 
         $libros = ModeloLibros::getActiveBooksWithLimit(10);
@@ -24,7 +21,6 @@ class BibliotecaController
                 'libros' => $libros,
                 'categorias' => $categorias,
                 'titlePage' => "Biblioteca"
-                //'offset' => $offset + $limit Para la siguiente página
             ]
         );
     }

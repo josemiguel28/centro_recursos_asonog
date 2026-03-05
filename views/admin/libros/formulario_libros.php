@@ -1,7 +1,15 @@
 <section class="w-full mx-auto">
 
     <?php //debuguear($libro);  ?>
-    <a href="/gestionar/libros" class="text-lg">&larr; Volver</a>
+    <a href="/gestionar/libros" class="text-lg">
+        <button type="button"
+                class="text-white bg-gray-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center me-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+
+            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24">
+                <path fill="#ffffff" d="m10 18l-6-6l6-6l1.4 1.45L7.85 11H20v2H7.85l3.55 3.55z"/>
+            </svg>
+        </button>
+    </a>
 
     <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto lg:py-0">
         <h1 class="text-2xl font-bold leading-tight tracking-tight text-gray-900 mb-8 md:text-2xl">
@@ -157,8 +165,8 @@
                     <?php else : ?>
 
                         <?php
-                            include_once __DIR__ . "/../../templates/formularios/show_file.php";
-                            mostrarArchivo("libros", $libro->archivo_url, "imagenesLibros", $libro->imagen);
+                        include_once __DIR__ . "/../../templates/formularios/show_file.php";
+                        mostrarArchivo("libros", $libro->archivo_url, "imagenesLibros", $libro->imagen);
                         ?>
 
                     <?php endif; ?>

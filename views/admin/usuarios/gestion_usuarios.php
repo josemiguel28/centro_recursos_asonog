@@ -1,6 +1,14 @@
 <section class="bg-gray-50 dark:bg-gray-900 py-3 sm:py-5 md:py-16">
 
-    <a href="/admin" class="text-lg">&larr; Volver</a>
+    <a href="/admin" class="text-lg">
+        <button type="button"
+                class="text-white bg-gray-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center me-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+
+            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24">
+                <path fill="#ffffff" d="m10 18l-6-6l6-6l1.4 1.45L7.85 11H20v2H7.85l3.55 3.55z"/>
+            </svg>
+        </button>
+    </a>
 
     <div class="px-4 mx-auto max-w-screen-2xl mt-10 lg:px-12">
 

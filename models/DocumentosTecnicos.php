@@ -38,14 +38,17 @@ class DocumentosTecnicos extends ActiveRecord
 
     public static function getAllDocumentosWithLimit($limit = 5){
         $sql = "SELECT documentos.id, 
-       documentos.nombre_herramienta,
-       documentos.descripcion,
-       tipos_herramienta.nombre AS tipo_herramienta, 
-       tematicas.nombre AS tematica,
-       GROUP_CONCAT(tecnicos_responsables.nombre) AS tecnicos, -- Agrupa los técnicos en una sola columna
-       documentos.imagen, 
-       documentos.fecha_emision, 
-       documentos.archivo_url 
+                   documentos.nombre_herramienta,
+                   documentos.descripcion,
+                   tipos_herramienta.nombre AS tipo_herramienta, 
+                   tematicas.nombre AS tematica,
+                   GROUP_CONCAT(tecnicos_responsables.nombre) AS tecnicos, -- Agrupa los técnicos en una sola columna
+                   documentos.imagen, 
+                   CASE 
+                       WHEN documentos.fecha_emision = 'N/A' THEN ''
+                       ELSE documentos.fecha_emision 
+                   END AS fecha_emision, 
+                   documentos.archivo_url 
             FROM documentos
             JOIN documentos_tecnicos  
             ON documentos_tecnicos.id_documento = documentos.id
@@ -56,8 +59,7 @@ class DocumentosTecnicos extends ActiveRecord
             JOIN tematicas 
             ON tematicas.id = documentos.id_tematica 
             WHERE documentos.estado = 'ACT'
-            GROUP BY documentos.id
-            LIMIT {$limit};";
+            GROUP BY documentos.id order by documentos.id desc LIMIT {$limit};";
 
         return DocumentosTecnicos::SQL($sql);
     }
@@ -123,7 +125,10 @@ class DocumentosTecnicos extends ActiveRecord
             tematicas.nombre tematica,
             GROUP_CONCAT(tecnicos_responsables.nombre) AS tecnicos, -- Agrupa los técnicos en una sola columna
             documentos.imagen, 
-            documentos.fecha_emision, 
+            CASE 
+                       WHEN documentos.fecha_emision = 'N/A' THEN ''
+                       ELSE documentos.fecha_emision 
+                   END AS fecha_emision,  
             documentos.archivo_url FROM documentos
             JOIN documentos_tecnicos  
             ON documentos_tecnicos.id_documento = documentos.id
@@ -134,14 +139,14 @@ class DocumentosTecnicos extends ActiveRecord
             JOIN tematicas 
             ON tematicas.id = documentos.id_tematica
             WHERE documentos.estado = 'ACT'
-            GROUP BY documentos.id ORDER BY documentos.id ASC
+            GROUP BY documentos.id order by documentos.id desc
 
             LIMIT {$limit} OFFSET {$offset};";
 
         return DocumentosTecnicos::SQL($sql);
     }
 
-    public static function filterDocumentsByTematica($tematica, $limit = 10, $offset = 0){
+    public static function filterDocumentsByTematica($tematica){
         $sql = "SELECT 
             documentos.id, 
             documentos.nombre_herramienta ,
@@ -150,7 +155,10 @@ class DocumentosTecnicos extends ActiveRecord
             tematicas.nombre tematica,
             tecnicos_responsables.nombre tecnico,
             documentos.imagen, 
-            documentos.fecha_emision, 
+            CASE 
+                       WHEN documentos.fecha_emision = 'N/A' THEN ''
+                       ELSE documentos.fecha_emision 
+                   END AS fecha_emision,  
             documentos.archivo_url FROM documentos
             JOIN documentos_tecnicos  
             ON documentos_tecnicos.id_documento = documentos.id
@@ -159,12 +167,13 @@ class DocumentosTecnicos extends ActiveRecord
             JOIN tipos_herramienta 
             ON tipos_herramienta.id = documentos.id_tipo_herramienta
             JOIN tematicas 
-            ON tematicas.id = documentos.id_tematica WHERE documentos.estado = 'ACT' AND tematicas.id = {$tematica} LIMIT {$limit} OFFSET {$offset};";
+            ON tematicas.id = documentos.id_tematica 
+            WHERE documentos.estado = 'ACT' AND tematicas.id = {$tematica};";
 
         return DocumentosTecnicos::SQL($sql);
     }
 
-    public static function filterDocumentsByHerramienta($herramienta, $limit = 10, $offset = 0){
+    public static function filterDocumentsByHerramienta($herramienta){
         $sql = "SELECT 
             documentos.id, 
             documentos.nombre_herramienta ,
@@ -173,7 +182,10 @@ class DocumentosTecnicos extends ActiveRecord
             tematicas.nombre tematica,
             tecnicos_responsables.nombre tecnico,
             documentos.imagen, 
-            documentos.fecha_emision, 
+            CASE 
+                       WHEN documentos.fecha_emision = 'N/A' THEN ''
+                       ELSE documentos.fecha_emision 
+                   END AS fecha_emision, 
             documentos.archivo_url FROM documentos
             JOIN documentos_tecnicos  
             ON documentos_tecnicos.id_documento = documentos.id
@@ -182,7 +194,7 @@ class DocumentosTecnicos extends ActiveRecord
             JOIN tipos_herramienta 
             ON tipos_herramienta.id = documentos.id_tipo_herramienta
             JOIN tematicas 
-            ON tematicas.id = documentos.id_tematica WHERE documentos.estado = 'ACT' AND tipos_herramienta.id = {$herramienta} LIMIT {$limit} OFFSET {$offset};";
+            ON tematicas.id = documentos.id_tematica WHERE documentos.estado = 'ACT' AND tipos_herramienta.id = {$herramienta};";
 
         return DocumentosTecnicos::SQL($sql);
     }
@@ -196,7 +208,10 @@ class DocumentosTecnicos extends ActiveRecord
             tematicas.nombre tematica,
             tecnicos_responsables.nombre tecnico,
             documentos.imagen, 
-            documentos.fecha_emision, 
+            CASE 
+                       WHEN documentos.fecha_emision = 'N/A' THEN ''
+                       ELSE documentos.fecha_emision 
+                   END AS fecha_emision, 
             documentos.archivo_url FROM documentos
             JOIN documentos_tecnicos  
             ON documentos_tecnicos.id_documento = documentos.id

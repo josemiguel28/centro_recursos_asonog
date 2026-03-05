@@ -43,7 +43,7 @@
                           fill="#666666"/>
                 </svg>
 
-                <p class="font-semibold ms-auto text-center text-xl mt-2 ">+130 libros digitales</p>
+                <p class="font-semibold ms-auto text-center text-xl mt-2 ">+150 libros digitales</p>
 
             </div>
             <div class="flex justify-center flex-col mb-7 lg:mb-0">
@@ -94,10 +94,11 @@
                     PÚBLICO
                 </div>
                 <h4 class="mb-2 text-slate-800 text-xl font-semibold">
-                    Accede a todos nuestros libros de forma gratuita
+                    Accede a todos nuestros libros
                 </h4>
                 <p class="mb-8 text-slate-600 leading-normal font-light">
-                    Puedes acceder a todos nuestros libros de forma gratuita.
+                    Explora y disfruta nuestra colección de libros disponibles para ti de forma gratuita.
+                    <br>
                 </p>
                 <div>
                     <a href="/biblioteca"
@@ -132,11 +133,11 @@
                     ¿Eres parte de nuestra organización?
                 </h4>
                 <p class="mb-8 text-slate-600 leading-normal font-light">
-                    Si eres parte de nuestra organizacion puedes acceder a nuestros recursos de forma online.
+                    Si eres parte de nuestra organización puedes acceder a nuestros recursos de forma online.
                 </p>
                 <div>
                     <a href="/login" class="text-slate-800 font-semibold text-sm hover:underline flex items-center">
-                        Acceder
+                        Repositorio
                         <svg xmlns="http://www.w3.org/2000/svg" class="ml-2 h-4 w-4" fill="none" viewBox="0 0 24 24"
                              stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -190,7 +191,7 @@
             <!-- Seguridad Alimentaria -->
             <div class="bg-white shadow-md rounded-lg border border-transparent transition transform hover:-translate-y-2 hover:shadow-lg hover:border-green-500 flex flex-col"
                  data-aos="fade-left">
-                <a href="/search-book?busqueda-libro=seguridad+alimentaria" class="flex-grow">
+                <a href="/search-book?busqueda-libro=seguridad+alimentaria+y+nutricional" class="flex-grow">
                     <div>
                         <picture>
                             <source srcset="build/img/img_categoria_san.webp" type="image/webp">
@@ -200,13 +201,14 @@
                         </picture>
                     </div>
                     <div class="p-4">
-                        <h3 class="text-xl font-semibold mb-2">Seguridad alimentaria y nutricional (SAN)</h3>
-                        <p class="text-gray-700">Información sobre políticas y prácticas de acceso a alimentos.</p>
+                        <h3 class="text-xl font-semibold mb-2">Seguridad Alimentaria y Nutricional (SAN)</h3>
+                        <p class="text-gray-700">Información sobre políticas públicas y buenas prácticas
+                            alimentarias.</p>
                     </div>
                 </a>
                 <!-- Call to Action -->
                 <div class="mt-4 text-right">
-                    <a href="/search-book?busqueda-libro=seguridad+alimentaria"
+                    <a href="/search-book?busqueda-libro=seguridad+alimentaria+y+nutricional"
                        class="inline-block bg-green-500 text-white text-sm font-semibold py-3 px-6 rounded-full mb-6 mx-4 shadow hover:bg-green-600 transition">
                         Explorar Recursos
                     </a>
@@ -216,7 +218,7 @@
             <!-- Cambio Climático -->
             <div class="bg-white shadow-md rounded-lg border border-transparent transition transform hover:-translate-y-2 hover:shadow-lg hover:border-yellow-500 flex flex-col"
                  data-aos="fade-left">
-                <a href="/search-book?busqueda-libro=cambio+climatico" class="flex-grow">
+                <a href="/search-book?busqueda-libro=medio+ambiente" class="flex-grow">
                     <div>
                         <picture>
                             <source srcset="build/img/img_categoria_ambiente.webp" type="image/webp">
@@ -233,12 +235,11 @@
                 </a>
                 <!-- Call to Action -->
                 <div class="mt-4 text-right">
-                    <a href="/search-book?busqueda-libro=cambio+climatico"
+                    <a href="/search-book?busqueda-libro=medio+ambiente"
                        class="inline-block bg-yellow-500 text-white text-sm font-semibold py-3 px-6 rounded-full mb-6 mx-4 shadow transition hover:bg-yellow-600">
                         Explorar Recursos
                     </a>
                 </div>
-
             </div>
 
             <!-- Género e Inclusión -->
@@ -281,7 +282,8 @@
                     </div>
                     <div class="p-4">
                         <h3 class="text-xl font-semibold mb-2">Participación Ciudadana</h3>
-                        <p class="text-gray-700">Guías y herramientas para fomentar la participación cívica.</p>
+                        <p class="text-gray-700">Guías y herramientas para fomentar la participación y el ejercicio
+                            ciudadano.</p>
                     </div>
                 </a>
                 <!-- Call to Action -->
@@ -292,7 +294,6 @@
                     </a>
                 </div>
             </div>
-
         </div>
 
         <!-- Botón Ver Más
@@ -311,7 +312,7 @@
 
             <!-- Columna 1: Título y subtítulo -->
             <div class="text-center md:text-left">
-                <h2 class="text-4xl font-bold mb-8">Todos pueden aprender.</h2>
+                <h2 class="text-4xl font-bold mb-8">Impulsando el aprendizaje con un enfoque integral</h2>
                 <h3 class="text-xl text-gray-700 mb-8">Accede a recursos y materiales diseñados para todos los
                     niveles
                     de conocimiento.</h3>
@@ -340,11 +341,10 @@
             <!-- Columna 2: Imagen con fondo -->
             <div class="flex justify-center md:justify-end w-full h-full">
                 <!-- Contenedor de la imagen con fondo -->
-                <picture class="w-full h-full  p-4 bg-cover bg-center"
-                         style="background-image: url('build/img/banner_pattern.png');">
+                <picture class="w-full h-full  p-4 bg-cover bg-center">
                     <source srcset="build/img/img_banner.webp" type="image/webp">
                     <source srcset="build/img/img_banner.jpg" type="image/jpeg">
-                    <img class="w-full h-full object-contain" loading="lazy"
+                    <img class="w-full h-full object-contain rounded-xl" loading="lazy"
                          src="build/img/img_banner.png" alt="Imagen ilustrativa de aprendizaje">
                 </picture>
             </div>
@@ -382,7 +382,7 @@
                             <div class="flex items-center space-x-1 rtl:space-x-reverse">
                                 <div class="flex items-center space-x-1 rtl:space-x-reverse">
                                     <div class="flex items-start space-x-1 rtl:space-x-reverse px-2 py-1 rounded-[1rem] bg-secondary-500">
-                                        <p class="text-xs sm:text-sm text-white max-w-[150px] truncate"><?= $libro->id_categoria //nombre de la categoria                   ?></p>
+                                        <p class="text-xs sm:text-sm text-white max-w-[150px] truncate"><?= $libro->id_categoria //nombre de la categoria                    ?></p>
                                     </div>
                                 </div>
                             </div>
@@ -417,21 +417,22 @@
         <!-- Contenedor de dos columnas -->
         <div class="grid grid-cols-1 md:grid-cols-2 gap-20 items-center">
             <!-- Columna con imagen -->
-            <div>
-                <div class="relative bg-blue-100 rounded-tl-[6rem] w-[95%] h-96 mx-auto mt-10 sm:w-full">
+            <div class="w-full">
+                <div class="w-full">
                     <picture>
                         <source srcset="build/img/aboutUs.webp" type="image/webp">
                         <source srcset="build/img/aboutUs.jpg" type="image/jpeg">
                         <img loading="lazy"
-                             class="absolute top-20 left-1/2 transform -translate-x-1/2 w-80 h-80 sm:translate-x-12 sm:w-96 sm:h-96 sm:left-[12rem] sm:top-8 rounded-xl object-cover shadow-lg"
+                             class="w-full h-auto rounded-xl object-cover shadow-lg"
                              src="/build/img/aboutUs.png" alt="about us">
                     </picture>
                 </div>
             </div>
 
+
             <!-- Columna con texto -->
             <div>
-                <p class="text-lg leading-relaxed ">
+                <p class="text-lg leading-relaxed text-justify ">
                     El <span
                             class="font-semibold"> Centro de Recursos para la Gestión del Conocimiento de ASONOG </span>
                     es una plataforma digital de acceso
@@ -448,7 +449,7 @@
                 <a href="/nosotros">
                     <button class="hover:brightness-110 hover:animate-pulse
                 font-bold py-3 px-6 rounded-full bg-primary-500 shadow-lg shadow-primary-500/50 text-white mx-auto flex justify-center mt-12">
-                        Conoce más
+                        Más información
                     </button>
                 </a>
             </div>
@@ -461,12 +462,11 @@
         <div class="py-8 lg:py-16 px-4 mx-auto max-w-screen-md">
             <h2 class="mb-4 text-4xl tracking-tight font-semibold text-center text-gray-900">Contáctanos</h2>
             <p class="mb-8 lg:mb-16 font-light text-center text-gray-500 dark:text-gray-400 sm:text-xl">Si tienes
-                dudas
-                o consultas, puedes contactarnos a través de nuestro formulario de contacto.</p>
+                dudas o consultas puedes contactarnos a través de nuestro formulario de contacto.</p>
 
             <?php include_once __DIR__ . '/../templates/alertas.php'; ?>
 
-            <form action ="/" class="space-y-8" method="post">
+            <form action="/" class="space-y-8" method="post">
                 <div>
                     <label for="email" class="block mb-2 font-medium text-gray-900 dark:text-gray-300">Tu
                         email</label>
@@ -493,7 +493,7 @@
 
                     <button type="submit"
                             class="bg-primary-500 focus:ring-4 focus:outline-none focus:ring-primary-300 ">
-                        Enviar mensajes
+                        Enviar mensaje
                     </button>
                 </div>
             </form>

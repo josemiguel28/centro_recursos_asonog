@@ -1,8 +1,8 @@
 import mostrarLibros from '../showMoreBooks/UI.js';
 
-async function filterBooksByCategoryAPI(category, offset) {
+async function filterBooksByCategoryAPI(category) {
     try {
-        const url = `/api/filter-books-by-category?categoria=${encodeURIComponent(category)}&offset=${offset}`;
+        const url = `/api/filter-books-by-category?categoria=${encodeURIComponent(category)}`;
         const resultado = await fetch(url, {
             headers: {
                 'X-Requested-With': 'XMLHttpRequest'

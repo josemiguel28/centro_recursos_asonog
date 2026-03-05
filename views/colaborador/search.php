@@ -36,7 +36,7 @@
     </div>
 
     <div class="flex justify-start mb-6">
-        <h1 class="text-2xl">Resultados de la busqueda <span class="font-semibold"> <?= $search; ?> </span></h1>
+        <h1 class="text-2xl"> <span class="font-semibold"> <?= $countDocuments ?> </span> registros encontrados</span></h1>
     </div>
 
     <!-- Contenedor de dos columnas -->

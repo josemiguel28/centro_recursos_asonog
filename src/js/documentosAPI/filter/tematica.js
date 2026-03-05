@@ -1,8 +1,8 @@
 import mostrarDocumentos from '../showMoreDocuments/UI.js';
 
-async function filterDocumentsByTematicaAPI(tematica, offset) { 
+async function filterDocumentsByTematicaAPI(tematica) {
     try {
-        const url = `/api/filter-documents-by-tematica?tematica=${encodeURIComponent(tematica)}&offset=${offset}`;
+        const url = `/api/filter-documents-by-tematica?tematica=${encodeURIComponent(tematica)}`;
         const resultado = await fetch(url, {
             headers: {
                 'X-Requested-With': 'XMLHttpRequest'

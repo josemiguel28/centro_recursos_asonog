@@ -20,8 +20,6 @@
                         </div>
                     </div>
                 </div>
-
-
             </div>
             <div class="flex items-center justify-end px-3 sm:px-5 pb-3 sm:pb-5">
                 <a href="/libros/<?= $libro->archivo_url ?>" target="_blank"

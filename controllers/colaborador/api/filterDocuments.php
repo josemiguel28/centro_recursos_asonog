@@ -20,7 +20,7 @@ class filterDocuments
         $limit = 10; // Número de documentos por página
         $offset = $_GET['offset'] ?? 0; // Usamos 0 si no hay offset enviado desde js
 
-        $documentos = DocumentosTecnicos::filterDocumentsByTematica($tematica, $limit, $offset);
+        $documentos = DocumentosTecnicos::filterDocumentsByTematica($tematica);
 
         if (isset($_SERVER['HTTP_X_REQUESTED_WITH']) && $_SERVER['HTTP_X_REQUESTED_WITH'] === 'XMLHttpRequest') {
             header('Content-Type: application/json');
@@ -43,7 +43,7 @@ class filterDocuments
         $limit = 10; // Número de documentos por página
         $offset = $_GET['offset'] ?? 0; // Usamos 0 si no hay offset enviado desde js
 
-        $documentos = DocumentosTecnicos::filterDocumentsByHerramienta($herramienta, $limit, $offset);
+        $documentos = DocumentosTecnicos::filterDocumentsByHerramienta($herramienta);
 
         if (isset($_SERVER['HTTP_X_REQUESTED_WITH']) && $_SERVER['HTTP_X_REQUESTED_WITH'] === 'XMLHttpRequest') {
             header('Content-Type: application/json');

@@ -1,30 +1,26 @@
 <div class="container mx-auto px-4">
     <!-- Título -->
-    <h1 class="text-center text-3xl sm:text-3xl font-semibold mb-16">
-        Centro de Recursos para la Gestión del Conocimiento (CRGC)
+    <h1 class="text-center text-3xl sm:text-3xl font-semibold py-4 md:py-16">
+        <span class="font-semibold"> ¡Te damos la bienvenida al Centro de Recursos para la Gestión del Conocimiento! </span>
     </h1>
 
-    <div class="w-full mx-auto md:max-w-[70%]">
-        <picture>
-            <source srcset="build/img/img_aboutus.webp" type="image/webp">
-            <source srcset="build/img/img_aboutus.jpg" type="image/jpeg">
-            <img loading="lazy" class="w-full rounded-lg shadow-lg" src="/build/img/img_aboutus.jpg" alt="about us">
-        </picture>
-
-    </div>
-
     <!-- Contenedor principal -->
-    <div class="flex flex-col lg:flex-row items-center gap-8 mb-20 mt-12 mx-auto md:max-w-[90%]">
+    <div class="flex flex-col lg:flex-row items-center gap-8 mx-auto md:max-w-[90%] py-16">
+
+        <div class="w-full mx-auto max-h-52 p-16 flex justify-center items-center">
+            <picture>
+                <source srcset="build/img/logo_img_notext.webp" type="image/webp">
+                <source srcset="build/img/logo_img_notext.jpg" type="image/jpeg">
+                <img loading="lazy" class="w-full rounded-lg shadow-lg" src="/build/img/logo_img_notext.jpg" alt="about us">
+            </picture>
+        </div>
+
         <!-- Texto a la izquierda -->
         <div class="w-full lg:w-1/2 space-y-4">
-            <p class="text-gray-700 text-lg">
-                <span class="font-semibold"> Bienvenido al Centro de Recursos para la Gestión del Conocimiento. </span>
-                Aquí encontrarás una amplia colección
-                de
-                materiales y herramientas diseñadas para mejorar la gestión y el intercambio de conocimientos en nuestra
-                organización.
-            </p>
-            <p class="text-gray-700 text-lg">
+
+            <p class="text-gray-700 text-lg">Aquí encontrarás una amplia colección de materiales y herramientas diseñadas para mejorar la gestión y el intercambio de conocimientos en nuestra
+                organización.</p>
+            <p class="text-gray-700 text-lg text-justify">
                 Nuestro objetivo es facilitar el acceso a recursos útiles y relevantes que impulsen el desarrollo
                 profesional y
                 el aprendizaje continuo. Explora nuestros materiales y aprovecha al máximo estos recursos para
@@ -126,7 +122,7 @@
     </div>
 
     <!-- Sección de cartas de Misión y Visión -->
-    <div class="flex flex-col sm:flex-row gap-12 justify-center mb-12">
+    <div class="flex flex-col sm:flex-row gap-12 justify-center py-16">
         <!-- Carta 1: Misión -->
         <div class="flex flex-col items-center w-full sm:w-1/2 lg:w-1/2 max-w-[30rem] bg-white shadow-md p-6 rounded-lg transform transition-transform duration-200 hover:scale-105">
             <div class="text-primary-500 mb-4">
@@ -151,7 +147,7 @@
             <div class="flex justify-start w-full mt-5">
                 <h3 class="text-2xl font-semibold mb-2">Misión</h3>
             </div>
-            <p class="text-gray-600">
+            <p class="text-gray-600 text-justify">
                 Proporcionar a los usuarios una plataforma digital y accesible que reúna y promueva una amplia colección
                 de recursos informativos para promover la gestión digital del conocimiento.
             </p>
@@ -169,7 +165,7 @@
             <div class="flex justify-start w-full mt-5">
                 <h3 class="text-2xl font-semibold mb-2">Visión</h3>
             </div>
-            <p class="text-gray-600">
+            <p class="text-gray-600 text-justify">
                 Nuestra visión es ser un referente en el acceso y la gestión de conocimiento a través de una plataforma
                 colaborativa donde individuos y organizaciones puedan acceder a recursos valiosos para la construcción de
                 una sociedad mas justa y equitativa.

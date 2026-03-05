@@ -71,7 +71,7 @@ class Libros extends ActiveRecord
                 
                 libros_categorias.id_categoria = libros.id_categoria
                                   
-                WHERE estado = 'ACT' LIMIT {$limit}";
+                WHERE estado = 'ACT' order by libros.id desc LIMIT {$limit}";;
 
         return self::SQL($sql);
     }
@@ -94,7 +94,7 @@ class Libros extends ActiveRecord
         return self::SQL($sql);
     }
 
-    public static function filterBooksByCategory($categoria, $limit, $offset)
+    public static function filterBooksByCategory($categoria)
     {
         $sql = "SELECT libros.id, 
                 libros.titulo,
@@ -109,8 +109,7 @@ class Libros extends ActiveRecord
                 libros_categorias.id_categoria = libros.id_categoria 
                 
                 WHERE libros.id_categoria = '{$categoria}' 
-                AND libros.estado = 'ACT' 
-                LIMIT {$limit} OFFSET {$offset}";
+                AND libros.estado = 'ACT'";
 
         return self::consultarSQL($sql);
     }
@@ -129,7 +128,7 @@ class Libros extends ActiveRecord
                 
                 libros_categorias.id_categoria = libros.id_categoria 
                 
-                WHERE libros.estado = 'ACT' 
+                WHERE libros.estado = 'ACT' order by libros.id desc
                 LIMIT {$limit} OFFSET {$offset}";
 
         return self::consultarSQL($sql);
@@ -150,8 +149,7 @@ class Libros extends ActiveRecord
                 libros_categorias.id_categoria = libros.id_categoria 
                 
                 WHERE (libros.titulo LIKE '%{$search}%' 
-                OR libros.autor LIKE '%{$search}%' 
-                OR libros.anio LIKE '%{$search}%') 
+                OR libros_categorias.nombre LIKE '%{$search}%') 
                 AND libros.estado = 'ACT'";
 
         return self::consultarSQL($sql);

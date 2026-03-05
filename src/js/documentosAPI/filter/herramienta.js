@@ -1,8 +1,8 @@
 import mostrarDocumentos from '../showMoreDocuments/UI.js';
 
-async function filterDocumentsByHerramientaAPI(herramienta, offset) {
+async function filterDocumentsByHerramientaAPI(herramienta) {
     try {
-        const url = `/api/filter-documents-by-herramienta?herramienta=${encodeURIComponent(herramienta)}&offset=${offset}`;
+        const url = `/api/filter-documents-by-herramienta?herramienta=${encodeURIComponent(herramienta)}`;
         const resultado = await fetch(url, {
             headers: {
                 'X-Requested-With': 'XMLHttpRequest'
