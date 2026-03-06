@@ -50,7 +50,7 @@ y los libros que puedan ser consultados por cualquier persona que desee enriquec
 
 5. Crear una base de datos en MySQL (la estructura de la base de datos se encuentra en `/scripts` del proyecto)
 
-6. Modificar el archivo `.env` en la carpeta `/includes` del proyecto y configurar las variables de entorno
+6. Reemplazar el archivo de `.env.example` por `.env` en la carpeta `/includes` del proyecto y configurar las variables de entorno. 
 
 7. En la raiz del proyecto, moverse a la carpeta `/public` con el comando `cd public` y ejecutar el comando `php -S localhost:3000`
 
