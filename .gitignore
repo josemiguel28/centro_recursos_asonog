@@ -6,5 +6,7 @@ public/imagenesDocumentos/
 public/documentos/
 public/imagenesLibros/
 public/libros/
+public/public.zip
+*.zip
 
 
