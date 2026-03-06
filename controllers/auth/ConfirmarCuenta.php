@@ -17,7 +17,9 @@ class ConfirmarCuenta
     private static function validarToken(): ?Usuario
     {
         $request = new Request();
-        session_start();
+        if (session_status() === PHP_SESSION_NONE) {
+            session_start();
+        }
         $tokenFromURL = $request->get("token") ?? $_SESSION['token'] ?? '';
 
         $usuario = Usuario::where('token', $tokenFromURL);

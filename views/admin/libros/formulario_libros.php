@@ -23,7 +23,7 @@
                 include_once __DIR__ . "/../../templates/alertas.php";
                 ?>
 
-                <form class="space-y-4 md:space-y-6" action="/libro?mode=<?= $mode ?>&id= <?= $libro->id ?>"
+                <form class="space-y-4 md:space-y-6" action="/libro?mode=<?= $mode ?>&id= <?= $libro->id ?? 'null' ?>"
                       method="post"
                       enctype="multipart/form-data">
                     <div>
@@ -37,7 +37,7 @@
                                 focus:border-primary-600 block w-full p-2.5 "
                                 placeholder="Cómo podemos ayudar a prevenir los desastres"
                                 required=""
-                                value="<?= $libro->titulo; ?>"
+                                value="<?= $libro->titulo ?? ''; ?>"
                             <?= $mode === "DSP" || $mode === "DEL" ? "disabled" : ""; ?>
                         >
                     </div>
@@ -51,7 +51,7 @@
                                 id="autor"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 "
                                 placeholder="Carlos"
-                                value="<?= $libro->autor; ?>"
+                                value="<?= $libro->autor ?? ''; ?>"
                                 required
                             <?= $mode === "DSP" || $mode === "DEL" ? "disabled" : ""; ?>
 
@@ -71,7 +71,7 @@
                             <?php foreach ($categorias as $categoria) : ?>
 
                                 <option value="<?= $categoria->id_categoria ?>"
-                                    <?= ($libro->id_categoria == $categoria->id_categoria) ? 'selected' : "" ?> >
+                                    <?= (($libro->id_categoria ?? null) == $categoria->id_categoria) ? 'selected' : "" ?> >
                                     <?= $categoria->nombre ?>
                                 </option>
 
@@ -91,8 +91,8 @@
                                 id="estado"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5">
 
-                            <option value="ACT" <?= $libro->estado === "ACT" ? 'selected' : "" ?> >Activo</option>
-                            <option value="INA" <?= $libro->estado === "INA" ? 'selected' : "" ?> >Inactivo</option>
+                            <option value="ACT" <?= ($libro->estado ?? '') === "ACT" ? 'selected' : "" ?> >Activo</option>
+                            <option value="INA" <?= ($libro->estado ?? '') === "INA" ? 'selected' : "" ?> >Inactivo</option>
 
                         </select>
                     </div>
@@ -106,12 +106,12 @@
                                 <div class="mb-5 flex justify-center">
 
                                     <div>
-                                        <a href="/libros/<?= $libro->archivo_url; ?>" target="_blank"
+                                        <a href="/libros/<?= $libro->archivo_url ?? ''; ?>" target="_blank"
                                            class="text-primary-500">
 
                                             <div>
                                                 <img class="rounded-[0.5rem]"
-                                                     src="/imagenesLibros/<?= $libro->imagen; ?>"
+                                                     src="/imagenesLibros/<?= $libro->imagen ?? ''; ?>"
                                                      alt=""
                                                      width="100"
                                                      height="100"
@@ -127,7 +127,7 @@
                                    name="imagen"
                                    id="imagen"
                                    accept="image/jpeg, image/png"
-                                   value="<?= $libro->imagen; ?>"
+                                   value="<?= $libro->imagen ?? ''; ?>"
                                 <?= $mode === "DSP" || $mode === "DEL" ? "disabled" : ""; ?>
                             >
 
@@ -166,7 +166,7 @@
 
                         <?php
                         include_once __DIR__ . "/../../templates/formularios/show_file.php";
-                        mostrarArchivo("libros", $libro->archivo_url, "imagenesLibros", $libro->imagen);
+                        mostrarArchivo("libros", $libro->archivo_url ?? '', "imagenesLibros", $libro->imagen ?? '');
                         ?>
 
                     <?php endif; ?>

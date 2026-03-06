@@ -38,7 +38,7 @@
                         focus:border-primary-600 block w-full p-2.5 "
                                 placeholder="Informe ONU"
                                 required=""
-                                value="<?= $documento["nombre_herramienta"]; ?>">
+                                value="<?= $documento["nombre_herramienta"] ?? ''; ?>">
                     </div>
 
                     <div>
@@ -53,7 +53,7 @@
 
                             <?php foreach ($tipoHerramientas as $herramienta): ?>
                                 <option value="<?= $herramienta->id ?>"
-                                    <?= ($documento["tipo_herramienta"] === $herramienta->nombre) ? 'selected' : "" ?> >
+                                    <?= (($documento["tipo_herramienta"] ?? '') === $herramienta->nombre) ? 'selected' : "" ?> >
                                     <?= $herramienta->nombre ?>
 
                                 </option>
@@ -74,7 +74,7 @@
 
                             <?php foreach ($tematicas as $tematica): ?>
                                 <option value="<?= $tematica->id ?>"
-                                    <?= ($documento["tematica"] === $tematica->nombre) ? 'selected' : "" ?> >
+                                    <?= (($documento["tematica"] ?? '') === $tematica->nombre) ? 'selected' : "" ?> >
                                     <?= $tematica->nombre ?></option>
                             <?php endforeach; ?>
                         </select>
@@ -141,7 +141,7 @@
                         focus:border-primary-600 block w-full p-2.5 "
                                 placeholder="2024"
                                 required=""
-                                value="<?= $documento["fecha_emision"]; ?>">
+                                value="<?= $documento["fecha_emision"] ?? ''; ?>">
                     </div>
 
                     <div>
@@ -153,7 +153,7 @@
                                 class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 "
                                 placeholder="Escribe una descripcion del documento..."
                                 name="descripcion">
-                                <?= htmlspecialchars($documento['descripcion']) ?>
+                                <?= htmlspecialchars($documento['descripcion'] ?? '') ?>
 
                         </textarea>
                     </div>
@@ -168,8 +168,8 @@
                                 id="estado"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5">
 
-                            <option value="ACT" <?= $documento["estado"] === "ACT" ? 'selected' : "" ?> >Activo</option>
-                            <option value="INA" <?= $documento["estado"] === "INA" ? 'selected' : "" ?> >Inactivo
+                            <option value="ACT" <?= ($documento["estado"] ?? '') === "ACT" ? 'selected' : "" ?> >Activo</option>
+                            <option value="INA" <?= ($documento["estado"] ?? '') === "INA" ? 'selected' : "" ?> >Inactivo
                             </option>
 
                         </select>

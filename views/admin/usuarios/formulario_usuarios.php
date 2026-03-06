@@ -40,8 +40,8 @@
                         focus:border-primary-600 block w-full p-2.5"
                                 placeholder="correo@correo.com"
                                 required=""
-                                value="<?= $usuario->correo; ?>"
-                            <?= (($usuario->confirmado == 0 && $mode === "UPD") || $mode === "DEL") ? "disabled" : ""; ?>
+                                value="<?= $usuario->correo ?? ''; ?>"
+                            <?= ((($usuario->confirmado ?? 1) == 0 && $mode === "UPD") || $mode === "DEL") ? "disabled" : ""; ?>
                         >
                     </div>
 
@@ -54,8 +54,8 @@
                                 id="nombre"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 "
                                 placeholder="Carlos"
-                                value="<?= $usuario->nombre; ?>"
-                            <?= (($usuario->confirmado == 0 && $mode === "UPD") || $mode === "DEL") ? "disabled" : ""; ?>
+                                value="<?= $usuario->nombre ?? ''; ?>"
+                            <?= ((($usuario->confirmado ?? 1) == 0 && $mode === "UPD") || $mode === "DEL") ? "disabled" : ""; ?>
                         >
                     </div>
 
@@ -69,8 +69,8 @@
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600
                         focus:border-primary-600 block w-full p-2.5 "
                                 placeholder="Martinez"
-                                value="<?= $usuario->apellido; ?>"
-                            <?= (($usuario->confirmado == 0 && $mode === "UPD") || $mode === "DEL") ? "disabled" : ""; ?>
+                                value="<?= $usuario->apellido ?? ''; ?>"
+                            <?= ((($usuario->confirmado ?? 1) == 0 && $mode === "UPD") || $mode === "DEL") ? "disabled" : ""; ?>
 
                         >
                     </div>
@@ -85,8 +85,8 @@
                                 maxlength="8"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
                                 placeholder="123456789"
-                                value="<?= $usuario->telefono; ?>"
-                            <?= (($usuario->confirmado == 0 && $mode === "UPD") || $mode === "DEL") ? "disabled" : ""; ?>
+                                value="<?= $usuario->telefono ?? ''; ?>"
+                            <?= ((($usuario->confirmado ?? 1) == 0 && $mode === "UPD") || $mode === "DEL") ? "disabled" : ""; ?>
 
                         >
                     </div>
@@ -96,7 +96,7 @@
                             el rol del usuario</label>
 
                         <select
-                            <?= (($usuario->confirmado == 0 && $mode === "UPD") || $mode === "DEL") ? "disabled" : ""; ?>
+                            <?= ((($usuario->confirmado ?? 1) == 0 && $mode === "UPD") || $mode === "DEL") ? "disabled" : ""; ?>
                                 name="rol"
                                 id="rol"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5">
@@ -104,7 +104,7 @@
                             <?php foreach ($roles as $role) : ?>
                                 <option value="<?php echo $role->id; ?>"
 
-                                    <?php if ($usuario->rol === $role->id) echo "selected"; ?>>
+                                    <?php if (($usuario->rol ?? null) === $role->id) echo "selected"; ?>>
                                     <?php echo $role->nombre; ?>
                                 </option>
                             <?php endforeach; ?>
@@ -119,14 +119,14 @@
                                 el estado del usuario</label>
 
                             <select
-                                <?= (($usuario->confirmado == 0 && $mode === "UPD") || $mode === "DEL") ? "disabled" : ""; ?>
+                                <?= ((($usuario->confirmado ?? 1) == 0 && $mode === "UPD") || $mode === "DEL") ? "disabled" : ""; ?>
 
                                     name="estado"
                                     id="estado"
                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5">
-                                <option value="ACT" <?php if ($usuario->estado === "ACT") echo "selected"; ?>>Activo
+                                <option value="ACT" <?php if (($usuario->estado ?? '') === "ACT") echo "selected"; ?>>Activo
                                 </option>
-                                <option value="INA" <?php if ($usuario->estado === "INA") echo "selected"; ?>>
+                                <option value="INA" <?php if (($usuario->estado ?? '') === "INA") echo "selected"; ?>>
                                     Inhabilitar
                                 </option>
                             </select>
@@ -143,7 +143,7 @@
 
                     <div class="bg-primary-500 hover:bg-primary-300 font-medium rounded-lg <?= $mode === "DEL" ? 'bg-red-600 hover:bg-red-300' : '' ?>">
                         <button
-                            <?= $usuario->confirmado == 0 && $mode === "UPD" ? "disabled" : ""; ?>
+                            <?= ($usuario->confirmado ?? 1) == 0 && $mode === "UPD" ? "disabled" : ""; ?>
                                 type="submit"
                                 class="w-full text-white text-sm px-5 py-2.5 text-center ">
                             <?= $mode === "DEL" ? 'Eliminar' : 'Guardar' ?>
