@@ -19,11 +19,25 @@ class ManageDocumentsController extends ActiveRecord
     {
         isAdmin();
 
-        $documents = DocumentosTecnicos::getAllDocumentos();
+        $perPage = 10;
+        $page    = max(1, (int) ($_GET['page'] ?? 1));
+        $offset  = ($page - 1) * $perPage;
+
+        $total    = DocumentosTecnicos::countAllDocuments();
+        $lastPage = max(1, (int) ceil($total / $perPage));
+        $page     = min($page, $lastPage);
+        $offset   = ($page - 1) * $perPage;
+
+        $documents = DocumentosTecnicos::getAdminPaginatedDocuments($perPage, $offset);
+
         $router->render('admin/documentos/gestion_documentos',
             [
                 'documentos' => $documents,
-                'titlePage' => "Gestión del repositorio"
+                'page'       => $page,
+                'lastPage'   => $lastPage,
+                'total'      => $total,
+                'perPage'    => $perPage,
+                'titlePage'  => "Gestión del repositorio"
             ]);
     }
 

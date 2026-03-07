@@ -22,14 +22,24 @@ class ManageBookController extends ActiveRecord
     public static function showBooks(Router $router): void
     {
         isAdmin();
-        $books = Libros::getAllBooks();
-        $alertas = array_merge_recursive(Libros::getAlertas(), getFlashAlertas());
+
+        $perPage  = 10;
+        $page     = max(1, (int) ($_GET['page'] ?? 1));
+        $offset   = ($page - 1) * $perPage;
+        $total    = Libros::countAllBooks();
+        $lastPage = (int) ceil($total / $perPage);
+        $books    = Libros::getAdminPaginatedBooks($perPage, $offset);
+        $alertas  = array_merge_recursive(Libros::getAlertas(), getFlashAlertas());
 
         $router->render('admin/libros/gestion_libros',
             [
-                'libros' => $books,
-                'alertas' => $alertas,
-                'titlePage' => "Gestión de biblioteca"
+                'libros'    => $books,
+                'alertas'   => $alertas,
+                'titlePage' => 'Gestión de biblioteca',
+                'page'      => $page,
+                'lastPage'  => $lastPage,
+                'total'     => $total,
+                'perPage'   => $perPage,
             ]);
     }
 

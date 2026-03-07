@@ -108,5 +108,90 @@
             </div>
         </div>
 
+        <!-- Pagination -->
+        <div class="flex items-center justify-between mt-4">
+            <p class="text-sm text-gray-500">
+                Mostrando <span class="font-medium text-gray-700"><?= $total > 0 ? (($page - 1) * $perPage) + 1 : 0 ?></span>
+                –
+                <span class="font-medium text-gray-700"><?= min($page * $perPage, $total) ?></span>
+                de <span class="font-medium text-gray-700"><?= $total ?></span> libros
+            </p>
+
+            <?php if ($lastPage > 1) : ?>
+            <div class="flex items-center gap-1">
+                <!-- Anterior -->
+                <?php if ($page > 1) : ?>
+                    <a href="?page=<?= $page - 1 ?>"
+                        class="inline-flex items-center px-3 py-1.5 text-sm text-gray-600 bg-white border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors">
+                        <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+                        </svg>
+                        Anterior
+                    </a>
+                <?php else : ?>
+                    <span class="inline-flex items-center px-3 py-1.5 text-sm text-gray-300 bg-white border border-gray-100 rounded-lg cursor-not-allowed">
+                        <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+                        </svg>
+                        Anterior
+                    </span>
+                <?php endif; ?>
+
+                <!-- Páginas numeradas -->
+                <?php
+                $start = max(1, $page - 2);
+                $end   = min($lastPage, $page + 2);
+                ?>
+
+                <?php if ($start > 1) : ?>
+                    <a href="?page=1" class="inline-flex items-center justify-center w-9 h-9 text-sm text-gray-600 bg-white border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors">1</a>
+                    <?php if ($start > 2) : ?>
+                        <span class="px-1 text-gray-400">…</span>
+                    <?php endif; ?>
+                <?php endif; ?>
+
+                <?php for ($i = $start; $i <= $end; $i++) : ?>
+                    <?php if ($i === $page) : ?>
+                        <span class="inline-flex items-center justify-center w-9 h-9 text-sm font-semibold text-white bg-gray-800 rounded-lg">
+                            <?= $i ?>
+                        </span>
+                    <?php else : ?>
+                        <a href="?page=<?= $i ?>" class="inline-flex items-center justify-center w-9 h-9 text-sm text-gray-600 bg-white border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors">
+                            <?= $i ?>
+                        </a>
+                    <?php endif; ?>
+                <?php endfor; ?>
+
+                <?php if ($end < $lastPage) : ?>
+                    <?php if ($end < $lastPage - 1) : ?>
+                        <span class="px-1 text-gray-400">…</span>
+                    <?php endif; ?>
+                    <a href="?page=<?= $lastPage ?>" class="inline-flex items-center justify-center w-9 h-9 text-sm text-gray-600 bg-white border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors"><?= $lastPage ?></a>
+                <?php endif; ?>
+
+                <!-- Siguiente -->
+                <?php if ($page < $lastPage) : ?>
+                    <a href="?page=<?= $page + 1 ?>"
+                        class="inline-flex items-center px-3 py-1.5 text-sm text-gray-600 bg-white border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors">
+                        Siguiente
+                        <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                        </svg>
+                    </a>
+                <?php else : ?>
+                    <span class="inline-flex items-center px-3 py-1.5 text-sm text-gray-300 bg-white border border-gray-100 rounded-lg cursor-not-allowed">
+                        Siguiente
+                        <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                        </svg>
+                    </span>
+                <?php endif; ?>
+            </div>
+            <?php endif; ?>
+        </div>
+
+    </div>
+</section>
+
     </div>
 </section>

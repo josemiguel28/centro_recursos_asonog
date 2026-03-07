@@ -13,12 +13,25 @@ class ManageUserController extends ActiveRecord
     public static function index(Router $router): void
     {
         isAdmin();
-        $usuarios = Usuario::getAllUsers();
+
+        $perPage = 10;
+        $page    = max(1, (int) ($_GET['page'] ?? 1));
+        $offset  = ($page - 1) * $perPage;
+
+        $total    = Usuario::countAllUsers();
+        $lastPage = max(1, (int) ceil($total / $perPage));
+        $page     = min($page, $lastPage);
+        $offset   = ($page - 1) * $perPage;
+
+        $usuarios = Usuario::getAdminPaginatedUsers($perPage, $offset);
 
         $router->render('admin/usuarios/gestion_usuarios',
             [
-                'usuarios' =>
-                $usuarios,
+                'usuarios'  => $usuarios,
+                'page'      => $page,
+                'lastPage'  => $lastPage,
+                'total'     => $total,
+                'perPage'   => $perPage,
                 'titlePage' => "Gestión de usuarios"
             ]
         );

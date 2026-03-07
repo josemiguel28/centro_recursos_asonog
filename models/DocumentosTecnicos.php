@@ -230,4 +230,38 @@ class DocumentosTecnicos extends ActiveRecord
 
         return DocumentosTecnicos::SQL($sql);
     }
+
+    public static function countAllDocuments(): int {
+        $sql = "SELECT COUNT(*) as total FROM documentos";
+        $resultado = self::$db->query($sql);
+        $row = $resultado->fetch_assoc();
+        $resultado->free();
+        return (int) ($row['total'] ?? 0);
+    }
+
+    public static function getAdminPaginatedDocuments(int $limit, int $offset): array {
+        $sql = "SELECT documentos.id,
+       documentos.nombre_herramienta,
+       documentos.descripcion,
+       tipos_herramienta.nombre AS tipo_herramienta,
+       tematicas.nombre AS tematica,
+       GROUP_CONCAT(tecnicos_responsables.nombre) AS tecnico,
+       documentos.estado,
+       documentos.imagen,
+       documentos.fecha_emision,
+       documentos.archivo_url
+            FROM documentos
+            JOIN documentos_tecnicos
+            ON documentos_tecnicos.id_documento = documentos.id
+            JOIN tecnicos_responsables
+            ON tecnicos_responsables.id = documentos_tecnicos.id_tecnico_responsable
+            JOIN tipos_herramienta
+            ON tipos_herramienta.id = documentos.id_tipo_herramienta
+            JOIN tematicas
+            ON tematicas.id = documentos.id_tematica
+            GROUP BY documentos.id ORDER BY documentos.id DESC
+            LIMIT {$limit} OFFSET {$offset}";
+
+        return DocumentosTecnicos::SQL($sql);
+    }
 }

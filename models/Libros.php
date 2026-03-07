@@ -49,6 +49,32 @@ class Libros extends ActiveRecord
         return self::SQL($sql);
     }
 
+    public static function countAllBooks(): int
+    {
+        $sql = "SELECT COUNT(*) as total FROM " . self::$tabla;
+        $resultado = self::$db->query($sql);
+        $row = $resultado->fetch_assoc();
+        $resultado->free();
+        return (int) ($row['total'] ?? 0);
+    }
+
+    public static function getAdminPaginatedBooks(int $limit, int $offset): array
+    {
+        $sql = "SELECT libros.id,
+                libros.titulo,
+                libros.autor,
+                libros.imagen,
+                libros.estado,
+                libros.archivo_url,
+                libros.anio,
+                libros_categorias.nombre id_categoria
+                FROM " . self::$tabla .
+               " JOIN libros_categorias ON libros_categorias.id_categoria = libros.id_categoria
+                ORDER BY libros.id DESC
+                LIMIT {$limit} OFFSET {$offset}";
+        return self::SQL($sql);
+    }
+
     public static function getAllActiveBooks(): array
     {
         $sql = "SELECT * FROM " . self::$tabla . " WHERE estado = 'ACT'";
