@@ -31,14 +31,47 @@ class UploadPdfController
 
         try {
             // Verificar que se haya enviado un archivo
-            if (!isset($_FILES['archivo']) || $_FILES['archivo']['error'] !== UPLOAD_ERR_OK) {
-                throw new Exception('Error al subir el archivo PDF.');
+            if (!isset($_FILES['archivo'])) {
+                // Puede ocurrir cuando post_max_size es superado: PHP vacía $_FILES y $_POST
+                $contentLength = (int)($_SERVER['CONTENT_LENGTH'] ?? 0);
+                $postMaxSize   = self::parseSize(ini_get('post_max_size'));
+                if ($postMaxSize > 0 && $contentLength > $postMaxSize) {
+                    throw new Exception(
+                        'El archivo supera el límite del servidor (' . self::formatBytes($postMaxSize) . '). ' .
+                        'Contacta al administrador para aumentar post_max_size.'
+                    );
+                }
+                throw new Exception('No se recibió ningún archivo en la petición.');
             }
 
-            // Validar tipo de archivo
-            $tipoPDF = mime_content_type($_FILES['archivo']['tmp_name']);
-            if ($tipoPDF !== 'application/pdf') {
-                throw new Exception('El archivo debe ser un PDF.');
+            $uploadError = $_FILES['archivo']['error'];
+            if ($uploadError !== UPLOAD_ERR_OK) {
+                $uploadErrorMessages = [
+                    UPLOAD_ERR_INI_SIZE   => 'El archivo supera el límite de upload_max_filesize (' . ini_get('upload_max_filesize') . ').',
+                    UPLOAD_ERR_FORM_SIZE  => 'El archivo supera el límite MAX_FILE_SIZE del formulario.',
+                    UPLOAD_ERR_PARTIAL    => 'El archivo se subió de forma parcial.',
+                    UPLOAD_ERR_NO_FILE    => 'No se seleccionó ningún archivo.',
+                    UPLOAD_ERR_NO_TMP_DIR => 'Falta el directorio temporal en el servidor.',
+                    UPLOAD_ERR_CANT_WRITE => 'No se pudo escribir el archivo en el disco del servidor.',
+                    UPLOAD_ERR_EXTENSION  => 'Una extensión de PHP detuvo la subida.',
+                ];
+                $errorMsg = $uploadErrorMessages[$uploadError]
+                    ?? "Error de subida desconocido (código: {$uploadError}).";
+                throw new Exception($errorMsg);
+            }
+
+            // Validar tipo de archivo (con fallback si fileinfo no está disponible)
+            if (function_exists('mime_content_type')) {
+                $tipoPDF = mime_content_type($_FILES['archivo']['tmp_name']);
+                if ($tipoPDF !== 'application/pdf') {
+                    throw new Exception('El archivo debe ser un PDF (tipo detectado: ' . $tipoPDF . ').');
+                }
+            } else {
+                // Fallback: validar por extensión
+                $extension = strtolower(pathinfo($_FILES['archivo']['name'], PATHINFO_EXTENSION));
+                if ($extension !== 'pdf') {
+                    throw new Exception('El archivo debe tener extensión .pdf');
+                }
             }
 
             // Validar tamaño del archivo (100MB)
@@ -85,6 +118,29 @@ class UploadPdfController
                 'message' => $e->getMessage()
             ]);
         }
+    }
+
+    /** Convierte un string de tamaño PHP (p.ej. "8M") a bytes. */
+    private static function parseSize(string $size): int
+    {
+        $size = trim($size);
+        $unit = strtoupper(substr($size, -1));
+        $value = (int)$size;
+        switch ($unit) {
+            case 'G': return $value * 1024 * 1024 * 1024;
+            case 'M': return $value * 1024 * 1024;
+            case 'K': return $value * 1024;
+            default:  return $value;
+        }
+    }
+
+    /** Formatea bytes en una cadena legible. */
+    private static function formatBytes(int $bytes): string
+    {
+        if ($bytes >= 1024 * 1024 * 1024) return round($bytes / (1024 ** 3), 1) . ' GB';
+        if ($bytes >= 1024 * 1024)        return round($bytes / (1024 ** 2), 1) . ' MB';
+        if ($bytes >= 1024)               return round($bytes / 1024, 1) . ' KB';
+        return $bytes . ' B';
     }
 
     /**
