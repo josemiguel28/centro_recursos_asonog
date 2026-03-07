@@ -1,7 +1,7 @@
 <?php
 
 ?>
-<?php foreach ($alertas as $key => $alerta): ?>
+<?php foreach (($alertas ?? []) as $key => $alerta): ?>
     <div
             class="relative w-full max-w-80 mx-auto flex flex-wrap items-center justify-center py-3 pl-4 pr-14 rounded-lg text-sm [transition:all_0.5s_ease] border-solid group"
             style="

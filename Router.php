@@ -19,6 +19,8 @@ class Router
             '/repositorio/gestionar',
             '/colaborador',
             '/search-document',
+            '/api/libros/upload-pdf',
+            '/api/libros/delete-pdf',
         ];
 
     public function get($url, $fn)

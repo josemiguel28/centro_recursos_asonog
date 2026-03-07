@@ -23,10 +23,12 @@ class ManageBookController extends ActiveRecord
     {
         isAdmin();
         $books = Libros::getAllBooks();
+        $alertas = array_merge_recursive(Libros::getAlertas(), getFlashAlertas());
 
         $router->render('admin/libros/gestion_libros',
             [
                 'libros' => $books,
+                'alertas' => $alertas,
                 'titlePage' => "Gestión de biblioteca"
             ]);
     }

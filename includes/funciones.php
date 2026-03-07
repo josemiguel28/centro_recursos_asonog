@@ -65,6 +65,24 @@ function isUserAuthenticated()
  * @param string $action El código de acción (por ejemplo, 'DSP', 'INS', 'UPD', 'DEL').
  * @return string El título correspondiente del formulario.
  */
+/**
+ * Guarda una alerta en sesión para mostrarla después de un redirect.
+ */
+function setFlashAlerta(string $tipo, string $mensaje): void
+{
+    $_SESSION['flash_alertas'][$tipo][] = $mensaje;
+}
+
+/**
+ * Recupera y elimina las alertas flash de la sesión.
+ */
+function getFlashAlertas(): array
+{
+    $alertas = $_SESSION['flash_alertas'] ?? [];
+    unset($_SESSION['flash_alertas']);
+    return $alertas;
+}
+
 function setFormTitle($action): string
 {
     $modes = [

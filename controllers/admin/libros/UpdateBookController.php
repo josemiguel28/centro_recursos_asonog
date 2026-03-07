@@ -28,7 +28,7 @@ class UpdateBookController extends ActiveRecord
 
             $libro->sincronizar($args);
 
-            if (self::checkForNewImage($libro, $oldImage) && self::checkForNewPDF($libro, $oldPDF)) {
+            if (self::checkForNewImage($libro, $oldImage) && self::checkForNewPDF($libro, $oldPDF, $args)) {
                 $libro->guardar();
                 Libros::setAlerta("success", "Libro actualizado correctamente");
             }
@@ -70,11 +70,24 @@ class UpdateBookController extends ActiveRecord
      *
      * @param Libros $libro El libro que se está actualizando.
      * @param string $oldPDF El nombre del archivo del PDF antiguo.
+     * @param array $args Los argumentos del formulario.
      * @return bool True si el nuevo PDF se procesó correctamente, false en caso contrario.
      * @throws Exception
      */
-    private static function checkForNewPDF($libro, $oldPDF): bool
+    private static function checkForNewPDF($libro, $oldPDF, $args): bool
     {
+        // Verificar si hay un nuevo archivo PDF subido vía AJAX
+        if (!empty($args['pdf_filename']) && $args['pdf_filename'] !== $oldPDF) {
+            // El archivo ya fue subido vía AJAX, solo actualizamos la referencia
+            $libro->archivo_url = $args['pdf_filename'];
+            // Eliminar el PDF anterior si existe
+            if ($oldPDF) {
+                FileHandler::deleteFile(CARPETA_LIBROS . $oldPDF);
+            }
+            return true;
+        }
+        
+        // Fallback: verificar si se subió de forma tradicional
         if (isset($_FILES['archivo']) && $_FILES['archivo']['error'] === UPLOAD_ERR_OK) {
             if (FileHandler::procesarPDF($libro, CARPETA_LIBROS)) {
                 FileHandler::deleteFile(CARPETA_LIBROS . $oldPDF);
@@ -84,6 +97,7 @@ class UpdateBookController extends ActiveRecord
                 return false;
             }
         }
+        
         return true;
     }
 

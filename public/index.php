@@ -5,6 +5,7 @@ require_once __DIR__ . '/../includes/app.php';
 use Controller\admin\AdminController;
 use Controller\admin\documentos\CreateDocumentController;
 use Controller\admin\libros\CreateBookController;
+use Controller\admin\libros\api\UploadPdfController;
 use Controller\admin\usuarios\ManageUserController;
 use Controller\auth\ConfirmarCuenta;
 use Controller\auth\LoginController;
@@ -37,6 +38,10 @@ $router->get("/search-book", [SearchBookController::class, 'searchBook']);
 //api de biblioteca
 $router->get("/api/get-paginated-books", [BibliotecaAPI::class, 'getPaginatedBooks']);
 $router->get("/api/filter-books-by-category", [BibliotecaAPI::class, 'filterBooksByCategory']);
+
+//api de libros - subida de archivos
+$router->post("/api/libros/upload-pdf", [UploadPdfController::class, 'uploadPdf']);
+$router->post("/api/libros/delete-pdf", [UploadPdfController::class, 'deletePdf']);
 
 //api de colaborador (repositorio)
 $router->get("/api/get-paginated-documents", [getPaginatedDocuments::class, 'getPaginatedDocuments']);

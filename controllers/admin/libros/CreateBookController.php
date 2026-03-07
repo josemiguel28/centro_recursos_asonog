@@ -25,15 +25,30 @@ class CreateBookController extends ActiveRecord
 
         $libro->sincronizar($args);
 
-        // Procesar archivos
+        // Procesar imagen
         $imagenValida = FileHandler::procesarImagen($libro, CARPETA_IMAGENES_LIBROS);
-        $pdfValido = FileHandler::procesarPDF($libro, CARPETA_LIBROS);
+        
+        // Verificar si el PDF ya fue subido vía AJAX
+        $pdfValido = false;
+        if (!empty($args['pdf_filename'])) {
+            // El archivo PDF ya fue subido, solo asignamos el nombre
+            $libro->archivo_url = $args['pdf_filename'];
+            $pdfValido = true;
+        } else {
+            // Fallback: intentar subir el PDF de forma tradicional si no se usó AJAX
+            $pdfValido = FileHandler::procesarPDF($libro, CARPETA_LIBROS);
+        }
 
         if ($imagenValida && $pdfValido) {
             $libro->crear();
-            Libros::setAlerta('success', 'Libro creado correctamente.');
-            return [];
+            setFlashAlerta('success', 'Libro creado correctamente.');
+            header('Location: /gestionar/libros');
+            exit;
         } else {
+            // Si el PDF fue subido pero falla la imagen, eliminar el PDF subido
+            if ($pdfValido && !empty($libro->archivo_url)) {
+                FileHandler::deleteFile(CARPETA_LIBROS . $libro->archivo_url);
+            }
             Libros::getAlertas();
         }
 
