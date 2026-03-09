@@ -1,10 +1,10 @@
 <?php
 
 //define las rutas en donde se guardaran los archivos e imagenes
-define("CARPETA_IMAGENES_LIBROS", $_SERVER["DOCUMENT_ROOT"] . '/imagenesLibros/');
-define("CARPETA_LIBROS", $_SERVER["DOCUMENT_ROOT"] . '/libros/');
-define("CARPETA_DOCUMENTOS", $_SERVER["DOCUMENT_ROOT"] . '/documentos/');
-define("CARPETA_IMAGENES_DOCUMENTOS", $_SERVER["DOCUMENT_ROOT"] . '/imagenesDocumentos/');
+define("CARPETA_IMAGENES_LIBROS", dirname(__DIR__) . '/public/imagenesLibros/');
+define("CARPETA_LIBROS",          dirname(__DIR__) . '/public/libros/');
+define("CARPETA_DOCUMENTOS",      dirname(__DIR__) . '/public/documentos/');
+define("CARPETA_IMAGENES_DOCUMENTOS", dirname(__DIR__) . '/public/imagenesDocumentos/');
 
 function debuguear($variable) : string {
     echo "<pre>";

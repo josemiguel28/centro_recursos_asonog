@@ -3,6 +3,11 @@ const inputFile = document.getElementById('dropzone-file');
 const filePreview = document.getElementById('file-preview');
 const hiddenPdfInput = document.getElementById('pdf-filename');
 
+// El endpoint de subida/borrado se lee del atributo data del dropzone.
+// Por defecto apunta al endpoint de libros (retrocompatible con formulario_libros.php).
+const uploadUrl = dropzone.dataset.uploadUrl || '/api/libros/upload-pdf';
+const deleteUrl  = dropzone.dataset.deleteUrl  || '/api/libros/delete-pdf';
+
 let uploadedFilename = null;
 let isUploading = false;
 let isNewlyUploaded = false; // Para distinguir archivos nuevos de los existentes
@@ -75,7 +80,7 @@ async function uploadFile(file) {
     formData.append('archivo', file);
 
     try {
-        const response = await fetch('/api/libros/upload-pdf', {
+        const response = await fetch(uploadUrl, {
             method: 'POST',
             body: formData
         });
@@ -188,7 +193,7 @@ async function removeUploadedFile() {
     // Solo eliminar del servidor si fue subido en esta sesión
     if (isNewlyUploaded) {
         try {
-            const response = await fetch('/api/libros/delete-pdf', {
+            const response = await fetch(deleteUrl, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

@@ -43,6 +43,10 @@ $router->get("/api/filter-books-by-category", [BibliotecaAPI::class, 'filterBook
 $router->post("/api/libros/upload-pdf", [UploadPdfController::class, 'uploadPdf']);
 $router->post("/api/libros/delete-pdf", [UploadPdfController::class, 'deletePdf']);
 
+//api de documentos - subida de archivos
+$router->post("/api/documentos/upload-pdf", [UploadPdfController::class, 'uploadDocumentoPdf']);
+$router->post("/api/documentos/delete-pdf", [UploadPdfController::class, 'deleteDocumentoPdf']);
+
 //api de colaborador (repositorio)
 $router->get("/api/get-paginated-documents", [getPaginatedDocuments::class, 'getPaginatedDocuments']);
 $router->get("/api/filter-documents-by-tematica", [filterDocuments::class, 'filterDocumentsByTematica']);

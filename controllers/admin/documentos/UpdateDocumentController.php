@@ -28,7 +28,7 @@ class UpdateDocumentController extends ActiveRecord
 
             $documento->sincronizar($args);
 
-            if (self::checkForNewImage($documento, $oldImage) && self::checkForNewPDF($documento, $oldPDF)) {
+            if (self::checkForNewImage($documento, $oldImage) && self::checkForNewPDF($args, $documento, $oldPDF)) {
                 $documento->guardar();
                 $documentoId = $documento->id;
 
@@ -56,17 +56,23 @@ class UpdateDocumentController extends ActiveRecord
         return true;
     }
 
-    private static function checkForNewPDF($documento, $oldPDF): bool
+    private static function checkForNewPDF($args, $documento, $oldPDF): bool
     {
-        if (isset($_FILES['archivo']) && $_FILES['archivo']['error'] === UPLOAD_ERR_OK) {
-            if (FileHandler::procesarPDF($documento,CARPETA_DOCUMENTOS)) {
-                FileHandler::deleteFile(CARPETA_DOCUMENTOS . $oldPDF);
-                return true;
-            } else {
-                Documentos::setAlerta("fail", "Error al procesar el nuevo PDF.");
-                return false;
-            }
+        $newFilename = trim($args['pdf_filename'] ?? '');
+
+        if (empty($newFilename)) {
+            Documentos::setAlerta("fail", "El PDF del documento no puede estar vacío.");
+            return false;
         }
+
+        // Siempre sincronizar el nombre en el modelo
+        $documento->archivo_url = $newFilename;
+
+        // Si cambió el archivo, eliminar el anterior
+        if ($newFilename !== $oldPDF && !empty($oldPDF)) {
+            FileHandler::deleteFile(CARPETA_DOCUMENTOS . $oldPDF);
+        }
+
         return true;
     }
 }

@@ -17,15 +17,21 @@ class UploadPdfController
      */
     public static function uploadPdf(): void
     {
+        self::doUpload(CARPETA_LIBROS, '/libros/');
+    }
+
+    public static function uploadDocumentoPdf(): void
+    {
+        self::doUpload(CARPETA_DOCUMENTOS, '/documentos/');
+    }
+
+    private static function doUpload(string $carpeta, string $urlBase): void
+    {
         header('Content-Type: application/json');
-        
-        // Verificar que sea una petición POST
+
         if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
             http_response_code(405);
-            echo json_encode([
-                'success' => false,
-                'message' => 'Método no permitido'
-            ]);
+            echo json_encode(['success' => false, 'message' => 'Método no permitido']);
             return;
         }
 
@@ -84,13 +90,11 @@ class UploadPdfController
             // Generar nombre único para el archivo
             $nombrePdf = md5(uniqid(rand(), true)) . '.pdf';
             
-            // Crear carpeta si no existe
-            if (!is_dir(CARPETA_LIBROS)) {
-                mkdir(CARPETA_LIBROS, 0755, true);
+            if (!is_dir($carpeta)) {
+                mkdir($carpeta, 0755, true);
             }
 
-            // Mover el archivo a la ubicación deseada
-            $rutaCompleta = CARPETA_LIBROS . $nombrePdf;
+            $rutaCompleta = $carpeta . $nombrePdf;
             if (!move_uploaded_file($_FILES['archivo']['tmp_name'], $rutaCompleta)) {
                 throw new Exception('Error al guardar el archivo en el servidor.');
             }
@@ -107,7 +111,7 @@ class UploadPdfController
                     'filename' => $nombrePdf,
                     'originalName' => $nombreOriginal,
                     'size' => $pdfSize,
-                    'url' => '/libros/' . $nombrePdf
+                    'url' => $urlBase . $nombrePdf
                 ]
             ]);
 
@@ -153,49 +157,48 @@ class UploadPdfController
      */
     public static function deletePdf(): void
     {
+        self::doDeletePdf(CARPETA_LIBROS);
+    }
+
+    public static function deleteDocumentoPdf(): void
+    {
+        self::doDeletePdf(CARPETA_DOCUMENTOS);
+    }
+
+    private static function doDeletePdf(string $carpeta): void
+    {
         header('Content-Type: application/json');
-        
+
         if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
             http_response_code(405);
-            echo json_encode([
-                'success' => false,
-                'message' => 'Método no permitido'
-            ]);
+            echo json_encode(['success' => false, 'message' => 'Método no permitido']);
             return;
         }
 
         try {
-            $data = json_decode(file_get_contents('php://input'), true);
+            $data     = json_decode(file_get_contents('php://input'), true);
             $filename = $data['filename'] ?? '';
 
             if (empty($filename)) {
                 throw new Exception('Nombre de archivo no proporcionado.');
             }
 
-            // Validar que el archivo existe y está en la carpeta correcta
-            $rutaCompleta = CARPETA_LIBROS . $filename;
-            
+            $rutaCompleta = $carpeta . $filename;
+
             if (!file_exists($rutaCompleta)) {
                 throw new Exception('El archivo no existe.');
             }
 
-            // Eliminar el archivo
             if (!unlink($rutaCompleta)) {
                 throw new Exception('Error al eliminar el archivo.');
             }
 
             http_response_code(200);
-            echo json_encode([
-                'success' => true,
-                'message' => 'Archivo eliminado correctamente'
-            ]);
+            echo json_encode(['success' => true, 'message' => 'Archivo eliminado correctamente']);
 
         } catch (Exception $e) {
             http_response_code(400);
-            echo json_encode([
-                'success' => false,
-                'message' => $e->getMessage()
-            ]);
+            echo json_encode(['success' => false, 'message' => $e->getMessage()]);
         }
     }
 }

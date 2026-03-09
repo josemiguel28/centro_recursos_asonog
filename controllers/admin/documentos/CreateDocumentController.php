@@ -24,9 +24,18 @@ class CreateDocumentController
         $documento = new Documentos();
         $documento->sincronizar($args);
 
-        // Procesar archivos
+        // Procesar imagen
         $imagenValida = FileHandler::procesarImagen($documento, CARPETA_IMAGENES_DOCUMENTOS);
-        $pdfValido = FileHandler::procesarPDF($documento, CARPETA_DOCUMENTOS);
+
+        // PDF fue pre-subido vía AJAX; sólo se recibe el nombre del archivo
+        $pdfFilename = trim($args['pdf_filename'] ?? '');
+        if (empty($pdfFilename)) {
+            Documentos::setAlerta('fail', 'Debes subir un archivo PDF.');
+            $pdfValido = false;
+        } else {
+            $documento->archivo_url = $pdfFilename;
+            $pdfValido = true;
+        }
 
         if ($imagenValida && $pdfValido) {
 

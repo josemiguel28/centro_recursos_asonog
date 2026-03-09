@@ -70,6 +70,7 @@ class FileHandler
             $image->save($imagePath . $nombreImagen);
         } catch (Exception $e) {
             $model::setAlerta('fail', 'Error al procesar la imagen.');
+            echo "Error al procesar la imagen: " . $e->getMessage(); // Debug adicional
             return false;
         }
 

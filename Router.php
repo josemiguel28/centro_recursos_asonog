@@ -21,6 +21,8 @@ class Router
             '/search-document',
             '/api/libros/upload-pdf',
             '/api/libros/delete-pdf',
+            '/api/documentos/upload-pdf',
+            '/api/documentos/delete-pdf',
         ];
 
     public function get($url, $fn)
