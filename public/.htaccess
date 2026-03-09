@@ -1,22 +1,17 @@
 # ─── URL Rewriting ────────────────────────────────────────────────────────────
-# Redirige todas las peticiones (excepto archivos/carpetas existentes) a index.php
 Options -Indexes
 <IfModule mod_rewrite.c>
     RewriteEngine On
     RewriteBase /
 
-    # Si la petición corresponde a un archivo real, no reescribir
     RewriteCond %{REQUEST_FILENAME} !-f
-    # Si la petición corresponde a un directorio real, no reescribir
     RewriteCond %{REQUEST_FILENAME} !-d
-    # En cualquier otro caso reescribir a index.php
     RewriteRule ^ index.php [QSA,L]
 </IfModule>
 
-# ─── PHP — Subida de archivos ──────────────────────────────────────────────────
-# Ajusta los límites de subida para PDFs grandes.
-# Muchos hostings comparten permiten sobrescribir estos valores desde .htaccess.
-# Si no funciona, tendrás que ajustarlos desde el panel de control (cPanel → PHP Selector).
+# ─── PHP — Subida de archivos (Apache mod_php) ────────────────────────────────
+# Funciona en hostings con mod_php. En hostings con PHP-FPM/FastCGI (cPanel),
+# usa el archivo .user.ini que está en esta misma carpeta.
 <IfModule mod_php.c>
     php_value upload_max_filesize 100M
     php_value post_max_size       110M
@@ -33,8 +28,7 @@ Options -Indexes
 </IfModule>
 
 # ─── Seguridad básica ─────────────────────────────────────────────────────────
-# Evitar acceso directo a archivos sensibles
-<FilesMatch "\.(env|log|sql|json|lock|md)$">
+<FilesMatch "\.(env|log|sql|lock|md)$">
     Order Allow,Deny
     Deny from all
 </FilesMatch>

@@ -26,16 +26,24 @@ class FileHandler
      */
     public static function procesarImagen($model, $imagePath): bool
     {
-
         if (!isset($_FILES['imagen']) || $_FILES['imagen']['error'] !== UPLOAD_ERR_OK) {
             $model::setAlerta('fail', 'Error al subir la imagen.');
             return false;
         }
 
-        $tipoImagen = mime_content_type($_FILES['imagen']['tmp_name']);
+        $tmpName = $_FILES['imagen']['tmp_name'];
         $imageSize = $_FILES['imagen']['size'];
 
-        if (!in_array($tipoImagen, self::ALLOWED_IMAGE_TYPES)) {
+        $imageInfo = getimagesize($tmpName);
+
+        if ($imageInfo === false) {
+            $model::setAlerta('fail', 'El archivo subido no es una imagen válida.');
+            return false;
+        }
+
+        $tipoImagen = $imageInfo['mime'];
+
+        if (!in_array($tipoImagen, self::ALLOWED_IMAGE_TYPES, true)) {
             $model::setAlerta('fail', 'La imagen debe ser un archivo JPG o PNG.');
             return false;
         }
@@ -45,7 +53,13 @@ class FileHandler
             return false;
         }
 
-        $nombreImagen = self::generarNombreArchivo('jpg');
+        $extension = match ($tipoImagen) {
+            'image/jpeg' => 'jpg',
+            'image/png'  => 'png',
+            default      => 'jpg',
+        };
+
+        $nombreImagen = self::generarNombreArchivo($extension);
         self::crearCarpetaSiNoExiste(CARPETA_IMAGENES_DOCUMENTOS);
 
         // Procesa la imagen

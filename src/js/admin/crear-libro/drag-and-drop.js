@@ -80,17 +80,7 @@ async function uploadFile(file) {
             body: formData
         });
 
-        let result;
-        try {
-            result = await response.json();
-        } catch (parseError) {
-            // La respuesta no es JSON (p. ej. error de PHP, redirección de sesión)
-            console.error('Respuesta no-JSON del servidor (status ' + response.status + ')');
-            showError('Error del servidor (código ' + response.status + '). Refresca la página e intenta de nuevo.');
-            uploadedFilename = null;
-            hiddenPdfInput.value = '';
-            return;
-        }
+        const result = await response.json();
 
         if (result.success) {
             uploadedFilename = result.data.filename;
@@ -103,8 +93,8 @@ async function uploadFile(file) {
             hiddenPdfInput.value = '';
         }
     } catch (error) {
-        console.error('Error de red:', error);
-        showError('Error de conexión. Verifica tu internet e intenta de nuevo.');
+        console.error('Error:', error);
+        showError('Error de conexión. Por favor, intenta de nuevo.');
         uploadedFilename = null;
         hiddenPdfInput.value = '';
     } finally {
