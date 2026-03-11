@@ -30,7 +30,9 @@ class UpdateBookController extends ActiveRecord
 
             if (self::checkForNewImage($libro, $oldImage) && self::checkForNewPDF($libro, $oldPDF, $args)) {
                 $libro->guardar();
-                Libros::setAlerta("success", "Libro actualizado correctamente");
+                setFlashAlerta('success', 'Libro con ID ' . $libro->id . ' actualizado correctamente.');
+                header('Location: /gestionar/libros');
+                exit;
             }
         } catch (Exception $e) {
             Libros::setAlerta("fail", "Error al actualizar el libro: " . $e->getMessage());

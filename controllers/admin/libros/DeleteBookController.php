@@ -27,7 +27,11 @@ class DeleteBookController extends ActiveRecord
             FileHandler::deleteFile(CARPETA_IMAGENES_LIBROS . $libro->imagen);
             FileHandler::deleteFile(CARPETA_LIBROS . $libro->archivo_url);
             $libro->eliminar();
-            Libros::setAlerta("success", "Libro eliminado correctamente");
+
+            setFlashAlerta('success', 'Libro eliminado correctamente.');
+            header('Location: /gestionar/libros');  
+            exit;
+
         } catch (Exception $e) {
             Libros::setAlerta("fail", "Error al eliminar el libro: " . $e->getMessage());
         }

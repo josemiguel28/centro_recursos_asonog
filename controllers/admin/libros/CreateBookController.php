@@ -41,7 +41,7 @@ class CreateBookController extends ActiveRecord
 
         if ($imagenValida && $pdfValido) {
             $libro->crear();
-            Libros::setAlerta('success', 'Libro creado correctamente.');
+            setFlashAlerta('success','Libro creado exitosamente');
             header('Location: /gestionar/libros');
             exit;
         } else {

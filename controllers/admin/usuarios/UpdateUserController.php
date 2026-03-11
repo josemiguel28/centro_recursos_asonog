@@ -18,7 +18,9 @@ class UpdateUserController extends ActiveRecord
             header('Location: /usuarios/gestionar');
             exit;
         }catch (\Exception $e){
-            Usuario::setAlerta('fail', 'Error al actualizar el usuario.');
+            setFlashAlerta('error', 'Error al actualizar el usuario: ' . $e->getMessage());
+            header('Location: /usuarios/gestionar');
+            exit;
         }
     }
 }

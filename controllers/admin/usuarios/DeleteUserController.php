@@ -17,7 +17,9 @@ class DeleteUserController extends ActiveRecord
             header('Location: /usuarios/gestionar');
             exit;
         } catch (\Exception $e) {
-            Usuario::setAlerta('text-red-500 bg-red-100', 'Error al eliminar el usuario.');
+            setFlashAlerta('error', 'Error al eliminar el usuario: ' . $e->getMessage());
+            header('Location: /usuarios/gestionar');
+            exit;
         }
     }
 
