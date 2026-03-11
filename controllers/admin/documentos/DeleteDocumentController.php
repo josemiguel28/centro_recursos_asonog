@@ -27,8 +27,13 @@ class DeleteDocumentController
             if ($resultado) {
                 FileHandler::deleteFile(CARPETA_IMAGENES_DOCUMENTOS . $documento->imagen);
                 FileHandler::deleteFile(CARPETA_DOCUMENTOS . $documento->archivo_url);
+                
+                $deleted_document_id = $documento->id; // Guardar el ID antes de eliminar el registro
                 $documento->eliminar();
-                Documentos::setAlerta("success", "Libro eliminado correctamente");
+                
+                setFlashAlerta('success', 'Documento con ID ' . $deleted_document_id . ' eliminado correctamente.');
+                header('Location: /repositorio/gestionar');
+                exit;
             }
 
         } catch (Exception $e) {

@@ -37,7 +37,8 @@ class ManageDocumentsController extends ActiveRecord
                 'lastPage'   => $lastPage,
                 'total'      => $total,
                 'perPage'    => $perPage,
-                'titlePage'  => "Gestión del repositorio"
+                'titlePage'  => "Gestión del repositorio",
+                'alertas'    => getFlashAlertas()
             ]);
     }
 
@@ -67,6 +68,11 @@ class ManageDocumentsController extends ActiveRecord
                     break;
                 case 'UPD':
                     UpdateDocumentController::actualizarDocumento($_POST, $documento);
+                    // Recargar datos frescos desde la BD tras la actualización
+                    if (is_int($getDocumentIdFromUrl)) {
+                        $document = self::getDocumentByIdFromDb($getDocumentIdFromUrl);
+                        $documentData = self::prepareViewDataDocument($document);
+                    }
                     break;
                 case 'DEL':
                     DeleteDocumentController::eliminarDocumento($documento);
@@ -74,7 +80,8 @@ class ManageDocumentsController extends ActiveRecord
             }
         }
 
-        $alertas = Libros::getAlertas();
+
+        $alertas  = Libros::getAlertas();
 
         $router->render('admin/documentos/formulario_documentos',
             [

@@ -5,6 +5,7 @@ namespace Controller\admin\documentos;
 use Clases\FileHandler;
 use Model\ActiveRecord;
 use MVC\models\Documentos;
+use MVC\models\DocumentosResponsable;
 
 class UpdateDocumentController extends ActiveRecord
 {
@@ -32,10 +33,13 @@ class UpdateDocumentController extends ActiveRecord
                 $documento->guardar();
                 $documentoId = $documento->id;
 
-                // Guarda el responsable del documento
+                // Borra los técnicos anteriores y reinserta los nuevos
+                DocumentosResponsable::deleteRecord($documentoId);
                 CreateDocumentController::saveDocumentoTecnicoResponsable($documentoId);
 
-                Documentos::setAlerta("success", "Documento actualizado correctamente");
+                setFlashAlerta("success", "Documento con ID " . $documento->id . " actualizado correctamente.");
+                header('Location: /repositorio/gestionar');
+                exit;
             }
         } catch (Exception $e) {
             Documentos::setAlerta("fail", "Error al actualizar el libro: " . $e->getMessage());

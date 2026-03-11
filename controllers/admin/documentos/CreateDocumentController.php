@@ -46,7 +46,8 @@ class CreateDocumentController
                 self::saveDocumentoTecnicoResponsable($documentoId); // Guardar los tecnicos responsables en la tabla documentos_tecnicos
 
                 setFlashAlerta('success', 'Documento creado correctamente.');
-                header('Location: /repositorio/gestinar');
+                
+                header('Location: /repositorio/gestionar');
                 exit;
 
             } catch (\Exception $e) {
@@ -64,6 +65,7 @@ class CreateDocumentController
  * y guarda cada uno de ellos en la base de datos asociándolos con el documento proporcionado.
  *
  * @param int $documentoId El ID del documento para el cual se guardarán los técnicos responsables.
+ * @param string $method El método de operación, puede ser 'create' o 'update' para determinar si se debe crear o actualizar los registros.
  * @return void
  */
 public static function saveDocumentoTecnicoResponsable($documentoId): void
@@ -79,7 +81,7 @@ public static function saveDocumentoTecnicoResponsable($documentoId): void
             "id_tecnico_responsable" => $tecnicoId
         ];
         $documentoTecnico = new DocumentosResponsable($args);
-        $documentoTecnico->guardar();
+        $documentoTecnico->crear();
     }
 }
 }
