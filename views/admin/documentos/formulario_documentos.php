@@ -1,13 +1,9 @@
 <section class="w-full mx-auto">
 
-    <a href="/repositorio/gestionar" class="underline text-lg">
-        <button type="button"
-                class="text-white bg-gray-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center me-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-
-            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24">
-                <path fill="#ffffff" d="m10 18l-6-6l6-6l1.4 1.45L7.85 11H20v2H7.85l3.55 3.55z"/>
-            </svg>
-        </button>
+    <?php
+        include_once __DIR__ . "/../../templates/components/btn_back.php";
+        btnBack("/admin");
+    ?>
     </a>
     <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto lg:py-0">
         <h1 class="text-2xl font-bold leading-tight tracking-tight text-gray-900 mb-8 md:text-2xl">
@@ -22,23 +18,23 @@
                 ?>
 
                 <form class="space-y-4 md:space-y-6"
-                      action="/documento?mode=<?= $mode ?>&id= <?= $documento["id"] ?? "null"; ?>"
-                      method="post" enctype="multipart/form-data">
+                    action="/documento?mode=<?= $mode ?>&id= <?= $documento["id"] ?? "null"; ?>"
+                    method="post" enctype="multipart/form-data">
                     <div>
                         <label for="nombreHerramienta"
-                               class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Ingresa el nombre de
+                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Ingresa el nombre de
                             la herramienta <span class="text-red-500">*</span>
                         </label>
                         <input
                             <?= $mode === "DSP" || $mode === "DEL" ? "disabled" : ""; ?>
-                                type="text"
-                                name="nombre_herramienta"
-                                id="nombreHerramienta"
-                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600
+                            type="text"
+                            name="nombre_herramienta"
+                            id="nombreHerramienta"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600
                         focus:border-primary-600 block w-full p-2.5 "
-                                placeholder="Informe ONU"
-                                required=""
-                                value="<?= $documento["nombre_herramienta"] ?? ''; ?>">
+                            placeholder="Informe ONU"
+                            required=""
+                            value="<?= $documento["nombre_herramienta"] ?? ''; ?>">
                     </div>
 
                     <div>
@@ -47,13 +43,13 @@
                         <select
                             <?= $mode === "DSP" || $mode === "DEL" ? "disabled" : ""; ?>
 
-                                id="countries"
-                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                                name="id_tipo_herramienta">
+                            id="countries"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                            name="id_tipo_herramienta">
 
                             <?php foreach ($tipoHerramientas as $herramienta): ?>
                                 <option value="<?= $herramienta->id ?>"
-                                    <?= (($documento["tipo_herramienta"] ?? '') === $herramienta->nombre) ? 'selected' : "" ?> >
+                                    <?= (($documento["tipo_herramienta"] ?? '') === $herramienta->nombre) ? 'selected' : "" ?>>
                                     <?= $herramienta->nombre ?>
 
                                 </option>
@@ -68,13 +64,13 @@
                         <select
                             <?= $mode === "DSP" || $mode === "DEL" ? "disabled" : ""; ?>
 
-                                id="countries"
-                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                                name="id_tematica">
+                            id="countries"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                            name="id_tematica">
 
                             <?php foreach ($tematicas as $tematica): ?>
                                 <option value="<?= $tematica->id ?>"
-                                    <?= (($documento["tematica"] ?? '') === $tematica->nombre) ? 'selected' : "" ?> >
+                                    <?= (($documento["tematica"] ?? '') === $tematica->nombre) ? 'selected' : "" ?>>
                                     <?= $tematica->nombre ?></option>
                             <?php endforeach; ?>
                         </select>
@@ -86,13 +82,13 @@
                     <div id="tecnicosResponsables" class="grid grid-cols-1 sm:grid-cols-2 gap-2 w-full border">
 
                         <button id="dropdownSearchButton" data-dropdown-toggle="dropdownSearch"
-                                class="inline-flex items-center px-4 py-2 text-sm font-medium text-center text-black w-full min-w-full"
-                                type="button">
+                            class="inline-flex items-center px-4 py-2 text-sm font-medium text-center text-black w-full min-w-full"
+                            type="button">
                             Técnicos
                             <svg class="w-2.5 h-2.5 ms-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                                 fill="none" viewBox="0 0 10 6">
+                                fill="none" viewBox="0 0 10 6">
                                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                      stroke-width="2" d="m1 1 4 4 4-4"/>
+                                    stroke-width="2" d="m1 1 4 4 4-4" />
                             </svg>
                         </button>
 
@@ -108,16 +104,15 @@
                                             <input
                                                 <?= $mode === "DSP" || $mode === "DEL" ? "disabled" : ""; ?>
 
-                                                    id="checkbox-item-<?= $responsable->id ?>"
-                                                    type="checkbox"
-                                                    value="<?= $responsable->id ?>"
-                                                    class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500"
-                                                    name="id_tecnico_responsable[]"
+                                                id="checkbox-item-<?= $responsable->id ?>"
+                                                type="checkbox"
+                                                value="<?= $responsable->id ?>"
+                                                class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500"
+                                                name="id_tecnico_responsable[]"
 
-                                                <?= (isset($documento['tecnico']) && in_array($responsable->id, $documento['tecnico'])) ? 'checked' : '' ?>
-                                            >
+                                                <?= (isset($documento['tecnico']) && in_array($responsable->id, $documento['tecnico'])) ? 'checked' : '' ?>>
                                             <label for="checkbox-item-<?= $responsable->id ?>"
-                                                   class="w-full ms-2 text-sm font-medium text-gray-900 rounded dark:text-gray-300">
+                                                class="w-full ms-2 text-sm font-medium text-gray-900 rounded dark:text-gray-300">
                                                 <?= htmlspecialchars($responsable->nombre, ENT_QUOTES, 'UTF-8') ?>
                                             </label>
                                         </div>
@@ -134,25 +129,25 @@
                         <input
                             <?= $mode === "DSP" || $mode === "DEL" ? "disabled" : ""; ?>
 
-                                type="text"
-                                name="fecha_emision"
-                                id="fecha"
-                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600
+                            type="text"
+                            name="fecha_emision"
+                            id="fecha"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600
                         focus:border-primary-600 block w-full p-2.5 "
-                                placeholder="2024"
-                                required=""
-                                value="<?= $documento["fecha_emision"] ?? ''; ?>">
+                            placeholder="2024"
+                            required=""
+                            value="<?= $documento["fecha_emision"] ?? ''; ?>">
                     </div>
 
                     <div>
                         <label for="message" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Descripción</label>
                         <textarea
-                                <?= $mode === "DSP" || $mode === "DEL" ? "disabled" : ""; ?>
+                            <?= $mode === "DSP" || $mode === "DEL" ? "disabled" : ""; ?>
 
-                                id="message" rows="4"
-                                class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 "
-                                placeholder="Escribe una descripcion del documento..."
-                                name="descripcion">
+                            id="message" rows="4"
+                            class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 "
+                            placeholder="Escribe una descripcion del documento..."
+                            name="descripcion">
                                 <?= htmlspecialchars($documento['descripcion'] ?? '') ?>
 
                         </textarea>
@@ -164,12 +159,12 @@
 
                         <select
                             <?= $mode === "DSP" || $mode === "DEL" ? "disabled" : ""; ?>
-                                name="estado"
-                                id="estado"
-                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5">
+                            name="estado"
+                            id="estado"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5">
 
-                            <option value="ACT" <?= ($documento["estado"] ?? '') === "ACT" ? 'selected' : "" ?> >Activo</option>
-                            <option value="INA" <?= ($documento["estado"] ?? '') === "INA" ? 'selected' : "" ?> >Inactivo
+                            <option value="ACT" <?= ($documento["estado"] ?? '') === "ACT" ? 'selected' : "" ?>>Activo</option>
+                            <option value="INA" <?= ($documento["estado"] ?? '') === "INA" ? 'selected' : "" ?>>Inactivo
                             </option>
 
                         </select>
@@ -186,15 +181,14 @@
 
                                     <div>
                                         <a href="/documentos/<?= $documento["archivo_url"]; ?>" target="_blank"
-                                           class="text-primary-500">
+                                            class="text-primary-500">
 
                                             <div>
                                                 <img class="rounded-[0.5rem]"
-                                                     src="/imagenesDocumentos/<?= $documento["imagen"]; ?>"
-                                                     alt=""
-                                                     width="100"
-                                                     height="100"
-                                                >
+                                                    src="/imagenesDocumentos/<?= $documento["imagen"]; ?>"
+                                                    alt=""
+                                                    width="100"
+                                                    height="100">
                                             </div>
                                         </a>
                                     </div>
@@ -202,39 +196,38 @@
                             <?php endif; ?>
 
                             <input class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
-                                   type="file"
-                                   name="imagen"
-                                   id="imagen"
-                                   accept="image/jpeg, image/png">
+                                type="file"
+                                name="imagen"
+                                id="imagen"
+                                accept="image/jpeg, image/png">
                         </div>
 
 
                         <div>
                             <div class="flex items-center justify-center w-full">
                                 <label for="dropzone-file"
-                                       class="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-gray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600 transition-colors"
-                                       id="dropzone"
-                                       data-upload-url="/api/documentos/upload-pdf"
-                                       data-delete-url="/api/documentos/delete-pdf">
+                                    class="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-gray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600 transition-colors"
+                                    id="dropzone"
+                                    data-upload-url="/api/documentos/upload-pdf"
+                                    data-delete-url="/api/documentos/delete-pdf">
                                     <div class="flex flex-col items-center justify-center pt-5 pb-6" id="file-preview">
                                         <svg class="w-8 h-8 mb-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
-                                             xmlns="http://www.w3.org/2000/svg"
-                                             fill="none" viewBox="0 0 20 16">
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            fill="none" viewBox="0 0 20 16">
                                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                                  stroke-width="2"
-                                                  d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2"/>
+                                                stroke-width="2"
+                                                d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2" />
                                         </svg>
                                         <p class="mb-2 text-sm text-gray-500 dark:text-gray-400"><span
-                                                    class="font-semibold">Click para subir el archivo PDF</span></p>
+                                                class="font-semibold">Click para subir el archivo PDF</span></p>
                                         <p class="text-xs text-gray-500 dark:text-gray-400">PDF (máx. 100MB)</p>
                                     </div>
                                     <input
-                                            id="dropzone-file"
-                                            type="file"
-                                            class="hidden"
-                                            accept=".pdf"
-                                        <?= $mode === "DSP" || $mode === "DEL" ? "disabled" : ""; ?>
-                                    />
+                                        id="dropzone-file"
+                                        type="file"
+                                        class="hidden"
+                                        accept=".pdf"
+                                        <?= $mode === "DSP" || $mode === "DEL" ? "disabled" : ""; ?> />
                                 </label>
                             </div>
                             <!-- Campo oculto para guardar el nombre del archivo PDF ya subido -->
