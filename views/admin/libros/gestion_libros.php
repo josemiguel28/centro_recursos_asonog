@@ -5,6 +5,7 @@
         <!-- Header -->
         <div class="flex items-center justify-between mb-6">
             <div class="flex items-center gap-4">
+                
                 <?php
                 include_once __DIR__ . "/../../templates/components/btn_back.php";
                 btnBack("/admin");

@@ -14,7 +14,9 @@ class UpdateUserController extends ActiveRecord
 
             $usuario->guardar();
 
-            Usuario::setAlerta('success', 'Usuario actualizado correctamente.');
+            setFlashAlerta('success', 'Usuario con correo ' . $usuario->correo . ' actualizado correctamente.');
+            header('Location: /usuarios/gestionar');
+            exit;
         }catch (\Exception $e){
             Usuario::setAlerta('fail', 'Error al actualizar el usuario.');
         }

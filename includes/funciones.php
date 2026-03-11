@@ -53,18 +53,9 @@ function isUserAuthenticated()
         header("Location: /login");
         exit;
     }
-
-
 }
 
-/**
- * Establece el título del formulario basado en la acción dada.
- *
- * Esta función toma un código de acción y devuelve el título correspondiente del formulario.
- *
- * @param string $action El código de acción (por ejemplo, 'DSP', 'INS', 'UPD', 'DEL').
- * @return string El título correspondiente del formulario.
- */
+
 /**
  * Guarda una alerta en sesión para mostrarla después de un redirect.
  */
@@ -83,6 +74,14 @@ function getFlashAlertas(): array
     return $alertas;
 }
 
+/**
+ * Establece el título del formulario basado en la acción dada.
+ *
+ * Esta función toma un código de acción y devuelve el título correspondiente del formulario.
+ *
+ * @param string $action El código de acción (por ejemplo, 'DSP', 'INS', 'UPD', 'DEL').
+ * @return string El título correspondiente del formulario.
+ */
 function setFormTitle($action): string
 {
     $modes = [

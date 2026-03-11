@@ -32,7 +32,8 @@ class ManageUserController extends ActiveRecord
                 'lastPage'  => $lastPage,
                 'total'     => $total,
                 'perPage'   => $perPage,
-                'titlePage' => "Gestión de usuarios"
+                'titlePage' => "Gestión de usuarios",
+                'alertas' => getFlashAlertas()
             ]
         );
     }

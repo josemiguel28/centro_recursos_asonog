@@ -1,9 +1,6 @@
-<?php
-
-?>
 <?php foreach (($alertas ?? []) as $key => $alerta): ?>
     <div
-            class="relative w-full max-w-80 mx-auto flex flex-wrap items-center justify-center py-3 pl-4 pr-14 rounded-lg text-sm [transition:all_0.5s_ease] border-solid group"
+            class="relative w-full max-w-80 mx-auto flex flex-wrap items-center justify-center py-3 pl-4 pr-14 rounded-lg text-sm [transition:all_0.5s_ease] border-solid group mb-4"
             style="
                     border-color: <?php echo $key === 'success' ? '#28a745' : '#b22b2b'; ?>;
                     background: linear-gradient(<?php echo $key === 'success' ? '#28a7451a' : '#b22b2b1a'; ?>, <?php echo $key === 'success' ? '#28a7451a' : '#b22b2b1a'; ?>);

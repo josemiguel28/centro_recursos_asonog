@@ -17,7 +17,9 @@ class CreateUserController extends ActiveRecord
         //$alertas = $usuario->validarDatosNuevaCuenta();
 
         if (self::procesarUsuario($usuario)) {
-            Usuario::setAlerta('success', 'Usuario creado con éxito. Se envió un correo con las instrucciones para activar la cuenta.');
+            setFlashAlerta('success', 'Usuario creado correctamente. Se ha enviado un correo con las instrucciones para configurar su cuenta.');
+            header('Location: /usuarios/gestionar');
+            exit;
         } else {
             $alertas = Usuario::getAlertas();
         }

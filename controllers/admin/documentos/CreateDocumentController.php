@@ -45,7 +45,9 @@ class CreateDocumentController
 
                 self::saveDocumentoTecnicoResponsable($documentoId); // Guardar los tecnicos responsables en la tabla documentos_tecnicos
 
-                Documentos::setAlerta('success', 'Documento creado correctamente.');
+                setFlashAlerta('success', 'Documento creado correctamente.');
+                header('Location: /repositorio/gestinar');
+                exit;
 
             } catch (\Exception $e) {
                 Documentos::setAlerta('fail', 'Error al crear el documento.');
