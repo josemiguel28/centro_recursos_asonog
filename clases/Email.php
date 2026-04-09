@@ -50,6 +50,12 @@ class Email
         $mail->Username = $_ENV["EMAIL_USERNAME"];
         $mail->Password = $_ENV["EMAIL_PASSWORD"];
 
+        if (!empty($_ENV["EMAIL_SECURE"])) {
+            $mail->SMTPSecure = $_ENV["EMAIL_SECURE"];
+        }
+
+        $mail->Timeout = 10;
+
         $mail->setFrom($_ENV["EMAIL_USERNAME"]);
         $mail->addAddress("$this->email");
         $mail->isHTML(true);

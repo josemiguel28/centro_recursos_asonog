@@ -36,14 +36,22 @@ class CreateUserController extends ActiveRecord
         $usuario->hashPassword();
         $usuario->createToken();
 
+        if (!$usuario->guardar()) {
+            return false;
+        }
+
         self::enviarEmail($usuario);
 
-        return $usuario->guardar();
+        return true;
     }
 
     private static function enviarEmail(Usuario $usuario): void
     {
-        $email = new Email($usuario->correo, $usuario->nombre, $usuario->token, $usuario->rol);
-        $email->enviarEmail();
+        try {
+            $email = new Email($usuario->correo, $usuario->nombre, $usuario->token, $usuario->rol);
+            $email->enviarEmail();
+        } catch (\Exception $e) {
+            setFlashAlerta('warning', 'Usuario creado, pero no se pudo enviar el correo de confirmación. Contacte al administrador.');
+        }
     }
 }
