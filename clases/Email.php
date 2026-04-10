@@ -2,9 +2,6 @@
 
 namespace Clases;
 
-use PHPMailer\PHPMailer\Exception;
-use PHPMailer\PHPMailer\PHPMailer;
-
 class Email
 {
 
@@ -13,12 +10,6 @@ class Email
     public $token;
     public $rol;
 
-    /**
-     * @param string $email La dirección de correo electrónico del destinatario.
-     * @param string $nombre El nombre del destinatario.
-     * @param string $token El token para la confirmación de cuenta o restablecimiento de contraseña.
-     * @param string $rol El rol del usuario (1 para Administrador, 2 para Colaborador).
-     */
     public function __construct(string $email = "", string $nombre ="", string $token ="", string $rol ="")
     {
         $this->email = $email;
@@ -31,55 +22,15 @@ class Email
             '2' => 'Colaborador',
             default => ''
         };
-
     }
 
-    /**
-     * Configura la instancia de PHPMailer con la configuración SMTP.
-     *
-     * @return PHPMailer La instancia de PHPMailer configurada.
-     */
-    public function setupMailer()
+    private function resend(): \Resend\Client
     {
-        $mail = new PHPMailer(true);
-
-        $mail->isSMTP();
-        $mail->Host = $_ENV["EMAIL_HOST"];
-        $mail->SMTPAuth = true;
-        $mail->Port = $_ENV["EMAIL_PORT"];
-        $mail->Username = $_ENV["EMAIL_USERNAME"];
-        $mail->Password = $_ENV["EMAIL_PASSWORD"];
-
-        if (!empty($_ENV["EMAIL_SECURE"])) {
-            $mail->SMTPSecure = $_ENV["EMAIL_SECURE"];
-        }
-
-        $mail->Timeout = 10;
-
-        $mail->SMTPDebug = 2;
-        $mail->Debugoutput = function(string $message, int $level): void {
-            error_log("[PHPMailer][Level $level] $message");
-        };
-
-        $mail->setFrom($_ENV["EMAIL_USERNAME"]);
-        $mail->addAddress("$this->email");
-        $mail->isHTML(true);
-        $mail->CharSet = 'UTF-8';
-
-        return $mail;
+        return \Resend::client($_ENV['RESEND_API_KEY']);
     }
 
-    /**
-     * Envía un correo electrónico de confirmación de cuenta.
-     *
-     * @throws Exception Si hay un error al enviar el correo electrónico.
-     */
     public function enviarEmail(): void
     {
-        $mail = $this->setupMailer();
-        $mail->Subject = 'Confirma tu cuenta | Centro de recursos para la gestión del conocimiento';
-
-// Contenido del correo electrónico
         $contenido = "<html>";
         $contenido .= "<head>";
         $contenido .= "<style>";
@@ -104,21 +55,16 @@ class Email
         $contenido .= "</body>";
         $contenido .= "</html>";
 
-        $mail->Body = $contenido;
-        $mail->send();
+        $this->resend()->emails->send([
+            'from'    => $_ENV['RESEND_FROM'],
+            'to'      => $this->email,
+            'subject' => 'Confirma tu cuenta | Centro de recursos para la gestión del conocimiento',
+            'html'    => $contenido,
+        ]);
     }
 
-    /**
-     * Envía un correo electrónico para restablecer la contraseña.
-     *
-     * @throws Exception Si hay un error al enviar el correo electrónico.
-     */
     public function restablecerContrasena(): void
     {
-        $mail = $this->setupMailer();
-        $mail->Subject = 'Restablece tu contraseña | Centro de recursos para la gestión del conocimiento';
-
-        // Contenido del correo electrónico
         $contenido = "<html>";
         $contenido .= "<head>";
         $contenido .= "<style>";
@@ -143,7 +89,11 @@ class Email
         $contenido .= "</body>";
         $contenido .= "</html>";
 
-        $mail->Body = $contenido;
-        $mail->send();
+        $this->resend()->emails->send([
+            'from'    => $_ENV['RESEND_FROM'],
+            'to'      => $this->email,
+            'subject' => 'Restablece tu contraseña | Centro de recursos para la gestión del conocimiento',
+            'html'    => $contenido,
+        ]);
     }
 }

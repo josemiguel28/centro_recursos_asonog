@@ -2,44 +2,15 @@
 
 namespace Clases;
 
-use Clases\Email;
-use PHPMailer\PHPMailer\PHPMailer;
-
 class EmailForm extends Email
 {
     public function __construct()
     {
-        // Llamar al constructor padre sin pasar parámetros
         parent::__construct();
     }
 
-    public function setupFormularioMailer(): PHPMailer
-    {
-        $mail = new PHPMailer(true);
-
-        $mail->isSMTP();
-        $mail->Host = $_ENV["EMAIL_HOST"];
-        $mail->SMTPAuth = true;
-        $mail->Port = $_ENV["EMAIL_PORT"];
-        $mail->Username = $_ENV["EMAIL_USERNAME"];
-        $mail->Password = $_ENV["EMAIL_PASSWORD"];
-
-        $mail->setFrom($_ENV["EMAIL_USERNAME"], 'Centro de Recursos');
-        $mail->addAddress("asonogsrc@gmail.com"); // Correo fijo del administrador
-        $mail->isHTML(true);
-        $mail->CharSet = 'UTF-8';
-
-        return $mail;
-    }
-
-
     public function enviarFormularioContacto(array $datos): void
     {
-        // Configuración inicial del correo
-        $mail = $this->setupFormularioMailer();
-        $mail->Subject = "Nuevo mensaje: " . htmlspecialchars($datos['tema'], ENT_QUOTES, 'UTF-8') . " | CRGC";
-
-        // Contenido del correo electrónico
         $contenido = "<html>";
         $contenido .= "<head>";
         $contenido .= "<style>";
@@ -64,15 +35,11 @@ class EmailForm extends Email
         $contenido .= "</body>";
         $contenido .= "</html>";
 
-        // Configurar cuerpo del correo y enviar
-        $mail->Body = $contenido;
-
-        try {
-        $mail->send();
-
-        } catch (\Exception $e) {
-            echo "Error al enviar el mensaje: {$mail->ErrorInfo}";
-        }
+        \Resend::client($_ENV['RESEND_API_KEY'])->emails->send([
+            'from'    => $_ENV['RESEND_FROM'],
+            'to'      => $_ENV['RESEND_CONTACT_TO'],
+            'subject' => "Nuevo mensaje: " . htmlspecialchars($datos['tema'], ENT_QUOTES, 'UTF-8') . " | CRGC",
+            'html'    => $contenido,
+        ]);
     }
-
 }
