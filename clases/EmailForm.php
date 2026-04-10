@@ -15,7 +15,7 @@ class EmailForm extends Email
 
     public function setupFormularioMailer(): PHPMailer
     {
-        $mail = new PHPMailer();
+        $mail = new PHPMailer(true);
 
         $mail->isSMTP();
         $mail->Host = $_ENV["EMAIL_HOST"];

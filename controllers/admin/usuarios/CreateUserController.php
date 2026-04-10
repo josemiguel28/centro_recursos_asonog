@@ -50,7 +50,9 @@ class CreateUserController extends ActiveRecord
         try {
             $email = new Email($usuario->correo, $usuario->nombre, $usuario->token, $usuario->rol);
             $email->enviarEmail();
+            error_log("[Email] SUCCESS - Correo enviado a: {$usuario->correo} | Usuario: {$usuario->nombre}");
         } catch (\Exception $e) {
+            error_log("[Email] FAILED  - Destinatario: {$usuario->correo} | Error: {$e->getMessage()}");
             setFlashAlerta('warning', 'Usuario creado, pero no se pudo enviar el correo de confirmación. Contacte al administrador.');
         }
     }

@@ -41,7 +41,7 @@ class Email
      */
     public function setupMailer()
     {
-        $mail = new PHPMailer();
+        $mail = new PHPMailer(true);
 
         $mail->isSMTP();
         $mail->Host = $_ENV["EMAIL_HOST"];
@@ -55,6 +55,11 @@ class Email
         }
 
         $mail->Timeout = 10;
+
+        $mail->SMTPDebug = 2;
+        $mail->Debugoutput = function(string $message, int $level): void {
+            error_log("[PHPMailer][Level $level] $message");
+        };
 
         $mail->setFrom($_ENV["EMAIL_USERNAME"]);
         $mail->addAddress("$this->email");
